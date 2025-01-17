@@ -1,0 +1,9 @@
+
+
+
+1. Instale oracle en su PC. Las últimas versiones son muy pesadas. Mejor insatalar una versión vieja, o Oracle Xpress
+2. Duante la instalación  debe ingresar el pasword del usuario system
+3. Desde la consola de Sqlplus ingrese: start c:/ruta del archivo/script_s1.sql. Otra opción por el menú archivo abrir el archivo.
+ 
+
+ 
