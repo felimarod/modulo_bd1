@@ -1,5 +1,10 @@
 import { peticion } from "./database.js";
 
+/**
+ * Formatear los datos del empleado
+ * @param {Array} empleado - Arreglo con los datos del empleado
+ * @returns Objeto con los datos del empleado
+ */
 const formatearEmpleado = (empleado) =>
   empleado.length === 12
     ? {
@@ -40,13 +45,13 @@ async function obtenerEmpleadoPorId(id) {
 
 /**
  * Crear un empleado
- * @param {Object} empleado - Objeto con los datos del empleado
+ * @param {Array} empleado - Array con los datos del empleado
  * @returns Empleado creado
  */
 async function crearEmpleado(empleado) {
   return await peticion(
-    `INSERT INTO s_emp (last_name, first_name, userid, start_date, comments, manager_id, title, region_id, dept_id, salary, commission_pct) 
-    VALUES ( :last_name, :first_name, :user_id, :start_date, :comments, :manager_id, :title, :region_id, :dept_id, :salary, :commission_pct)`,
+    `INSERT INTO s_emp (id, last_name, first_name, userid, start_date, comments, manager_id, title, region_id, dept_id, salary, commission_pct) 
+    VALUES (30, :last_name, :first_name, :user_id, :start_date, :comments, :manager_id, :title, :region_id, :dept_id, :salary, :commission_pct)`,
     empleado
   );
 }

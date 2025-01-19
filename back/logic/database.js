@@ -14,7 +14,9 @@ const peticion = async (sql, parameters) => {
   try {
     conn = await oracledb.getConnection(environment.config);
     const result = await conn.execute(sql, parameters);
-    conn.commit();
+    if(sql.includes("UPDATE") || sql.includes("INSERT") || sql.includes("DROP")) {
+      await conn.commit();
+    }
     return result.rows ? result.rows : result;
   } catch (err) {
     console.error(err);
