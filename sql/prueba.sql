@@ -7,3 +7,5 @@ select table_name from all_tables where owner = user;
 
 -- Crear tabla
 select * from s_emp;
+desc s_emp;
+select * from s_user; --where user_id = 1;

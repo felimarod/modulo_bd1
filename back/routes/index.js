@@ -1,9 +1,17 @@
-import { Router } from 'express';
+import { Router } from "express";
 var router = Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+/**
+ * @openapi
+ * /:
+ *  get:
+ *   description: Devuelve el título de la página
+ *   responses:
+ *    200:
+ *      description: Retorna el título de la página.
+ */
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
 });
 
 export default router;
