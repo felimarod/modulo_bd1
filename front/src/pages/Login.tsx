@@ -16,9 +16,10 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 export default function Login() {
-  const [usuario, setUsuario] = useState("");
+  const [user, setUser] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [showFirstName, setShowFirstName] = useState(false);
@@ -28,16 +29,19 @@ export default function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [triedToLogIn, setTriedToLogIn] = useState(false);
 
+  const navigate = useNavigate();
+
   const onClickLogIn = async () => {
     setTriedToLogIn(true);
     const res = await axios.put("/api/empleados/verificar/", {
-      user_id: usuario,
+      user_id: user,
       first_name,
       last_name,
     });
 
     if (res.status === 200) {
       setLoggedIn(true);
+      navigate("/dashboard");
     } else {
       setLoggedIn(false);
     }
@@ -68,9 +72,9 @@ export default function Login() {
               <AccountCircle />
             </InputAdornment>
           }
-          value={usuario}
+          value={user}
           onChange={(val) => {
-            setUsuario(val.target.value);
+            setUser(val.target.value);
           }}
         />
       </FormControl>
@@ -125,8 +129,12 @@ export default function Login() {
         Iniciar sesión
       </Button>
 
-      {triedToLogIn && loggedIn && <Alert severity="success">Inicio de sesión exitoso</Alert>}
-      {triedToLogIn && !loggedIn && <Alert severity="error">Inicio de sesión fallido</Alert>}
+      {triedToLogIn && loggedIn && (
+        <Alert severity="success">Inicio de sesión exitoso</Alert>
+      )}
+      {triedToLogIn && !loggedIn && (
+        <Alert severity="error">Inicio de sesión fallido</Alert>
+      )}
     </Container>
   );
 }
