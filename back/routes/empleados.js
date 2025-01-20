@@ -5,6 +5,7 @@ import {
   formatearEmpleado,
   actualizarEmpleado,
   crearEmpleado,
+  verificarEmpleado,
 } from "../logic/empleados.js";
 
 var router = Router();
@@ -49,6 +50,42 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const resDB = await obtenerEmpleadoPorId(req.params.id);
+    res.status(200).send(formatearEmpleado(resDB));
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
+/**
+ * @openapi
+ * /empleados/verificar/:
+ *  put:
+ *   tags:
+ *    - empleados
+ *   description: Verificar existencia de usuario
+ *   requestBody:
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        last_name:
+ *         type: string
+ *        first_name:
+ *         type: string
+ *        user_id:
+ *         type: string
+ *   responses:
+ *     200:
+ *       description: Retorna el empleado actualizado.
+ *     404:
+ *       description: No se ha encontrado el empleado.
+ *     500:
+ *       description: Error en la base de datos.
+ */
+router.put("/verificar/", async (req, res, next) => {
+  try {
+    const resDB = await verificarEmpleado(req.body);
     res.status(200).send(formatearEmpleado(resDB));
   } catch (error) {
     res.status(404).send({ error: error.message });

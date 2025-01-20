@@ -69,10 +69,19 @@ async function actualizarEmpleado(valores_empleado) {
   );
 }
 
+async function verificarEmpleado({ first_name, last_name, user_id }) {
+  const empleados = await peticion(
+    `select * FROM s_emp WHERE first_name = :first_name and last_name = :last_name and userid = :userid`,
+    [first_name, last_name, user_id]
+  );
+  return empleados[0];
+}
+
 export {
   actualizarEmpleado,
   crearEmpleado,
   formatearEmpleado,
   obtenerEmpleadoPorId,
   obtenerTodosLosEmpleados,
+  verificarEmpleado,
 };

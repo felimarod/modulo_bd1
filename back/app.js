@@ -1,5 +1,6 @@
 import createError from "http-errors";
 import express from "express";
+import cors from "cors";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
@@ -18,13 +19,13 @@ var app = express();
 
 const options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'Express API with Swagger',
-      version: '1.0.0',
+      title: "Express API with Swagger",
+      version: "1.0.0",
     },
   },
-  apis: ['./routes/*.js'], // files containing annotations as above
+  apis: ["./routes/*.js"], // files containing annotations as above
 };
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
 const swaggerSpec = swaggerJSDoc(options);
@@ -58,5 +59,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+// Configura CORS para permitir solicitudes desde el frontend
+app.use(
+  "*",
+  cors({
+    origin: "http://localhost:5173", // Permite solo este origen
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Métodos permitidos
+    allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+  })
+);
 
 export default app;

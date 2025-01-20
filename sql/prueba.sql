@@ -9,3 +9,5 @@ select table_name from all_tables where owner = user;
 select * from s_emp;
 desc s_emp;
 select * from s_user; --where user_id = 1;
+
+select * FROM s_emp WHERE first_name = 'andres1' and last_name = 'martin1' and userid = 'felimaro';
