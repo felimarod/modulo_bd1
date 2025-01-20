@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Login() {
   const [user, setUser] = useState("");
@@ -128,6 +128,10 @@ export default function Login() {
       <Button variant="contained" color="primary" onClick={onClickLogIn}>
         Iniciar sesión
       </Button>
+
+      <span>
+        ¿No tienes un usuario? <Link to="/register">Registrate</Link>
+      </span>
 
       {triedToLogIn && loggedIn && (
         <Alert severity="success">Inicio de sesión exitoso</Alert>

@@ -10,6 +10,8 @@ export default function AuthLayout() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        // Dejar espacio en la parte inferior y superior
+        marginBottom: "10vh",
       }}
     >
       <Outlet />
