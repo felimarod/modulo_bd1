@@ -137,7 +137,7 @@ select first_name,
   from s_emp
  where salary > 1000
    and salary <= 1500;
-select first_name,
+select first_name, last_name, userid
        salary,
        commission_pct
   from s_emp
