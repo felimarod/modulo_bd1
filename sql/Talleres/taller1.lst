@@ -1,0 +1,618 @@
+
+   IDENTIFICADOR NOMBRE               REGION_IDENTIFICADOR 
+________________ _________________ _______________________ 
+              10 Finance                                 1 
+              30 Sales                                   1 
+              30 Sales                                   2 
+              30 Sales                                   3 
+              30 Sales                                   4 
+              30 Sales                                   5 
+              40 Operations                              1 
+              40 Operations                              2 
+              40 Operations                              3 
+              40 Operations                              4 
+              40 Operations                              5 
+              50 Administration                          1 
+
+12 filas seleccionadas. 
+
+
+   IDENTIFICADOR NOMBRE                  
+________________ _______________________ 
+               3 Africa / Middle East    
+               4 Asia                    
+               5 Europe                  
+               1 North America           
+               2 South America           
+
+
+NOMBRE            
+_________________ 
+Administration    
+Finance           
+Operations        
+Sales             
+
+
+TITULO                  
+_______________________ 
+President               
+VP, Operations          
+VP, Sales               
+VP, Finance             
+VP, Administration      
+Warehouse Manager       
+Warehouse Manager       
+Warehouse Manager       
+Warehouse Manager       
+Warehouse Manager       
+Sales Representative    
+Sales Representative    
+Sales Representative    
+
+TITULO                  
+_______________________ 
+Sales Representative    
+Sales Representative    
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+Stock Clerk             
+
+25 filas seleccionadas. 
+
+
+TITULO                  
+_______________________ 
+President               
+VP, Operations          
+VP, Sales               
+VP, Finance             
+VP, Administration      
+Warehouse Manager       
+Sales Representative    
+Stock Clerk             
+
+8 filas seleccionadas. 
+
+
+Dptos diferentes    
+___________________ 
+Administration      
+Finance             
+Operations          
+Sales               
+
+
+Nombre completo         
+_______________________ 
+Carmen Velasquez        
+LaDoris Ngao            
+Midori Nagayama         
+Mark Quick-To-See       
+Audry Ropeburn          
+Molly Urguhart          
+Roberta Menchu          
+Biri Ben                
+Antoinette Catchpole    
+Marta Havel             
+Colin Magee             
+Henry Giljum            
+Yasmin Sedeghi          
+
+Nombre completo        
+______________________ 
+Mai Nguyen             
+Andre Dumas            
+Elena Mandell          
+George Smith           
+Akira Nozaki           
+Vikram Patel           
+Chad Newman            
+Alexander Markarian    
+Eddie Chang            
+Radha Patel            
+Bela Dancs             
+Sylvie Schwartz        
+
+25 filas seleccionadas. 
+
+
+no se ha seleccionado ninguna fila
+
+APELLIDO       SALARIO    Porcentaje de comisión    Valor de la comisión 
+___________ __________ _________________________ _______________________ 
+Magee             1400                        10                     140 
+Giljum            1490                      12,5                  186,25 
+Sedeghi           1515                        10                   151,5 
+Nguyen            1525                        15                  228,75 
+Dumas             1450                      17,5                  253,75 
+
+
+APELLIDO       SALARIO    Porcentaje de comisión    Valor de la comisión 
+___________ __________ _________________________ _______________________ 
+Nguyen            1525                        15                  228,75 
+Dumas             1450                      17,5                  253,75 
+
+
+no se ha seleccionado ninguna fila
+
+APELLIDO        salario dividido y redondeado 
+____________ ________________________________ 
+Velasquez                                 114 
+Ropeburn                                   70 
+
+
+APELLIDO        SALARIO    Porcentaje de comisión 
+____________ __________ _________________________ 
+Velasquez          2500                           
+Ropeburn           1550                           
+Sedeghi            1515                        10 
+Nguyen             1525                        15 
+
+
+APELLIDO        SALARIO    Porcentaje de comisión 
+____________ __________ _________________________ 
+Velasquez          2500                         0 
+Ropeburn           1550                         0 
+Sedeghi            1515                        10 
+Nguyen             1525                        15 
+
+
+no se ha seleccionado ninguna fila
+
+no se ha seleccionado ninguna fila
+
+   IDENTIFICADOR Fecha de orden       Días transcurridos desde que se hizo la orden 
+________________ _________________ ________________________________________________ 
+             100 31/08/11                                                      4896 
+             101 31/08/11                                                      4896 
+             102 01/09/11                                                      4895 
+             103 02/09/11                                                      4894 
+             104 03/09/11                                                      4893 
+             105 04/09/11                                                      4892 
+             106 07/09/11                                                      4889 
+             107 07/09/11                                                      4889 
+             108 07/09/11                                                      4889 
+             109 08/09/11                                                      4888 
+             110 09/09/11                                                      4887 
+             111 09/09/11                                                      4887 
+              97 28/08/11                                                      4899 
+
+   IDENTIFICADOR Fecha de orden       Días transcurridos desde que se hizo la orden 
+________________ _________________ ________________________________________________ 
+              98 31/08/11                                                      4896 
+              99 31/08/11                                                      4896 
+             112 31/08/11                                                      4896 
+
+16 filas seleccionadas. 
+
+
+APELLIDO     Fecha de entrada    6 meses despues de la fecha de entrada    
+____________ ___________________ _________________________________________ 
+Ngao         08/03/09            08/09/09                                  
+Urguhart     18/01/10            18/07/10                                  
+Mandell      07/02/01            07/08/01                                  
+Smith        08/03/09            08/09/09                                  
+Menchu       14/05/09            14/11/09                                  
+Nozaki       09/02/10            09/08/10                                  
+Patel        06/08/10            06/02/11                                  
+Ben          07/04/09            07/10/09                                  
+Newman       21/07/10            21/01/11                                  
+Markarian    26/05/10            26/11/10                                  
+Catchpole    09/02/01            09/08/01                                  
+Chang        30/11/09            31/05/10                                  
+Havel        27/02/10            27/08/10                                  
+
+APELLIDO    Fecha de entrada    6 meses despues de la fecha de entrada    
+___________ ___________________ _________________________________________ 
+Dancs       17/03/10            17/09/10                                  
+Schwartz    09/05/10            09/11/10                                  
+
+15 filas seleccionadas. 
+
+
+   IDENTIFICADOR Fecha de entrada    Fecha primer cheque    
+________________ ___________________ ______________________ 
+               1 03/03/08            31/03/08               
+               2 08/03/09            31/03/09               
+               3 17/06/11            30/06/11               
+               4 07/04/09            30/04/09               
+               5 04/03/09            31/03/09               
+               6 18/01/10            31/01/10               
+               7 14/05/09            31/05/09               
+               8 07/04/09            30/04/09               
+               9 09/02/01            28/02/01               
+              10 27/02/10            28/02/10               
+              11 14/05/09            31/05/09               
+              12 18/01/01            31/01/01               
+              13 18/02/10            28/02/10               
+
+   IDENTIFICADOR Fecha de entrada    Fecha primer cheque    
+________________ ___________________ ______________________ 
+              14 22/01/01            31/01/01               
+              15 09/10/10            31/10/10               
+              16 07/02/01            28/02/01               
+              17 08/03/09            31/03/09               
+              18 09/02/10            28/02/10               
+              19 06/08/10            31/08/10               
+              20 21/07/10            31/07/10               
+              21 26/05/10            31/05/10               
+              22 30/11/09            30/11/09               
+              23 17/10/09            31/10/09               
+              24 17/03/10            31/03/10               
+              25 09/05/10            31/05/10               
+
+25 filas seleccionadas. 
+
+
+   IDENTIFICADOR Fecha de ingreso       Meses transcurridos 
+________________ ___________________ ______________________ 
+               1 03/03/08                               202 
+               2 08/03/09                               190 
+               3 17/06/11                               163 
+               4 07/04/09                               189 
+               5 04/03/09                               190 
+               6 18/01/10                               180 
+               7 14/05/09                               188 
+               8 07/04/09                               189 
+               9 09/02/01                               287 
+              10 27/02/10                               178 
+              11 14/05/09                               188 
+              12 18/01/01                               288 
+              13 18/02/10                               179 
+
+   IDENTIFICADOR Fecha de ingreso       Meses transcurridos 
+________________ ___________________ ______________________ 
+              14 22/01/01                               288 
+              15 09/10/10                               171 
+              16 07/02/01                               287 
+              17 08/03/09                               190 
+              18 09/02/10                               179 
+              19 06/08/10                               173 
+              20 21/07/10                               174 
+              21 26/05/10                               175 
+              22 30/11/09                               181 
+              23 17/10/09                               183 
+              24 17/03/10                               178 
+              25 09/05/10                               176 
+
+25 filas seleccionadas. 
+
+
+   IDENTIFICADOR Mes y Año de la orden       Representante de ventas ID 
+________________ ________________________ _____________________________ 
+             100 08/11                                               11 
+             105 09/11                                               11 
+             109 09/11                                               11 
+             110 09/11                                               11 
+             111 09/11                                               11 
+
+
+Nombre completo         Fecha de ingreso                
+_______________________ _______________________________ 
+Carmen Velasquez        03  de  Marzo       de  2008    
+LaDoris Ngao            08  de  Marzo       de  2009    
+Midori Nagayama         17  de  Junio       de  2011    
+Mark Quick-To-See       07  de  Abril       de  2009    
+Audry Ropeburn          04  de  Marzo       de  2009    
+Molly Urguhart          18  de  Enero       de  2010    
+Roberta Menchu          14  de  Mayo        de  2009    
+Biri Ben                07  de  Abril       de  2009    
+Antoinette Catchpole    09  de  Febrero     de  2001    
+Marta Havel             27  de  Febrero     de  2010    
+Colin Magee             14  de  Mayo        de  2009    
+Henry Giljum            18  de  Enero       de  2001    
+Yasmin Sedeghi          18  de  Febrero     de  2010    
+
+Nombre completo        Fecha de ingreso                
+______________________ _______________________________ 
+Mai Nguyen             22  de  Enero       de  2001    
+Andre Dumas            09  de  Octubre     de  2010    
+Elena Mandell          07  de  Febrero     de  2001    
+George Smith           08  de  Marzo       de  2009    
+Akira Nozaki           09  de  Febrero     de  2010    
+Vikram Patel           06  de  Agosto      de  2010    
+Chad Newman            21  de  Julio       de  2010    
+Alexander Markarian    26  de  Mayo        de  2010    
+Eddie Chang            30  de  Noviembre   de  2009    
+Radha Patel            17  de  Octubre     de  2009    
+Bela Dancs             17  de  Marzo       de  2010    
+Sylvie Schwartz        09  de  Mayo        de  2010    
+
+25 filas seleccionadas. 
+
+
+CARGO                 NOMBRE     APELLIDO        
+_____________________ __________ _______________ 
+VP, Administration    Audry      Ropeburn        
+VP, Finance           Mark       Quick-To-See    
+VP, Operations        Ladoris    Ngao            
+VP, Sales             Midori     Nagayama        
+
+
+NOMBRE    APELLIDO    
+_________ ___________ 
+Vikram    Patel       
+Radha     Patel       
+
+
+NOMBRE          
+_______________ 
+Ace Ski Boot    
+Ace Ski Pole    
+
+
+departamento, nombre completo del vicepresidente    
+___________________________________________________ 
+Finance, Mark Quick-To-See                          
+Sales, Midori Nagayama                              
+Operations, LaDoris Ngao                            
+Administration, Audry Ropeburn                      
+
+
+APELLIDO        Número de caracteres del apellido 
+____________ ____________________________________ 
+Velasquez                                       9 
+Ropeburn                                        8 
+
+
+UPPER(NAME)                 
+___________________________ 
+ACE SKI BOOT                
+ACE SKI POLE                
+ALEXEYER PRO LIFTING BAR    
+ALOMAR GLOVE                
+BLACK HAWK ELBOW PADS       
+BLACK HAWK KNEE PADS        
+BUNNY BOOT                  
+BUNNY SKI POLE              
+CABRERA BAT                 
+CHAPMAN HELMET              
+GRAND PRIX BICYCLE          
+GRAND PRIX BICYCLE TIRES    
+GRIFFEY GLOVE               
+
+UPPER(NAME)                 
+___________________________ 
+HIMALAYA BICYCLE            
+HIMALAYA TIRES              
+JUNIOR SOCCER BALL          
+MAJOR LEAGUE BASEBALL       
+NEW AIR PUMP                
+PRO CURLING BAR             
+PRO SKI BOOT                
+PRO SKI POLE                
+PROSTAR 10 POUND WEIGHT     
+PROSTAR 100 POUND WEIGHT    
+PROSTAR 20 POUND WEIGHT     
+PROSTAR 50 POUND WEIGHT     
+PROSTAR 80 POUND WEIGHT     
+
+UPPER(NAME)              
+________________________ 
+PUCKETT BAT              
+SAFE-T HELMET            
+SLAKER WATER BOTTLE      
+STEINBACH GLOVE          
+WINFIELD BAT             
+WORLD CUP NET            
+WORLD CUP SOCCER BALL    
+
+33 filas seleccionadas. 
+
+
+NOMBRE     APELLIDO     
+__________ ____________ 
+Carmen     Velasquez    
+LaDoris    Ngao         
+Yasmin     Sedeghi      
+Andre      Dumas        
+Bela       Dancs        
+
+
+NOMBRE       APELLIDO     
+____________ ____________ 
+Carmen       Velasquez    
+LaDoris      Ngao         
+Marta        Havel        
+Elena        Mandell      
+Akira        Nozaki       
+Vikram       Patel        
+Chad         Newman       
+Alexander    Markarian    
+Radha        Patel        
+Bela         Dancs        
+
+10 filas seleccionadas. 
+
+
+NOMBRE        APELLIDO        
+_____________ _______________ 
+Carmen        Velasquez       
+LaDoris       Ngao            
+Midori        Nagayama        
+Mark          Quick-To-See    
+Audry         Ropeburn        
+Molly         Urguhart        
+Roberta       Menchu          
+Biri          Ben             
+Antoinette    Catchpole       
+Marta         Havel           
+Elena         Mandell         
+George        Smith           
+Akira         Nozaki          
+
+NOMBRE       APELLIDO     
+____________ ____________ 
+Vikram       Patel        
+Chad         Newman       
+Alexander    Markarian    
+Eddie        Chang        
+Radha        Patel        
+Bela         Dancs        
+Sylvie       Schwartz     
+
+20 filas seleccionadas. 
+
+
+NOMBRE    APELLIDO    
+_________ ___________ 
+Colin     Magee       
+Henry     Giljum      
+Yasmin    Sedeghi     
+Mai       Nguyen      
+Andre     Dumas       
+
+
+NOMBRE        APELLIDO        
+_____________ _______________ 
+Carmen        Velasquez       
+LaDoris       Ngao            
+Midori        Nagayama        
+Mark          Quick-To-See    
+Audry         Ropeburn        
+Molly         Urguhart        
+Roberta       Menchu          
+Biri          Ben             
+Antoinette    Catchpole       
+Marta         Havel           
+Colin         Magee           
+Henry         Giljum          
+Yasmin        Sedeghi         
+
+NOMBRE       APELLIDO     
+____________ ____________ 
+Mai          Nguyen       
+Andre        Dumas        
+Elena        Mandell      
+George       Smith        
+Akira        Nozaki       
+Vikram       Patel        
+Chad         Newman       
+Alexander    Markarian    
+Eddie        Chang        
+Radha        Patel        
+Bela         Dancs        
+Sylvie       Schwartz     
+
+25 filas seleccionadas. 
+
+
+NOMBRE     APELLIDO        
+__________ _______________ 
+Audry      Ropeburn        
+Mark       Quick-To-See    
+LaDoris    Ngao            
+Midori     Nagayama        
+
+
+código, nombre y apellido  ................. sueldo    
+______________________________________________________ 
+1, Carmen Velasquez ......................... 2500     
+2, LaDoris Ngao ............................. 1450     
+3, Midori Nagayama .......................... 1400     
+4, Mark Quick-To-See ........................ 1450     
+5, Audry Ropeburn ........................... 1550     
+6, Molly Urguhart ........................... 1200     
+7, Roberta Menchu ........................... 1250     
+8, Biri Ben ................................. 1100     
+9, Antoinette Catchpole ..................... 1300     
+10, Marta Havel ............................. 1307     
+11, Colin Magee ............................. 1400     
+12, Henry Giljum ............................ 1490     
+13, Yasmin Sedeghi .......................... 1515     
+
+código, nombre y apellido  ................. sueldo    
+______________________________________________________ 
+14, Mai Nguyen .............................. 1525     
+15, Andre Dumas ............................. 1450     
+16, Elena Mandell ........................... 1400     
+17, George Smith ............................. 940     
+18, Akira Nozaki ............................ 1200     
+19, Vikram Patel ............................. 795     
+20, Chad Newman .............................. 750     
+21, Alexander Markarian ...................... 850     
+22, Eddie Chang .............................. 800     
+23, Radha Patel .............................. 795     
+24, Bela Dancs ............................... 860     
+25, Sylvie Schwartz ......................... 1100     
+
+25 filas seleccionadas. 
+
+
+FIRST_NAME||''||LAST_NAME||''||TRANSLATE(LAST_NAME,'AEIOU','12345')    
+______________________________________________________________________ 
+Carmen Velasquez V2l1sq52z                                             
+LaDoris Ngao Ng14                                                      
+Midori Nagayama N1g1y1m1                                               
+Mark Quick-To-See Q53ck-T4-S22                                         
+Audry Ropeburn R4p2b5rn                                                
+Molly Urguhart Urg5h1rt                                                
+Roberta Menchu M2nch5                                                  
+Biri Ben B2n                                                           
+Antoinette Catchpole C1tchp4l2                                         
+Marta Havel H1v2l                                                      
+Colin Magee M1g22                                                      
+Henry Giljum G3lj5m                                                    
+Yasmin Sedeghi S2d2gh3                                                 
+
+FIRST_NAME||''||LAST_NAME||''||TRANSLATE(LAST_NAME,'AEIOU','12345')    
+______________________________________________________________________ 
+Mai Nguyen Ng5y2n                                                      
+Andre Dumas D5m1s                                                      
+Elena Mandell M1nd2ll                                                  
+George Smith Sm3th                                                     
+Akira Nozaki N4z1k3                                                    
+Vikram Patel P1t2l                                                     
+Chad Newman N2wm1n                                                     
+Alexander Markarian M1rk1r31n                                          
+Eddie Chang Ch1ng                                                      
+Radha Patel P1t2l                                                      
+Bela Dancs D1ncs                                                       
+Sylvie Schwartz Schw1rtz                                               
+
+25 filas seleccionadas. 
+
+
+no se ha seleccionado ninguna fila
+
+   ID FIRST_NAME    COMISION            
+_____ _____________ ___________________ 
+    1 Carmen        No gana Comision    
+    2 LaDoris       No gana Comision    
+    3 Midori        No gana Comision    
+    4 Mark          No gana Comision    
+    5 Audry         No gana Comision    
+    6 Molly         No gana Comision    
+    7 Roberta       No gana Comision    
+    8 Biri          No gana Comision    
+    9 Antoinette    No gana Comision    
+   10 Marta         No gana Comision    
+   11 Colin         Gana Comision       
+   12 Henry         Gana Comision       
+   13 Yasmin        Gana Comision       
+
+   ID FIRST_NAME    COMISION            
+_____ _____________ ___________________ 
+   14 Mai           Gana Comision       
+   15 Andre         Gana Comision       
+   16 Elena         No gana Comision    
+   17 George        No gana Comision    
+   18 Akira         No gana Comision    
+   19 Vikram        No gana Comision    
+   20 Chad          No gana Comision    
+   21 Alexander     No gana Comision    
+   22 Eddie         No gana Comision    
+   23 Radha         No gana Comision    
+   24 Bela          No gana Comision    
+   25 Sylvie        No gana Comision    
+
+25 filas seleccionadas. 
+
