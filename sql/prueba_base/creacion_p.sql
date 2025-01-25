@@ -67,22 +67,25 @@ CREATE TABLE Mensaje (
     idMensaje VARCHAR(5) NOT NULL,
     asunto VARCHAR(255) NOT NULL,
     cuerpoMensaje VARCHAR(255) NOT NULL,
+    idTipoCarpeta VARCHAR(3) NOT NULL,
     fechaAccion DATE NOT NULL,
     horaAccion TIMESTAMP NOT NULL,
     usuario VARCHAR(5) NOT NULL,
     idCategoria VARCHAR(5) NOT NULL,
     PRIMARY KEY (idMensaje,usuario),
     FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
-    FOREIGN KEY (usuario) REFERENCES Usuario(usuario)
+    FOREIGN KEY (usuario) REFERENCES Usuario(usuario),
+    FOREIGN KEY (idTipoCarpeta) REFERENCES TipoCarpeta(idTipoCarpeta) 
 );
 
 CREATE TABLE ArchivoAdjunto (
     consecArchivo INT NOT NULL,
     nomArchivo VARCHAR(30) NOT NULL,
+    usuario VARCHAR(5) NOT NULL,
     idMensaje VARCHAR(5) NOT NULL,
     idTipoArchivo VARCHAR(5) NOT NULL,
     PRIMARY KEY (consecArchivo),
-    FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje),
+    FOREIGN KEY (idMensaje,usuario) REFERENCES Mensaje(idMensaje,usuario),
     FOREIGN KEY (idTipoArchivo) REFERENCES TipoArchivo(idTipoArchivo)
 );
 
