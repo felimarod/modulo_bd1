@@ -26,6 +26,7 @@ select first_name
        || last_name "Nombre completo"
   from s_emp;
 -- 8. Liste el Id del departamento, el primero y segundo nombre de los empleados del dpto 41 
+-- ? El dpto 41 no existe, se hace con ese?
 select dept_id "Id del departamento",
        first_name
        || ' '
@@ -52,6 +53,7 @@ select last_name apellido,
  order by commission_pct;
 -- 11.  Liste el apellido, el salario y la compensación anual de los empleados del departamento 41. Dicha compensación equivale a 
 -- 12 veces el salario más $100
+-- ? El dpto 41 no existe, se hace con ese?
 select last_name apellido,
        salary salario,
        12 * salary + 100 "Compensación anual"
@@ -78,12 +80,14 @@ select last_name apellido,
   from s_emp
  where salary > 1500;
 -- 15.  Liste el apellido, la fecha de ingreso,  la fecha de ingreso + 90  de los empleados del departamento 42 
+-- ? El dpto 42 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de ingreso",
        start_date + 90 "Fecha de ingreso + 90"
   from s_emp
  where dept_id = 42;
 -- 16.  De acuerdo al anterior resultado liste el Apellido y el número de semanas trabajadas del empleado del departamento 43 
+-- ? El dpto 43 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de ingreso",
        start_date + 90 "Fecha de ingreso + 90",
@@ -96,6 +100,7 @@ select id identificador,
        trunc(sysdate - date_ordered) "Días transcurridos desde que se hizo la orden"
   from s_ord;
 -- 18.  Para los empleados del departamento 45, liste el apellido, la fecha de entrada y 6 meses después de la fecha de entrada. 
+-- ? El dpto 45 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de entrada",
        add_months(
@@ -103,7 +108,7 @@ select last_name apellido,
           6
        ) "6 meses despues de la fecha de entrada"
   from s_emp
- where dept_id = 40;
+ where dept_id = 45;
 -- 19.  Para cada uno de los empleados, liste el ID, la fecha de entrada, y la fecha en que recibió su primer cheque (se paga el último día del mes) 
 select id identificador,
        start_date "Fecha de entrada",
@@ -118,6 +123,7 @@ select id identificador,
        )) "Meses transcurridos"
   from s_emp;
 -- 21.  Liste el Id y la fecha  de todas las ordenes de pedidos con un formato “08/92”  y un label  Orden de los representantes de ventas 11 
+-- ? El formato es "MM/YY"??
 select id identificador,
        to_char(
           date_ordered,
