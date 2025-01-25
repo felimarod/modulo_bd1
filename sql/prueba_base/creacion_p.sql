@@ -89,10 +89,11 @@ CREATE TABLE ArchivoAdjunto (
 CREATE TABLE Destinatario (
     consecDestinatario INT NOT NULL,
     idMensaje VARCHAR(5) NOT NULL,
+    usuario VARCHAR(5) NOT NULL,
     consecContacto INT NOT NULL,
     idTipoCopia VARCHAR(4) NOT NULL,
     PRIMARY KEY (consecDestinatario),
-    FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje),
+    FOREIGN KEY (idMensaje,usuario) REFERENCES Mensaje(idMensaje,usuario),
     FOREIGN KEY (consecContacto) REFERENCES Contacto(consecContacto),
     FOREIGN KEY (idTipoCopia) REFERENCES TipoCopia(idTipoCopia)
 );
