@@ -29,6 +29,13 @@ CREATE TABLE Pais (
     PRIMARY KEY (idPais)
 );
 
+CREATE TABLE Categoria (
+    idCategoria VARCHAR(5) NOT NULL,
+    desCategoria VARCHAR(40) NOT NULL,
+    PRIMARY KEY (idCategoria)
+
+);
+
 CREATE TABLE Usuario (
     usuario VARCHAR(5) NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -63,7 +70,9 @@ CREATE TABLE Mensaje (
     fechaAccion DATE NOT NULL,
     horaAccion TIME NOT NULL,
     usuario VARCHAR(5) NOT NULL,
+    idCategoria VARCHAR(5) NOT NULL,
     PRIMARY KEY (idMensaje),
+    FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
     FOREIGN KEY (usuario) REFERENCES Usuario(usuario)
 );
 

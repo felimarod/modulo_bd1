@@ -9,6 +9,7 @@ Orden de insercion de la base:
    -TipoCopia
    -TipoArchivo
    -Pais
+   -Categoria
  
  2-Tablas con FKS:
    -Usuario (EstadoFK, PaisFK)
@@ -26,6 +27,7 @@ Orden de creacion:
    3-TipoCopia
    4-TipoArchivo
    5-Pais
+   5-Categoria
    6-Usuario
    7-Contacto
    8-Mensaje
