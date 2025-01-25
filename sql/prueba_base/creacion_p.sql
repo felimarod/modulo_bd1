@@ -68,10 +68,10 @@ CREATE TABLE Mensaje (
     asunto VARCHAR(255) NOT NULL,
     cuerpoMensaje VARCHAR(255) NOT NULL,
     fechaAccion DATE NOT NULL,
-    horaAccion TIME NOT NULL,
+    horaAccion TIMESTAMP NOT NULL,
     usuario VARCHAR(5) NOT NULL,
     idCategoria VARCHAR(5) NOT NULL,
-    PRIMARY KEY (idMensaje),
+    PRIMARY KEY (idMensaje,usuario),
     FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
     FOREIGN KEY (usuario) REFERENCES Usuario(usuario)
 );
