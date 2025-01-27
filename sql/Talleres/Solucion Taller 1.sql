@@ -124,6 +124,7 @@ select id identificador,
   from s_emp;
 -- 21.  Liste el Id y la fecha  de todas las ordenes de pedidos con un formato “08/92”  y un label  Orden de los representantes de ventas 11 
 -- ? El formato es "MM/YY"??
+-- ? que label se debería listar?
 select id identificador,
        to_char(
           date_ordered,
@@ -248,7 +249,7 @@ select name
    8
 )) = 's';
 -- 38.  Generar un listado indicando los clientes que ganan y los que no ganan comisión. 
--- ! Los clientes pueden ganar comisión???
+-- ? Los clientes pueden ganar comisión???
 select id,
        first_name,
        nvl2(
