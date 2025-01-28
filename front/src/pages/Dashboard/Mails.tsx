@@ -1,7 +1,7 @@
-import React from "react";
+import EnhancedTable from "../../components/Dashboard/mails/EnhancedTable";
 
 const Mails = () => {
-  return <div>Mails</div>;
+  return <EnhancedTable />;
 };
 
 export default Mails;
