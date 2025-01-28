@@ -26,13 +26,12 @@ select first_name
        || last_name "Nombre completo"
   from s_emp;
 -- 8. Liste el Id del departamento, el primero y segundo nombre de los empleados del dpto 41 
--- ? El dpto 41 no existe, se hace con ese?
 select dept_id "Id del departamento",
        first_name
        || ' '
        || last_name "Nombre completo"
   from s_emp
- where dept_id = 41;
+ where dept_id = 40;
 -- 9. Liste el apellido, el salario, el porcentaje de comisión y el valor de la comisión de cada uno de los Representantes de ventas. 
 -- Asumiendo que la comisión es el porcentaje sobre el salario básico.
 select last_name apellido,
@@ -53,12 +52,11 @@ select last_name apellido,
  order by commission_pct;
 -- 11.  Liste el apellido, el salario y la compensación anual de los empleados del departamento 41. Dicha compensación equivale a 
 -- 12 veces el salario más $100
--- ? El dpto 41 no existe, se hace con ese?
 select last_name apellido,
        salary salario,
        12 * salary + 100 "Compensación anual"
   from s_emp
- where dept_id = 41;
+ where dept_id = 40;
 -- 12.  Para los empleados del departamento 50, liste el apellido, el salario dividido entre 22 redondeado a 0 decimales. 
 select last_name apellido,
        round(salary / 22) "salario dividido y redondeado"
@@ -80,27 +78,24 @@ select last_name apellido,
   from s_emp
  where salary > 1500;
 -- 15.  Liste el apellido, la fecha de ingreso,  la fecha de ingreso + 90  de los empleados del departamento 42 
--- ? El dpto 42 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de ingreso",
        start_date + 90 "Fecha de ingreso + 90"
   from s_emp
- where dept_id = 42;
+ where dept_id = 40;
 -- 16.  De acuerdo al anterior resultado liste el Apellido y el número de semanas trabajadas del empleado del departamento 43 
--- ? El dpto 43 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de ingreso",
        start_date + 90 "Fecha de ingreso + 90",
        ( trunc((sysdate - start_date) / 7) ) "semanas trabajadas"
   from s_emp
- where dept_id = 43;
+ where dept_id = 40;
 -- 17.  Para todas las ordenes, liste el ID, la fecha de orden, y el número de días transcurridos desde que se hizo la orden. 
 select id identificador,
        date_ordered "Fecha de orden",
        trunc(sysdate - date_ordered) "Días transcurridos desde que se hizo la orden"
   from s_ord;
 -- 18.  Para los empleados del departamento 45, liste el apellido, la fecha de entrada y 6 meses después de la fecha de entrada. 
--- ? El dpto 45 no existe, se hace con ese?
 select last_name apellido,
        start_date "Fecha de entrada",
        add_months(
@@ -108,7 +103,7 @@ select last_name apellido,
           6
        ) "6 meses despues de la fecha de entrada"
   from s_emp
- where dept_id = 45;
+ where dept_id = 40;
 -- 19.  Para cada uno de los empleados, liste el ID, la fecha de entrada, y la fecha en que recibió su primer cheque (se paga el último día del mes) 
 select id identificador,
        start_date "Fecha de entrada",
@@ -123,7 +118,6 @@ select id identificador,
        )) "Meses transcurridos"
   from s_emp;
 -- 21.  Liste el Id y la fecha  de todas las ordenes de pedidos con un formato “08/92”  y un label  Orden de los representantes de ventas 11 
--- ? El formato es "MM/YY"??
 select id identificador,
        to_char(
           date_ordered,
@@ -247,8 +241,7 @@ select name
    name,
    8
 )) = 's';
--- 38.  Generar un listado indicando los clientes que ganan y los que no ganan comisión. 
--- ! Los clientes pueden ganar comisión???
+-- 38.  Generar un listado indicando los vendedores que ganan y los que no ganan comisión. 
 select id,
        first_name,
        nvl2(
