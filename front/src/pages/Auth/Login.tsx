@@ -6,6 +6,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Typography,
 } from "@mui/material";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -13,37 +14,55 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
-  const [user, setUser] = useState("");
+  const [userName, setUserName] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [showFirstName, setShowFirstName] = useState(false);
   const [showLastName, setShowLastName] = useState(false);
   const handleClickShowFirstName = () => setShowFirstName((show) => !show);
   const handleClickShowLastName = () => setShowLastName((show) => !show);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { isAuthenticated, login, logout } = useAuth();
   const [triedToLogIn, setTriedToLogIn] = useState(false);
 
   const navigate = useNavigate();
+  const irALaPaginaPrincipal = () => {
+    navigate("/dashboard/mails");
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      irALaPaginaPrincipal();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   const onClickLogIn = async () => {
     setTriedToLogIn(true);
-    const res = await axios.put("/api/empleados/verificar/", {
-      user_id: user,
-      first_name,
-      last_name,
-    });
-
-    if (res.status === 200) {
-      setLoggedIn(true);
-      navigate("/dashboard");
-    } else {
-      setLoggedIn(false);
+    try {
+      const res = await axios.put("/api/empleados/verificar/", {
+        user_id: userName,
+        first_name,
+        last_name,
+      });
+      if (res.status === 200) {
+        const datosUsuario = res.data;
+        login({
+          data: JSON.stringify(datosUsuario),
+          name: `${datosUsuario.first_name} ${datosUsuario.last_name}`,
+        });
+        irALaPaginaPrincipal();
+      } else {
+        logout();
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   return (
@@ -62,7 +81,9 @@ export default function Login() {
         gap: "10px",
       }}
     >
-      <h1>Inicio de sesión</h1>
+      <Typography variant="h4" component="h1">
+        Inicio de sesión
+      </Typography>
       <FormControl variant="standard">
         <InputLabel htmlFor="usuario">Usuario</InputLabel>
         <Input
@@ -72,9 +93,9 @@ export default function Login() {
               <AccountCircle />
             </InputAdornment>
           }
-          value={user}
+          value={userName}
           onChange={(val) => {
-            setUser(val.target.value);
+            setUserName(val.target.value);
           }}
         />
       </FormControl>
@@ -129,14 +150,14 @@ export default function Login() {
         Iniciar sesión
       </Button>
 
-      <span>
-        ¿No tienes un usuario? <Link to="/register">Registrate</Link>
-      </span>
+      <Typography variant="subtitle1">
+        ¿No tienes un usuario? <Link to="/auth/register">Registrate</Link>
+      </Typography>
 
-      {triedToLogIn && loggedIn && (
+      {triedToLogIn && isAuthenticated && (
         <Alert severity="success">Inicio de sesión exitoso</Alert>
       )}
-      {triedToLogIn && !loggedIn && (
+      {triedToLogIn && !isAuthenticated && (
         <Alert severity="error">Inicio de sesión fallido</Alert>
       )}
     </Container>

@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 import * as React from "react";
 import { Data } from "../../../entities/mail";
+import { styled } from "@mui/material";
 type Order = "asc" | "desc";
 
 interface HeadCell {
@@ -37,6 +38,16 @@ const headCells: readonly HeadCell[] = [
   },
 ];
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary,
+    color: theme.palette.secondary,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
 interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (
@@ -66,7 +77,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <StyledTableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -76,9 +87,9 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
               "aria-label": "select all desserts",
             }}
           />
-        </TableCell>
+        </StyledTableCell>
         {headCells.map((headCell, pos) => (
-          <TableCell
+          <StyledTableCell
             key={headCell.id}
             align={pos === headCells.length - 1 ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
@@ -96,7 +107,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </StyledTableCell>
         ))}
       </TableRow>
     </TableHead>

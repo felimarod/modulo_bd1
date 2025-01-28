@@ -1,3 +1,4 @@
+import { styled, TableRow } from "@mui/material";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
@@ -6,13 +7,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
 import { ChangeEvent, MouseEvent, useMemo, useState } from "react";
 import { createData, Data } from "../../../entities/mail";
 import EnhancedTableHead, { Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 
-const rows = [
+const rows: Data[] | [] = [
   createData(1, "Jhon Pope", "Cupcake", new Date("01/01/2025")),
   createData(2, "Jhon Pope", "Donut", new Date("02/01/2025")),
   createData(3, "Jhon Pope", "Eclair", new Date("03/01/2025")),
@@ -28,6 +28,15 @@ const rows = [
   createData(13, "Jhon Pope", "Oreo", new Date("11/01/2025")),
 ];
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -54,10 +63,7 @@ export default function EnhancedTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleRequestSort = (
-    event: MouseEvent<unknown>,
-    property: keyof Data
-  ) => {
+  const handleRequestSort = (_: MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -72,7 +78,7 @@ export default function EnhancedTable() {
     setSelected([]);
   };
 
-  const handleClick = (event: MouseEvent<unknown>, id: number) => {
+  const handleClick = (_: MouseEvent<unknown>, id: number) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -91,7 +97,7 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -136,7 +142,7 @@ export default function EnhancedTable() {
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <TableRow
+                  <StyledTableRow
                     hover
                     onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
@@ -165,17 +171,17 @@ export default function EnhancedTable() {
                     </TableCell>
                     <TableCell align="left">{row.asunto}</TableCell>
                     <TableCell align="right">{row.fecha}</TableCell>
-                  </TableRow>
+                  </StyledTableRow>
                 );
               })}
               {emptyRows > 0 && (
-                <TableRow
+                <StyledTableRow
                   style={{
                     height: 53 * emptyRows,
                   }}
                 >
                   <TableCell colSpan={6} />
-                </TableRow>
+                </StyledTableRow>
               )}
             </TableBody>
           </Table>

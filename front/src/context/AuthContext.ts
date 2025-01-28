@@ -1,25 +1,17 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
+interface User {
+  data: string;
+  name: string;
+}
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
+  login: (user: User) => void;
   logout: () => void;
+  user: User | undefined;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
-
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
-
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -28,3 +20,5 @@ export const useAuth = () => {
   }
   return context;
 };
+
+export type { User };
