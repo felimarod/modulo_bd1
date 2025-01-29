@@ -15,7 +15,7 @@ export const App = () => {
             <Route path="register" element={<Register />} />
           </Route>
           <Route path="dashboard" element={<DashBoardLayout />}>
-            <Route index path="mails" element={<Mails />} />
+            <Route index path="mails/:carpeta" element={<Mails />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -33,7 +33,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const irALaPaginaPrincipal = () => {
-    navigate("/dashboard/mails");
+    navigate("/dashboard/mails/recibidos");
   };
 
   useEffect(() => {

@@ -1,26 +1,28 @@
 import dayjs from "dayjs";
 
-interface Data {
+interface Mensaje {
   id: number;
-  remitente: string;
   asunto: string;
+  cuerpoMensaje?: string;
   fecha: string;
+  remitentes: string;
 }
 
 function createData(
   id: number,
-  remitente: string,
+  remitentes: string,
   asunto: string,
-  fecha: Date
-): Data {
+  fecha: Date,
+  cuerpoMensaje?: string
+): Mensaje {
   return {
     id,
-    remitente,
+    remitentes: remitentes,
     asunto,
     fecha: dayjs(fecha.toISOString()).format("MM/DD/YYYY h:mm A"),
+    cuerpoMensaje,
   };
 }
 
 export { createData };
-export type { Data };
-
+export type { Mensaje };

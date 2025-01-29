@@ -15,7 +15,7 @@ const style = {
 };
 
 export default function Menu() {
-  const carpetas = ["Recibido", "Enviado", "Borradores"];
+  const carpetas = ["Recibidos", "Enviados", "Borradores"];
   const categorias = [
     "Principal",
     "Promoción",

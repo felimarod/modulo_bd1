@@ -8,11 +8,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import { ChangeEvent, MouseEvent, useMemo, useState } from "react";
-import { createData, Data } from "../../../entities/mail";
-import EnhancedTableHead, { Order } from "./EnhancedTableHead";
+import { createData, Mensaje } from "../../../entities/mail";
+import EnhancedTableHead, { HeadCell, Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 
-const rows: Data[] | [] = [
+const rows: Mensaje[] | [] = [
   createData(1, "Jhon Pope", "Cupcake", new Date("01/01/2025")),
   createData(2, "Jhon Pope", "Donut", new Date("02/01/2025")),
   createData(3, "Jhon Pope", "Eclair", new Date("03/01/2025")),
@@ -47,23 +47,64 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-function getComparator<Key extends keyof Data>(
+function getComparator<Key extends keyof Mensaje>(
   order: Order,
   orderBy: Key
-): (a: Data, b: Data) => number {
+): (a: Mensaje, b: Mensaje) => number {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-export default function EnhancedTable() {
+interface PropsEnhancedTable {
+  carpeta: string;
+}
+
+export default function EnhancedTable({ carpeta }: PropsEnhancedTable) {
   const [order, setOrder] = useState<Order>("desc");
-  const [orderBy, setOrderBy] = useState<keyof Data>("fecha");
+  const [orderBy, setOrderBy] = useState<keyof Mensaje>("fecha");
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const headCells: HeadCell[] = [];
 
-  const handleRequestSort = (_: MouseEvent<unknown>, property: keyof Data) => {
+  switch (carpeta.toLocaleLowerCase()) {
+    case "enviados":
+      headCells.push({
+        id: "remitentes",
+        label: "CO",
+      });
+      headCells.push({
+        id: "remitentes",
+        label: "CCO",
+      });
+      break;
+    case "borradores":
+      headCells.push({
+        id: "remitentes",
+        label: "CO",
+      });
+      break;
+    default:
+      headCells.push({
+        id: "remitentes",
+        label: "Remitente",
+      });
+      headCells.push({
+        id: "asunto",
+        label: "Asunto",
+      });
+      headCells.push({
+        id: "fecha",
+        label: "Fecha",
+      });
+      break;
+  }
+
+  const handleRequestSort = (
+    _: MouseEvent<unknown>,
+    property: keyof Mensaje
+  ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -121,7 +162,10 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          title={carpeta.toLocaleUpperCase()}
+        />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -135,6 +179,7 @@ export default function EnhancedTable() {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              headCells={headCells}
             />
             <TableBody>
               {visibleRows.map((row, index) => {
@@ -161,16 +206,40 @@ export default function EnhancedTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
-                    >
-                      {row.remitente}
-                    </TableCell>
-                    <TableCell align="left">{row.asunto}</TableCell>
-                    <TableCell align="right">{row.fecha}</TableCell>
+                    {carpeta.toLocaleLowerCase() === "enviados" && (
+                      <TableCell component="th" id={labelId} scope="row">
+                        {row.remitentes}
+                      </TableCell>
+                    )}
+                    {carpeta.toLocaleLowerCase() === "enviados" && (
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        align="right"
+                      >
+                        {row.remitentes}
+                      </TableCell>
+                    )}
+                    {carpeta.toLocaleLowerCase() === "borradores" && (
+                      <TableCell component="th" id={labelId} scope="row">
+                        {row.remitentes}
+                      </TableCell>
+                    )}
+                    {carpeta.toLocaleLowerCase() !== "enviados" &&
+                      carpeta.toLocaleLowerCase() !== "borradores" && (
+                        <TableCell component="th" id={labelId} scope="row">
+                          {row.remitentes}
+                        </TableCell>
+                      )}
+                    {carpeta.toLocaleLowerCase() !== "enviados" &&
+                      carpeta.toLocaleLowerCase() !== "borradores" && (
+                        <TableCell align="left">{row.asunto}</TableCell>
+                      )}
+                    {carpeta.toLocaleLowerCase() !== "enviados" &&
+                      carpeta.toLocaleLowerCase() !== "borradores" && (
+                        <TableCell align="right">{row.fecha}</TableCell>
+                      )}
                   </StyledTableRow>
                 );
               })}

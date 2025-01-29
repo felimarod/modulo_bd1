@@ -3,10 +3,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
+  title: string;
 }
 
-export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
+export default function EnhancedTableToolbar({
+  numSelected,
+  title,
+}: EnhancedTableToolbarProps) {
   return (
     <Toolbar
       sx={[
@@ -35,11 +38,11 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       ) : (
         <Typography
           sx={{ flex: "1 1 100%" }}
-          variant="h6"
+          variant="h5"
           id="tableTitle"
           component="div"
         >
-          <strong>Carpeta (Ingrese el nombre de la carpeta)</strong>
+          {title}
         </Typography>
       )}
       {numSelected > 0 && (

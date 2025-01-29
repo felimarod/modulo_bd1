@@ -6,37 +6,14 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 import * as React from "react";
-import { Data } from "../../../entities/mail";
+import { Mensaje } from "../../../entities/mail";
 import { styled } from "@mui/material";
 type Order = "asc" | "desc";
 
 interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
+  id: keyof Mensaje;
   label: string;
-  numeric: boolean;
 }
-
-const headCells: readonly HeadCell[] = [
-  {
-    id: "remitente",
-    numeric: false,
-    disablePadding: false,
-    label: "Remitente",
-  },
-  {
-    id: "asunto",
-    numeric: false,
-    disablePadding: true,
-    label: "Asunto",
-  },
-  {
-    id: "fecha",
-    numeric: false,
-    disablePadding: false,
-    label: "Fecha",
-  },
-];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,12 +29,13 @@ interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof Mensaje
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
+  headCells: HeadCell[];
 }
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
@@ -68,9 +46,10 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     numSelected,
     rowCount,
     onRequestSort,
+    headCells,
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof Mensaje) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -91,8 +70,12 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell, pos) => (
           <StyledTableCell
             key={headCell.id}
-            align={pos === headCells.length - 1 ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
+            align={
+              pos === headCells.length - 1 && headCells.length > 1
+                ? "right"
+                : "left"
+            }
+            padding="normal"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -113,4 +96,4 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     </TableHead>
   );
 }
-export type { Order };
+export type { Order, HeadCell };

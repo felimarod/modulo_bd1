@@ -19,6 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 interface NestedListProps {
   title: string;
   items: string[];
@@ -26,7 +27,7 @@ interface NestedListProps {
 
 export default function NestedList({ title, items }: NestedListProps) {
   const [open, setOpen] = useState(true);
-
+  const navigate = useNavigate();
   const handleClick = () => {
     setOpen(!open);
   };
@@ -55,11 +56,15 @@ export default function NestedList({ title, items }: NestedListProps) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         {items.map((subItem, pos) => (
           <ListItem disablePadding key={pos}>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                navigate(`/dashboard/mails/${subItem.toLowerCase()}`);
+              }}
+            >
               <ListItemIcon>
-                {subItem === "Recibido" ? (
+                {subItem === "Recibidos" ? (
                   <InboxIcon />
-                ) : subItem === "Enviado" ? (
+                ) : subItem === "Enviados" ? (
                   <SendIcon />
                 ) : subItem === "Borradores" ? (
                   <DraftsIcon />
