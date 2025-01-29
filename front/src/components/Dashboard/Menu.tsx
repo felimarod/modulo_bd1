@@ -3,18 +3,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import NestedList from "./NestedList";
-
-const style = {
-  p: 0,
-  width: "100%",
-  maxWidth: 360,
-  borderRadius: 2,
-  border: "1px solid",
-  borderColor: "divider",
-  backgroundColor: "background.paper",
-};
+import { useNavigate } from "react-router";
 
 export default function Menu() {
+  const navigate = useNavigate();
+
   const carpetas = ["Recibidos", "Enviados", "Borradores"];
   const categorias = [
     "Principal",
@@ -28,7 +21,17 @@ export default function Menu() {
   ];
 
   return (
-    <Box sx={style}>
+    <Box
+      sx={{
+        p: 0,
+        width: "100%",
+        maxWidth: 360,
+        borderRadius: 2,
+        border: "1px solid",
+        borderColor: "divider",
+        backgroundColor: "background.paper",
+      }}
+    >
       <Button
         sx={{
           display: "flex",
@@ -39,6 +42,9 @@ export default function Menu() {
         size="small"
         variant="contained"
         startIcon={<AddIcon />}
+        onClick={() => {
+          navigate(`/dashboard/new-mail`);
+        }}
       >
         Nuevo Correo
       </Button>

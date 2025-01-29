@@ -5,6 +5,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Mails from "./pages/Dashboard/Mails";
 import AuthProvider from "./pages/Auth/AuthProvider";
+import NewMail from "./pages/Dashboard/NewMail";
 export const App = () => {
   return (
     <AuthProvider>
@@ -15,7 +16,8 @@ export const App = () => {
             <Route path="register" element={<Register />} />
           </Route>
           <Route path="dashboard" element={<DashBoardLayout />}>
-            <Route index path="mails/:carpeta" element={<Mails />} />
+            <Route path="mails/:carpeta" element={<Mails />} />
+            <Route path="new-mail" element={<NewMail />} />
           </Route>
         </Routes>
       </BrowserRouter>
