@@ -12,24 +12,29 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 import DateTimeDisplay from "./DateTimeDisplay";
 
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Bar() {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElUser);
-  const user = { name: "John Doe" };
+  const { user, logout } = useAuth();
 
+  const navigate = useNavigate();
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleLogoutOption = () => {
+    logout();
+    navigate("/auth/login");
   };
 
   return (
@@ -40,7 +45,7 @@ function Bar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/dashboard/emails"
             sx={{
               mr: 2,
               flexGrow: 1,
@@ -54,19 +59,22 @@ function Bar() {
           >
             BD.edu.co
           </Typography>
-          <Box sx={{ 
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "10px",
-            
-           }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
             <DateTimeDisplay />
-            <Tooltip title="Opciones de usuario">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar>{user.name.slice(0, 1).toUpperCase()}</Avatar>
-              </IconButton>
-            </Tooltip>
+            {user !== undefined && (
+              <Tooltip title="Opciones de usuario">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar>{user.name.slice(0, 1).toUpperCase()}</Avatar>
+                </IconButton>
+              </Tooltip>
+            )}
             <Menu
               anchorEl={anchorElUser}
               id="account-menu"
@@ -107,23 +115,8 @@ function Bar() {
               <MenuItem onClick={handleCloseUserMenu}>
                 <Avatar /> Perfil
               </MenuItem>
-              {/* <MenuItem onClick={handleCloseUserMenu}>
-                <Avatar /> My account
-              </MenuItem> */}
               <Divider />
-              {/* <MenuItem onClick={handleCloseUserMenu}>
-                <ListItemIcon>
-                  <PersonAdd fontSize="small" />
-                </ListItemIcon>
-                Add another account
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <ListItemIcon>
-                  <Settings fontSize="small" />
-                </ListItemIcon>
-                Settings
-              </MenuItem> */}
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleLogoutOption}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>

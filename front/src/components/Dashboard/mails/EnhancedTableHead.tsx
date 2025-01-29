@@ -1,52 +1,41 @@
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 import * as React from "react";
-import { Data } from "../../../entities/mail";
+import { Mensaje } from "../../../entities/mail";
+import { styled } from "@mui/material";
 type Order = "asc" | "desc";
 
 interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
+  id: keyof Mensaje;
   label: string;
-  numeric: boolean;
 }
 
-const headCells: readonly HeadCell[] = [
-  {
-    id: "remitente",
-    numeric: false,
-    disablePadding: false,
-    label: "Remitente",
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary,
+    color: theme.palette.secondary,
   },
-  {
-    id: "asunto",
-    numeric: false,
-    disablePadding: true,
-    label: "Asunto",
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
   },
-  {
-    id: "fecha",
-    numeric: false,
-    disablePadding: false,
-    label: "Fecha",
-  },
-];
+}));
 
 interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof Mensaje
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
   rowCount: number;
+  headCells: HeadCell[];
 }
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
@@ -57,16 +46,17 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     numSelected,
     rowCount,
     onRequestSort,
+    headCells,
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof Mensaje) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <StyledTableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -76,12 +66,16 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
               "aria-label": "select all desserts",
             }}
           />
-        </TableCell>
+        </StyledTableCell>
         {headCells.map((headCell, pos) => (
-          <TableCell
+          <StyledTableCell
             key={headCell.id}
-            align={pos === headCells.length - 1 ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
+            align={
+              pos === headCells.length - 1 && headCells.length > 1
+                ? "right"
+                : "left"
+            }
+            padding="normal"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -96,10 +90,10 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </StyledTableCell>
         ))}
       </TableRow>
     </TableHead>
   );
 }
-export type { Order };
+export type { Order, HeadCell };
