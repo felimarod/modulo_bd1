@@ -14,33 +14,33 @@ npm run dev
 
 ## Endpoints requeridos:
 
-[ ] - Verificación de usuario:
+- [ ] Verificación de usuario:
 
     Ruta esperada: `${backend}/autenticacion/ingreso/:usuario/:nombre/:apellido`
     Tipo: GET
 
     Para la autenticación, se requiere que se verifique si el usuario existe en la base de datos, para esto se utilizaran los parametros de (usuario, nombre, apelido) donde si el usuario existe en la base de datos, se devolverá toda la info que se tenga en la Tabla Usuario.
 
-[ ] - Registro de usuario:
+- [ ] Registro de usuario:
 
     Ruta esperada: `${backend}/usuario/registrar`
     Tipo: POST
 
     Para la creación de un nuevo usuario, se requiere (usuario, nombre, apellido, fechaNacimiento, correoAlterno y celular), dichos datos se tomaran del body de la petición HTTP, el parametro fechaCreacion se toma del sistema.
 
-[ ] - Obtener los tipos de carpetas
+- [ ] Obtener los tipos de carpetas
 Ruta esperada: `${backend}/tipo-carpeta/`
 Tipo: GET
 
     Obtener los id y descripciones de todos los tipos de carpetas.
 
-[ ] - Obtener todas las categorias
+- [ ] Obtener todas las categorias
 Ruta esperada: `${backend}/categoria/`
 Tipo: GET
 
     Obtener los id y descripciones de todas las categorias existentes.
 
-[ ] - Obtener mensajes por tipo carpeta
+- [ ] Obtener mensajes por tipo carpeta
 Ruta esperada: `${backend}/mensaje/:usuario/:idTipoCarpeta`
 Tipo: GET
 
@@ -52,13 +52,13 @@ Tipo: GET
 
     Todos ordenados por fechaAccion y horaAccion descendentemente.
 
-[ ] - Obtener mensajes filtrados
+- [ ] Obtener mensajes filtrados
 Ruta esperada: `${backend}/mensaje/:usuario/:idCategoria`
 Tipo: GET
 
     Obtener los mensajes donde el usuario es un destinatario y la categoria es la definida, ordenados por fechaAccion y horaAccion descendentemente. Trayendo: remitente, asunto y fecha.
 
-[ ] - Obtener info mensaje
+- [ ] Obtener info mensaje
 Ruta esperada: `${backend}/mensaje/:idMensaje`
 Tipo: Get
 
@@ -67,31 +67,31 @@ Tipo: Get
 
     Los destinatarios podrían sacarse por medio de otra petición, al igual que los archivosAdjuntos
 
-[ ] - Obtener destinatarios de un mensaje
+- [ ] Obtener destinatarios de un mensaje
 Ruta esperada: `${backend}/contacto/:idMensaje`
 Tipo: Get
 
     Obtener el contacto destinatario de un mensaje, relacionado con el idMensaje, devolver la información de el(los) contacto(s) involucrados. Agrupados por CO y CCO.
 
-[ ] - Obtener los archivos adjuntos de un mensaje
+- [ ] Obtener los archivos adjuntos de un mensaje
 Ruta esperada: `${backend}/archivos/:idMensaje`
 Tipo: Get
 
     Obtener la info de los archivos adjuntos de un mensaje.
 
-[ ] - Obtener los contactos de un usuario
+- [ ] Obtener los contactos de un usuario
 Ruta esperada: `${backend}/contacto/usuario/:idUsuario`
 Tipo: GET
 
     Obtener la info de los contactos de un usuario.
 
-[ ] - Registrar contacto
+- [ ] Registrar contacto
 Ruta esperada: `${backend}/contacto/`
 Tipo: POST
 
     Agregar contacto con el correo proporcionado, se toma del body.
 
-[ ] - Enviar Mensaje
+- [ ] Enviar Mensaje
 Ruta esperada: `${backend}/mensaje`
 Tipo: POST
 
@@ -101,7 +101,7 @@ Tipo: POST
     - La hora, la fecha se saca del sistema, el remitente quien está registrado - Por defecto se deja en la categoría Principal.
 
 <!--
-[ ] - Obtener
+- [ ] Obtener
 Ruta esperada: `${backend}/`
 Tipo:
 -->
