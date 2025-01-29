@@ -56,7 +56,7 @@ CREATE TABLE Contacto (
     nombreContacto VARCHAR(30) NOT NULL,
     correoContacto VARCHAR(30) NOT NULL,
     usuario VARCHAR(5) NOT NULL,
-    usuario_1 VARCHAR (5) UNIQUE NOT NULL,
+    usuario_1 VARCHAR (5) UNIQUE,
     PRIMARY KEY (consecContacto),
     FOREIGN KEY (usuario) REFERENCES Usuario(usuario),
     FOREIGN KEY (usuario_1) REFERENCES Usuario(usuario)
@@ -100,3 +100,5 @@ CREATE TABLE Destinatario (
     FOREIGN KEY (consecContacto) REFERENCES Contacto(consecContacto),
     FOREIGN KEY (idTipoCopia) REFERENCES TipoCopia(idTipoCopia)
 );
+
+--ALTER TABLE DB8124.CONTACTO MODIFY USUARIO_1 VARCHAR2(5) NULL; SI ES NECESARIO
