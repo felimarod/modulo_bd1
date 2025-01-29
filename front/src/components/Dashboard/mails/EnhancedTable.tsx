@@ -71,23 +71,23 @@ export default function EnhancedTable({ carpeta }: PropsEnhancedTable) {
   switch (carpeta.toLocaleLowerCase()) {
     case "enviados":
       headCells.push({
-        id: "remitentes",
+        id: "remitentesCO",
         label: "CO",
       });
       headCells.push({
-        id: "remitentes",
+        id: "remitentesCCO",
         label: "CCO",
       });
       break;
     case "borradores":
       headCells.push({
-        id: "remitentes",
+        id: "remitentesCO",
         label: "CO",
       });
       break;
     default:
       headCells.push({
-        id: "remitentes",
+        id: "remitentesCO",
         label: "Remitente",
       });
       headCells.push({
@@ -208,7 +208,7 @@ export default function EnhancedTable({ carpeta }: PropsEnhancedTable) {
                     </TableCell>
                     {carpeta.toLocaleLowerCase() === "enviados" && (
                       <TableCell component="th" id={labelId} scope="row">
-                        {row.remitentes}
+                        {row.remitentesCO}
                       </TableCell>
                     )}
                     {carpeta.toLocaleLowerCase() === "enviados" && (
@@ -218,18 +218,18 @@ export default function EnhancedTable({ carpeta }: PropsEnhancedTable) {
                         scope="row"
                         align="right"
                       >
-                        {row.remitentes}
+                        {row.remitentesCCO}
                       </TableCell>
                     )}
                     {carpeta.toLocaleLowerCase() === "borradores" && (
                       <TableCell component="th" id={labelId} scope="row">
-                        {row.remitentes}
+                        {row.remitentesCO}
                       </TableCell>
                     )}
                     {carpeta.toLocaleLowerCase() !== "enviados" &&
                       carpeta.toLocaleLowerCase() !== "borradores" && (
                         <TableCell component="th" id={labelId} scope="row">
-                          {row.remitentes}
+                          {row.remitentesCO}
                         </TableCell>
                       )}
                     {carpeta.toLocaleLowerCase() !== "enviados" &&
