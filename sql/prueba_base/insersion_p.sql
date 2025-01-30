@@ -208,7 +208,7 @@ INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idt
 
 
 -- Destinatarios para mensajes de MCarv (E013-E016)
-(13,'E013','MCarv',19,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES(13,'E013','MCarv',19,'CO','169');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (14,'E014','MCarv',20,'CO','275');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (15,'E015','MCarv',21,'COO','097');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (16,'E016','MCarv',22,'COO','249'); 
