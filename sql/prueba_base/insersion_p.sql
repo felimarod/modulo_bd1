@@ -18,14 +18,14 @@ INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('AVI','Video');
 INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('MP3','Musica');
 INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('EXE','Ejecutable');
 
-INSERT INTO Pais (idPais,nomPais) VALUES ('063','Argentina .ar');
-INSERT INTO Pais (idPais,nomPais) VALUES ('097','Bolivia .bo');
-INSERT INTO Pais (idPais,nomPais) VALUES ('105','Brasil .br');
-INSERT INTO Pais (idPais,nomPais) VALUES ('149','Canada .ca');
-INSERT INTO Pais (idPais,nomPais) VALUES ('169','Colombia .co');
-INSERT INTO Pais (idPais,nomPais) VALUES ('245','España .es');
-INSERT INTO Pais (idPais,nomPais) VALUES ('249','Estados Unidos .us');
-INSERT INTO Pais (idPais,nomPais) VALUES ('275','Francia .fr');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('063','Argentina','.ar');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('097','Bolivia ','.bo');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('105','Brasil', '.br');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('149','Canada','.ca');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('169','Colombia','.co');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('245','España','.es');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('249','Estados Unidos','.us');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('275','Francia', '.fr');
 
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRI','Principal');
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRO','Promocion');
@@ -189,63 +189,66 @@ INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtip
 INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (20, 'anexo_legal', 'RSali', 'E010', 'DOC');
 
 --Destinatario para mensajes de GioUs (E001-E004)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (1,'E001','GioUs',1,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (2,'E002','GioUs',2,'CO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (3,'E003','GioUs',3,'COO','249');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (4,'E004','GioUs',4,'COO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (1,'E001','GioUs',1,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (2,'E002','GioUs',2,'CO','063');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (3,'E003','GioUs',3,'COO','249');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (4,'E004','GioUs',4,'COO','245');
 
 -- Destinatarios para mensajes de Alejo (E005-E008)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (5,'E005','Alejo',7,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (6,'E006','Alejo',8,'CO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (7,'E007','Alejo',9,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (8,'E008','Alejo',10,'COO','275'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (5,'E005','Alejo',7,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (6,'E006','Alejo',8,'CO','097');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (7,'E007','Alejo',9,'COO','105');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (8,'E008','Alejo',10,'COO','275'); 
 
 -- Destinatarios para mensajes de GFeli (E009-E012)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (9,'E009','GFeli',13,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (10,'E010','GFeli',14,'CO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (11,'E011','GFeli',15,'COO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (12,'E012','GFeli',16,'COO','063'), 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (9,'E009','GFeli',13,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (10,'E010','GFeli',14,'CO','149');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (11,'E011','GFeli',15,'COO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (12,'E012','GFeli',16,'COO','063'), 
 
 -- Destinatarios para mensajes de MCarv (E013-E016)
 (13,'E013','MCarv',19,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (14,'E014','MCarv',20,'CO','275');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (15,'E015','MCarv',21,'COO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (16,'E016','MCarv',22,'COO','249'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (14,'E014','MCarv',20,'CO','275');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (15,'E015','MCarv',21,'COO','097');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (16,'E016','MCarv',22,'COO','249'); 
 
 -- Destinatarios para mensajes de JLope (E017-E020)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (17,'E017','JLope',25,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (18,'E018','JLope',26,'CO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (19,'E019','JLope',27,'COO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (20,'E020','JLope',28,'COO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (17,'E017','JLope',25,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (18,'E018','JLope',26,'CO','105');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (19,'E019','JLope',27,'COO','149');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (20,'E020','JLope',28,'COO','245');
 
 -- Destinatarios para mensajes de DMarc (E021-E024)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (21,'E021','DMarc',31,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (22,'E022','DMarc',32,'CO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (23,'E023','DMarc',33,'COO','275');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (24,'E024','DMarc',34,'COO','097'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (21,'E021','DMarc',31,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (22,'E022','DMarc',32,'CO','063');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (23,'E023','DMarc',33,'COO','275');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (24,'E024','DMarc',34,'COO','097'); 
 
 -- Destinatarios para mensajes de CAndr (E025-E028)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (25,'E025','CAndr',37,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (26,'E026','CAndr',38,'CO','249');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (27,'E027','CAndr',39,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (28,'E028','CAndr',40,'COO','149'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (25,'E025','CAndr',37,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (26,'E026','CAndr',38,'CO','249');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (27,'E027','CAndr',39,'COO','105');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (28,'E028','CAndr',40,'COO','149'); 
 
 -- Destinatarios para mensajes de VQuin (E029-E032)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (29,'E029','VQuin',43,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (30,'E030','VQuin',44,'CO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (31,'E031','VQuin',45,'COO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (32,'E032','VQuin',46,'COO','275'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (29,'E029','VQuin',43,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (30,'E030','VQuin',44,'CO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (31,'E031','VQuin',45,'COO','063');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (32,'E032','VQuin',46,'COO','275'); 
 
 -- Destinatarios para mensajes de Alemu (E033-E036)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (33,'E033','Alemu',49,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (34,'E034','Alemu',50,'CO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (35,'E035','Alemu',51,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (36,'E036','Alemu',52,'COO','249'); 
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (33,'E033','Alemu',49,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (34,'E034','Alemu',50,'CO','097');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (35,'E035','Alemu',51,'COO','105');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (36,'E036','Alemu',52,'COO','249'); 
 
 -- Destinatarios para mensajes de RSali (E037-E040)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (37,'E037','RSali',55,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (38,'E038','RSali',56,'CO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (39,'E039','RSali',57,'COO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (40,'E040','RSali',58,'COO','275');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (37,'E037','RSali',55,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (38,'E038','RSali',56,'CO','149');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (39,'E039','RSali',57,'COO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (40,'E040','RSali',58,'COO','275');
 
 COMMIT;
+--ROLLBACK;
+
+SELECT * FROM USUARIO;
