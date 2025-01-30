@@ -95,10 +95,12 @@ CREATE TABLE Destinatario (
     usuario VARCHAR(5) NOT NULL,
     consecContacto INT NOT NULL,
     idTipoCopia VARCHAR(4) NOT NULL,
+    idPais VARCHAR(5) NOT NULL,
     PRIMARY KEY (consecDestinatario),
     FOREIGN KEY (idMensaje,usuario) REFERENCES Mensaje(idMensaje,usuario),
     FOREIGN KEY (consecContacto) REFERENCES Contacto(consecContacto),
-    FOREIGN KEY (idTipoCopia) REFERENCES TipoCopia(idTipoCopia)
+    FOREIGN KEY (idTipoCopia) REFERENCES TipoCopia(idTipoCopia),
+    FOREIGN KEY (idPais) REFERENCES Pais(idPais)
 );
 
 --ALTER TABLE DB8124.CONTACTO MODIFY USUARIO_1 VARCHAR2(5) NULL; SI ES NECESARIO
