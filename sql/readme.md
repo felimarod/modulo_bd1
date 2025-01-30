@@ -24,21 +24,29 @@ Crear usuario y conceder permisos
 
 ```sql
 --Crear un usuario
-Create user BD8124 identified by "BD8124";
+Create user PFBD8124 identified by "PFBD8124";
 -- Conceder permisos de conexión y más
-grant connect, resource, DBA to BD8124;
+grant connect, resource, DBA to PFBD8124;
 ```
 
 Copiar script a ejecutar en el contenedor
 
 ```bash
-docker cp ./script.sql oracle:/opt/oracle/
+docker cp ./prueba_base/creacion_p.sql oracle:/opt/oracle/
+docker cp ./prueba_base/insersion_p.sql oracle:/opt/oracle/
+```
+
+Salir del usuario `system` e ingresar al usuario recien creado
+
+```sql
+exit
 ```
 
 Ejecutar script con tablas e inserciones
 
 ```sql
-start script.sql
+start creacion_p.sql
+start insersion_p.sql
 ```
 
 Este paso a paso anterior solo se debe realizar **una vez**, después de la descarga y ejecución del contenedor y después de ejecutar el algoritmo de creación de tablas e inserción de registros. Al apagar y encender la maquina, el contenedor estara "apagado", para "encenderlo" se ejecuta el siguiente comando:
@@ -46,4 +54,3 @@ Este paso a paso anterior solo se debe realizar **una vez**, después de la desc
 ```bash
 docker start oracle
 ```
-
