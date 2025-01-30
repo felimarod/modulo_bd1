@@ -45,8 +45,8 @@ exit
 Ejecutar script con tablas e inserciones
 
 ```sql
-start creacion_p.sql
-start insersion_p.sql
+start creacion_p.sql;
+start insersion_p.sql;
 ```
 
 Este paso a paso anterior solo se debe realizar **una vez**, después de la descarga y ejecución del contenedor y después de ejecutar el algoritmo de creación de tablas e inserción de registros. Al apagar y encender la maquina, el contenedor estara "apagado", para "encenderlo" se ejecuta el siguiente comando:

@@ -18,14 +18,14 @@ INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('AVI','Video');
 INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('MP3','Musica');
 INSERT INTO TipoArchivo (idTipoArchivo,descTipoArchivo) VALUES ('EXE','Ejecutable');
 
-INSERT INTO Pais (idPais,nomPais) VALUES ('063','Argentina .ar');
-INSERT INTO Pais (idPais,nomPais) VALUES ('097','Bolivia .bo');
-INSERT INTO Pais (idPais,nomPais) VALUES ('105','Brasil .br');
-INSERT INTO Pais (idPais,nomPais) VALUES ('149','Canada .ca');
-INSERT INTO Pais (idPais,nomPais) VALUES ('169','Colombia .co');
-INSERT INTO Pais (idPais,nomPais) VALUES ('245','España .es');
-INSERT INTO Pais (idPais,nomPais) VALUES ('249','Estados Unidos .us');
-INSERT INTO Pais (idPais,nomPais) VALUES ('275','Francia .fr');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('063','Argentina','.ar');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('097','Bolivia','.bo');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('105','Brasil','.br');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('149','Canada','.ca');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('169','Colombia','.co');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('245','España','.es');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('249','Estados Unidos','.us');
+INSERT INTO Pais (idPais,nomPais, dominio) VALUES ('275','Francia','.fr');
 
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRI','Principal');
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRO','Promocion');
