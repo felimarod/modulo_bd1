@@ -17,6 +17,7 @@ npm run dev
 - [ ] Verificación de usuario:
 
   Ruta esperada: `${backend}/autenticacion/ingreso/:usuario/:nombre/:apellido`
+
   Tipo: GET
 
   Para la autenticación, se requiere que se verifique si el usuario existe en la base de datos, para esto se utilizaran los parametros de (usuario, nombre, apelido) donde si el usuario existe en la base de datos, se devolverá toda la info que se tenga en la Tabla Usuario.
@@ -24,6 +25,7 @@ npm run dev
 - [ ] Registro de usuario:
 
   Ruta esperada: `${backend}/usuario/registrar`
+  
   Tipo: POST
 
   Para la creación de un nuevo usuario, se requiere (usuario, nombre, apellido, fechaNacimiento, correoAlterno y celular), dichos datos se tomaran del body de la petición HTTP, el parametro fechaCreacion se toma del sistema.
