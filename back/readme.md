@@ -36,7 +36,7 @@ npm run dev
 
 - [x] Obtener los tipos de carpetas
 
-  Encargado: [![Jarcoz13](https://img.shields.io/badge/-github-?style=flat-square)][2]
+  Encargado: [![Jarcoz13](https://img.shields.io/badge/Jarcoz13-github-blue?style=flat-square)][2]
 
   Ruta esperada: `${backend}/tipo-carpeta/`
 
