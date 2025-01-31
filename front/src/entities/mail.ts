@@ -9,7 +9,7 @@ interface Mensaje {
   remitentesCCO?: string;
 }
 
-function createData(
+function crearMensaje(
   id: number,
   remitentes: string,
   asunto: string,
@@ -27,5 +27,5 @@ function createData(
   };
 }
 
-export { createData };
+export { crearMensaje };
 export type { Mensaje };

@@ -62,11 +62,11 @@ export default function NestedList({ title, items }: NestedListProps) {
               }}
             >
               <ListItemIcon>
-                {subItem === "Recibidos" ? (
+                {subItem === "Recibido" ? (
                   <InboxIcon />
-                ) : subItem === "Enviados" ? (
+                ) : subItem === "Enviado" ? (
                   <SendIcon />
-                ) : subItem === "Borradores" ? (
+                ) : subItem === "Borrador" ? (
                   <DraftsIcon />
                 ) : subItem === "Principal" ? (
                   <EmailIcon />

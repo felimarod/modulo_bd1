@@ -71,7 +71,7 @@ function Bar() {
             {user !== undefined && (
               <Tooltip title="Opciones de usuario">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar>{user.name.slice(0, 1).toUpperCase()}</Avatar>
+                  <Avatar>{user.nombre.slice(0, 1).toUpperCase()}</Avatar>
                 </IconButton>
               </Tooltip>
             )}
@@ -113,14 +113,14 @@ function Bar() {
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Avatar /> Perfil
+                <Avatar /> {`${user!.nombre} ${user!.apellido}`}
               </MenuItem>
               <Divider />
               <MenuItem onClick={handleLogoutOption}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
-                Logout
+                Cerrar Sesión
               </MenuItem>
             </Menu>
           </Box>

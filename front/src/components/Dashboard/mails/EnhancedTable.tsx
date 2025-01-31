@@ -8,24 +8,24 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import { ChangeEvent, MouseEvent, useMemo, useState } from "react";
-import { createData, Mensaje } from "../../../entities/mail";
+import { crearMensaje, Mensaje } from "../../../entities/mail";
 import EnhancedTableHead, { HeadCell, Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 
 const rows: Mensaje[] | [] = [
-  createData(1, "Jhon Pope", "Cupcake", new Date("01/01/2025")),
-  createData(2, "Jhon Pope", "Donut", new Date("02/01/2025")),
-  createData(3, "Jhon Pope", "Eclair", new Date("03/01/2025")),
-  createData(4, "Jhon Pope", "Frozen yoghurt", new Date("04/01/2025")),
-  createData(5, "Jhon Pope", "Gingerbread", new Date("05/01/2025")),
-  createData(6, "Jhon Pope", "Honeycomb", new Date("06/01/2025")),
-  createData(7, "Jhon Pope", "Ice cream sandwich", new Date("07/01/2025")),
-  createData(8, "Jhon Pope", "Jelly Bean", new Date("08/01/2025")),
-  createData(9, "Jhon Pope", "KitKat", new Date("09/01/2025")),
-  createData(10, "Jhon Pope", "Lollipop", new Date("10/01/2025")),
-  createData(11, "Jhon Pope", "Marshmallow", new Date("11/01/2025")),
-  createData(12, "Jhon Pope", "Nougat", new Date("12/01/2025")),
-  createData(13, "Jhon Pope", "Oreo", new Date("11/01/2025")),
+  crearMensaje(1, "Jhon Pope", "Cupcake", new Date("01/01/2025")),
+  crearMensaje(2, "Jhon Pope", "Donut", new Date("02/01/2025")),
+  crearMensaje(3, "Jhon Pope", "Eclair", new Date("03/01/2025")),
+  crearMensaje(4, "Jhon Pope", "Frozen yoghurt", new Date("04/01/2025")),
+  crearMensaje(5, "Jhon Pope", "Gingerbread", new Date("05/01/2025")),
+  crearMensaje(6, "Jhon Pope", "Honeycomb", new Date("06/01/2025")),
+  crearMensaje(7, "Jhon Pope", "Ice cream sandwich", new Date("07/01/2025")),
+  crearMensaje(8, "Jhon Pope", "Jelly Bean", new Date("08/01/2025")),
+  crearMensaje(9, "Jhon Pope", "KitKat", new Date("09/01/2025")),
+  crearMensaje(10, "Jhon Pope", "Lollipop", new Date("10/01/2025")),
+  crearMensaje(11, "Jhon Pope", "Marshmallow", new Date("11/01/2025")),
+  crearMensaje(12, "Jhon Pope", "Nougat", new Date("12/01/2025")),
+  crearMensaje(13, "Jhon Pope", "Oreo", new Date("11/01/2025")),
 ];
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({

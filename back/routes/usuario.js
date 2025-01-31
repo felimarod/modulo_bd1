@@ -88,7 +88,6 @@ router.get("/:id", async (req, res, next) => {
 router.put("/verificar/", async (req, res, next) => {
   try {
     const resDB = await verificarUsuario(req.body);
-    console.log(req.body);
     res.status(200).send(formatearUsuario(resDB));
   } catch (error) {
     res.status(404).send({ error: error.message });

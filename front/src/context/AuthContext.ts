@@ -1,14 +1,11 @@
 import { createContext, useContext } from "react";
+import { Usuario } from "../entities/user";
 
-interface User {
-  data: string;
-  name: string;
-}
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (user: User) => void;
+  login: (user: Usuario) => void;
   logout: () => void;
-  user: User | undefined;
+  user: Usuario | undefined;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -20,5 +17,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-export type { User };

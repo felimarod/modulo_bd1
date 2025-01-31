@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { AuthContext, User } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
+import { Usuario } from "../../entities/user";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<User | undefined>();
+  const [user, setUser] = useState<Usuario | undefined>();
 
-  const login = (user: User) => {
+  const login = (user: Usuario) => {
     setIsAuthenticated(true);
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));

@@ -19,15 +19,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { crearUsuario } from "../../entities/user";
 
 export default function Login() {
-  const [userName, setUserName] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [showFirstName, setShowFirstName] = useState(false);
-  const [showLastName, setShowLastName] = useState(false);
-  const handleClickShowFirstName = () => setShowFirstName((show) => !show);
-  const handleClickShowLastName = () => setShowLastName((show) => !show);
+  const [nombreUsuario, setNombreUsuario] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [mostrarNombre, setMostrarNombre] = useState(false);
+  const [mostrarApellido, setMostrarApellido] = useState(false);
+  const handleClickShowFirstName = () =>
+    setMostrarNombre((mostrar) => !mostrar);
+  const handleClickShowLastName = () =>
+    setMostrarApellido((mostrar) => !mostrar);
   const { isAuthenticated, login, logout } = useAuth();
   const [triedToLogIn, setTriedToLogIn] = useState(false);
 
@@ -47,16 +50,26 @@ export default function Login() {
     setTriedToLogIn(true);
     try {
       const res = await axios.put("/api/usuario/verificar/", {
-        usuario: userName, 
-        nombre: first_name,
-        apellido: last_name,
+        usuario: nombreUsuario,
+        nombre,
+        apellido,
       });
       if (res.status === 200) {
         const datosUsuario = res.data;
-        login({
-          data: JSON.stringify(datosUsuario),
-          name: `${datosUsuario.nombre} ${datosUsuario.apellido}`,
-        });
+        console.log(datosUsuario);
+        login(
+          crearUsuario(
+            datosUsuario["usuario_"] as string,
+            datosUsuario["nombre"] as string,
+            datosUsuario["apellido"] as string,
+            datosUsuario["fechaNacimiento"] as string,
+            datosUsuario["fechaCreacion"] as string,
+            datosUsuario["correoAlterno"] as string,
+            datosUsuario["celular"] as string,
+            datosUsuario["idEstado"] as string,
+            datosUsuario["idPais"] as string
+          )
+        );
         irALaPaginaPrincipal();
       } else {
         logout();
@@ -93,9 +106,9 @@ export default function Login() {
               <AccountCircle />
             </InputAdornment>
           }
-          value={userName}
+          value={nombreUsuario}
           onChange={(val) => {
-            setUserName(val.target.value);
+            setNombreUsuario(val.target.value);
           }}
         />
       </FormControl>
@@ -103,22 +116,22 @@ export default function Login() {
         <InputLabel htmlFor="first-name">Nombre</InputLabel>
         <Input
           id="first-name"
-          type={showFirstName ? "text" : "password"}
+          type={mostrarNombre ? "text" : "password"}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label={
-                  showFirstName ? "ocultar el nombre" : "mostrar el nombre"
+                  mostrarNombre ? "ocultar el nombre" : "mostrar el nombre"
                 }
                 onClick={handleClickShowFirstName}
               >
-                {showFirstName ? <VisibilityOff /> : <Visibility />}
+                {mostrarNombre ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }
-          value={first_name}
+          value={nombre}
           onChange={(val) => {
-            setFirstName(val.target.value);
+            setNombre(val.target.value);
           }}
         />
       </FormControl>
@@ -126,22 +139,22 @@ export default function Login() {
         <InputLabel htmlFor="last-name">Apellido</InputLabel>
         <Input
           id="last-name"
-          type={showLastName ? "text" : "password"}
+          type={mostrarApellido ? "text" : "password"}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label={
-                  showLastName ? "ocultar el nombre" : "mostrar el nombre"
+                  mostrarApellido ? "ocultar el nombre" : "mostrar el nombre"
                 }
                 onClick={handleClickShowLastName}
               >
-                {showLastName ? <VisibilityOff /> : <Visibility />}
+                {mostrarApellido ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }
-          value={last_name}
+          value={apellido}
           onChange={(val) => {
-            setLastName(val.target.value);
+            setApellido(val.target.value);
           }}
         />
       </FormControl>

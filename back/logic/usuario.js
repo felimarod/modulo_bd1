@@ -15,8 +15,8 @@ const formatearUsuario = (usuario) =>
         fechaCreacion: new Date(usuario[4]),
         correoAlterno: usuario[5],
         celular: usuario[6],
-        idestado: usuario[7],
-        isPais: usuario[8],
+        idEstado: usuario[7],
+        idPais: usuario[8],
       }     
     : {
         nombre: usuario[0],
@@ -68,7 +68,6 @@ async function verificarUsuario({ nombre, apellido, usuario }) {
     `select * FROM USUARIO WHERE nombre = :nombre and apellido = :apellido and usuario = :usuario`,
     [nombre, apellido, usuario]
   );
-  console.log(usuarios);
   return usuarios[0];
 }
 
