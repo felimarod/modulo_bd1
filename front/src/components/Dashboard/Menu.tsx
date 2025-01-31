@@ -23,8 +23,6 @@ export default function Menu() {
     "Papelera",
   ];
 
-  const [tipoCarpetas, setTipoCarpetas] = useState<TipoCarpeta[]>([]);
-
   useEffect(() => {
     try {
       axios.get("/api/tipoCarpeta/").then((res) => {
@@ -34,7 +32,6 @@ export default function Menu() {
               (tipoCarpeta) => tipoCarpeta.descTipoCarpeta
             )
           );
-          setTipoCarpetas(res.data);
         }
       });
     } catch (error) {

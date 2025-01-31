@@ -12,7 +12,6 @@ var router = Router();
 /**
  * @openapi
  * tags:
- * 
  *   - name: TipoCarpeta
  *     description: Operaciones relacionadas con TipoCarpeta
  * /tipoCarpeta/:
@@ -25,9 +24,7 @@ var router = Router();
  *         description: Retorna todos los TipoCarpetas.
  */
 router.get("/", async (req, res, next) => {
-  
   const resDB = await obtenerTodosLosTipoCarpeta();
-  
   let resJSON = resDB.map((tipoCarpeta) => formatearTipoCarpeta(tipoCarpeta));
   res.send(resJSON);
 });
@@ -60,7 +57,7 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoCarpeta/{id}:
+ * /tipoCarpeta/{id}:
  *  put:
  *   tags:
  *    - TipoCarpeta
@@ -102,7 +99,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoCarpeta/:
+ * /tipoCarpeta/:
  *  post:
  *   tags:
  *    - TipoCarpeta
