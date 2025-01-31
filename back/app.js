@@ -10,7 +10,8 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 import indexRouter from "./routes/index.js";
 import usuarioRouter from "./routes/usuario.js";
-import tipoCarpetaRouter from  "./routes/tipoCarpeta.js"; 
+import tipoCarpetaRouter from "./routes/tipoCarpeta.js";
+import contactoRouter from "./routes/contacto.js";
 
 // Obtener el equivalente de __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +44,8 @@ app.use(express.static(join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/usuario", usuarioRouter);
-app.use("/tipoCarpeta", tipoCarpetaRouter); 
+app.use("/tipoCarpeta", tipoCarpetaRouter);
+app.use("/contacto", contactoRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler

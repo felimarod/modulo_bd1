@@ -1,4 +1,4 @@
-import { peticion } from "./database.js";
+import { peticion } from "../services/database.js";
 
 /**
  * Formatear los datos del usuario

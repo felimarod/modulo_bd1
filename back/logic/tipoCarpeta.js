@@ -1,4 +1,4 @@
-import { peticion } from "./database.js";
+import { peticion } from "../services/database.js";
 
 /**
  * Formatear los datos del tipoCarpeta
@@ -9,10 +9,10 @@ const formateartipoCarpeta = (tipoCarpeta) =>
   tipoCarpeta.length === 2
     ? {
         idTipoCarpeta: tipoCarpeta[0],
-        descTipoCarpeta: tipoCarpeta[1]       
+        descTipoCarpeta: tipoCarpeta[1],
       }
     : {
-      descTipoCarpeta: tipoCarpeta[0]
+        descTipoCarpeta: tipoCarpeta[0],
       };
 
 async function obtenerTodosLostipoCarpetas() {
@@ -20,7 +20,12 @@ async function obtenerTodosLostipoCarpetas() {
 }
 
 async function obtenertipoCarpetaPorId(id) {
-  return (await peticion("select * FROM tipocarpeta WHERE IDtipocarpeta = :idtipocarpeta", [id]))[0];
+  return (
+    await peticion(
+      "select * FROM tipocarpeta WHERE IDtipocarpeta = :idtipocarpeta",
+      [id]
+    )
+  )[0];
 }
 
 /**
