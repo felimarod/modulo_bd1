@@ -4,11 +4,14 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import NestedList from "./NestedList";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { TipoCarpeta } from "../../entities/tipoCarpeta";
 
 export default function Menu() {
   const navigate = useNavigate();
 
-  const carpetas = ["Recibidos", "Enviados", "Borradores"];
+  const [carpetas, setCarpetas] = useState<string[]>([]);
   const categorias = [
     "Principal",
     "Promoción",
@@ -19,6 +22,25 @@ export default function Menu() {
     "Spam",
     "Papelera",
   ];
+
+  const [tipoCarpetas, setTipoCarpetas] = useState<TipoCarpeta[]>([]);
+
+  useEffect(() => {
+    try {
+      axios.get("/api/tipoCarpeta/").then((res) => {
+        if (res.status === 200) {
+          setCarpetas(
+            (res.data as TipoCarpeta[]).map(
+              (tipoCarpeta) => tipoCarpeta.descTipoCarpeta
+            )
+          );
+          setTipoCarpetas(res.data);
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   return (
     <Box
