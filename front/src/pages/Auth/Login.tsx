@@ -46,16 +46,16 @@ export default function Login() {
   const onClickLogIn = async () => {
     setTriedToLogIn(true);
     try {
-      const res = await axios.put("/api/empleados/verificar/", {
-        user_id: userName,
-        first_name,
-        last_name,
+      const res = await axios.put("/api/usuario/verificar/", {
+        usuario: userName, 
+        nombre: first_name,
+        apellido: last_name,
       });
       if (res.status === 200) {
         const datosUsuario = res.data;
         login({
           data: JSON.stringify(datosUsuario),
-          name: `${datosUsuario.first_name} ${datosUsuario.last_name}`,
+          name: `${datosUsuario.nombre} ${datosUsuario.apellido}`,
         });
         irALaPaginaPrincipal();
       } else {

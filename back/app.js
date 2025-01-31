@@ -9,7 +9,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
 import indexRouter from "./routes/index.js";
-import empleadosRouter from "./routes/empleados.js";
+import usuarioRouter from "./routes/usuario.js";
 
 // Obtener el equivalente de __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -41,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/empleados", empleadosRouter);
+app.use("/usuario", usuarioRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
