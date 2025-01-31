@@ -169,24 +169,24 @@ INSERT INTO mensaje (idmensaje,asunto,cuerpomensaje,idtipocarpeta,fechaaccion,ho
 
 INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (1, 'informe1', 'GioUs', 'E001', 'PDF');
 INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (2, 'resumen', 'GioUs', 'E001', 'DOC');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (3, 'datos_financieros', 'Alejo', 'E002', 'XLS');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (4, 'reporte', 'Alejo', 'E002', 'PDF');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (5, 'imagen_proyecto', 'FeliM', 'E003', 'GIF');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (6, 'diagrama', 'FeliM', 'E003', 'BMP');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (7, 'logo_empresa', 'MCarv', 'E004', 'PDF');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (8, 'manual', 'MCarv', 'E004', 'DOC');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (9, 'presentacion', 'JLope', 'E005', 'PDF');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (10, 'documento_adjunto', 'JLope', 'E005', 'XLS');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (11, 'video_demo', 'DMarc', 'E006', 'MP4');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (12, 'captura_evento', 'DMarc', 'E006', 'AVI');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (13, 'reunion_grabada', 'CAndr', 'E007', 'AVI');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (14, 'foto_equipo', 'CAndr', 'E007', 'BMP');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (15, 'cancion_tema', 'VQuin', 'E008', 'MP3');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (16, 'audio_conferencia', 'VQuin', 'E008', 'MP3');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (17, 'software_instalacion', 'ALemu', 'E009', 'EXE');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (18, 'guia_instalacion', 'ALemu', 'E009', 'DOC');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (19, 'contrato', 'RSali', 'E010', 'PDF');
-INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (20, 'anexo_legal', 'RSali', 'E010', 'DOC');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (3, 'datos_financieros', 'GioUs', 'E002', 'XLS');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (4, 'reporte', 'GioUs', 'E002', 'PDF');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (5, 'imagen_proyecto', 'GioUs', 'E003', 'GIF');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (6, 'diagrama', 'GioUs', 'E003', 'BMP');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (7, 'logo_empresa', 'GioUs', 'E004', 'PDF');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (8, 'manual', 'GioUs', 'E004', 'DOC');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (9, 'presentacion', 'Alejo', 'E005', 'PDF');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (10, 'documento_adjunto', 'Alejo', 'E005', 'XLS');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (11, 'video_demo', 'Alejo', 'E006', 'MP4');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (12, 'captura_evento', 'Alejo', 'E006', 'AVI');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (13, 'reunion_grabada', 'Alejo', 'E007', 'AVI');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (14, 'foto_equipo', 'Alejo', 'E007', 'BMP');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (15, 'cancion_tema', 'Alejo', 'E008', 'MP3');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (16, 'audio_conferencia', 'Alejo', 'E008', 'MP3');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (17, 'software_instalacion', 'FeliM', 'E009', 'EXE');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (18, 'guia_instalacion', 'FeliM', 'E009', 'DOC');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (19, 'contrato', 'FeliM', 'E010', 'PDF');
+INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (20, 'anexo_legal', 'FeliM', 'E010', 'DOC');
 
 --Destinatario para mensajes de GioUs (E001-E004)
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (1,'E001','GioUs',1,'CO','169');
@@ -201,14 +201,14 @@ INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,id
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (8,'E008','Alejo',10,'COO','275'); 
 
 -- Destinatarios para mensajes de FeliM (E009-E012)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (9,'E009','FeliM',13,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (10,'E010','FeliM',14,'CO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (11,'E011','FeliM',15,'COO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES (12,'E012','FeliM',16,'COO','063');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (9,'E009','FeliM',13,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (10,'E010','FeliM',14,'CO','149');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (11,'E011','FeliM',15,'COO','245');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (12,'E012','FeliM',16,'COO','063');
 
 
 -- Destinatarios para mensajes de MCarv (E013-E016)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontaco,idtipocopia,idPais) VALUES(13,'E013','MCarv',19,'CO','169');
+INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES(13,'E013','MCarv',19,'CO','169');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (14,'E014','MCarv',20,'CO','275');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (15,'E015','MCarv',21,'COO','097');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (16,'E016','MCarv',22,'COO','249'); 
@@ -249,7 +249,5 @@ INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,id
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (39,'E039','RSali',57,'COO','245');
 INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (40,'E040','RSali',58,'COO','275');
 
--- COMMIT;
+COMMIT;
 --ROLLBACK;
-
--- SELECT * FROM USUARIO;
