@@ -14,7 +14,9 @@ npm run dev
 
 ## Endpoints requeridos:
 
-- [ ] Verificación de usuario:
+- [x] Verificación de usuario:
+
+  Encargado: [![Giovanny692](https://img.shields.io/badge/Giovanny692-github-red?style=flat-square)][1]
 
   Ruta esperada: `${backend}/autenticacion/ingreso/:usuario/:nombre/:apellido`
 
@@ -24,13 +26,17 @@ npm run dev
 
 - [ ] Registro de usuario:
 
-  Ruta esperada: `${backend}/usuario/registrar`
+  Encargado: 
   
+  Ruta esperada: `${backend}/usuario/registrar`
+
   Tipo: POST
 
   Para la creación de un nuevo usuario, se requiere (usuario, nombre, apellido, fechaNacimiento, correoAlterno y celular), dichos datos se tomaran del body de la petición HTTP, el parametro fechaCreacion se toma del sistema.
 
-- [ ] Obtener los tipos de carpetas
+- [x] Obtener los tipos de carpetas
+
+  Encargado: [![Jarcoz13](https://img.shields.io/badge/-github-?style=flat-square)][2]
 
   Ruta esperada: `${backend}/tipo-carpeta/`
 
@@ -127,3 +133,7 @@ npm run dev
 Ruta esperada: `${backend}/`
 Tipo:
 -->
+
+[1]: https://github.com/giovanny692
+[2]: https://github.com/jarcoz13
+[3]: https://github.com/felimarod
