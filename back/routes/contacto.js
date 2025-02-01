@@ -5,6 +5,7 @@ import {
   formatearContacto,
   actualizarContacto,
   crearContacto,
+  obtenerContactosPorUsuario,
 } from "../logic/contacto.js";
 
 var router = Router();
@@ -157,6 +158,30 @@ router.post("/", async (req, res, next) => {
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
+});
+
+
+/**
+ * @openapi
+ * /contacto/usuario/{id}:
+ *   get:
+ *     tags:
+ *       - Contactos
+ *     description: Obtener Contacto por id
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna el Contacto.
+ *       404:
+ *         description: No se ha encontrado el Contacto.
+ */
+router.get("/usuario/:id", async (req, res, next) => {
+  const resDB = await obtenerContactosPorUsuario(req.params.id);
+  let resJSON = resDB.map((Contacto) => formatearContacto(Contacto));
+  res.send(resJSON);
 });
 
 export default router;

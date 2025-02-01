@@ -27,9 +27,10 @@ async function obtenerTodosLosContactos() {
 
 async function obtenerContactoPorId(contactoId) {
   return (
-    await peticion("select * FROM contacto WHERE conseccontacto = :contactoId", [
-      contactoId,
-    ])
+    await peticion(
+      "select * FROM contacto WHERE conseccontacto = :contactoId",
+      [contactoId]
+    )
   )[0];
 }
 
@@ -59,10 +60,17 @@ async function actualizarContacto(valoresContacto) {
   );
 }
 
+async function obtenerContactosPorUsuario(usuario) {
+  return (
+    await peticion("select * FROM contacto WHERE usuario = :usuario", [usuario])
+  );
+}
+
 export {
   actualizarContacto,
   crearContacto,
   formatearContacto,
   obtenerContactoPorId,
   obtenerTodosLosContactos,
+  obtenerContactosPorUsuario,
 };

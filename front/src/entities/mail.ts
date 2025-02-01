@@ -1,13 +1,13 @@
 import dayjs from "dayjs";
 
-interface Mensaje {
+type Mensaje = {
   id: number;
   asunto: string;
   cuerpoMensaje?: string;
   fecha: string;
   remitentesCO: string;
   remitentesCCO?: string;
-}
+};
 
 function crearMensaje(
   id: number,

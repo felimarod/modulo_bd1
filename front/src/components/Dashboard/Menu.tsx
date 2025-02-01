@@ -2,11 +2,11 @@ import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import NestedList from "./NestedList";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { TipoCarpeta } from "../../entities/tipoCarpeta";
+import { get } from "../../services/https";
+import NestedList from "./NestedList";
 
 export default function Menu() {
   const navigate = useNavigate();
@@ -24,19 +24,17 @@ export default function Menu() {
   ];
 
   useEffect(() => {
-    try {
-      axios.get("/api/tipoCarpeta/").then((res) => {
-        if (res.status === 200) {
-          setCarpetas(
-            (res.data as TipoCarpeta[]).map(
-              (tipoCarpeta) => tipoCarpeta.descTipoCarpeta
-            )
-          );
-        }
+    get("/tipoCarpeta/")
+      .then((res) => {
+        setCarpetas(
+          (res as TipoCarpeta[]).map(
+            (tipoCarpeta) => tipoCarpeta.descTipoCarpeta
+          )
+        );
+      })
+      .catch((reason) => {
+        console.error(reason);
       });
-    } catch (error) {
-      console.error(error);
-    }
   }, []);
 
   return (

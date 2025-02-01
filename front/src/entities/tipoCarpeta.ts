@@ -1,4 +1,4 @@
-interface TipoCarpeta {
+type TipoCarpeta = {
   idTipoCarpeta: string;
   descTipoCarpeta: string;
 }

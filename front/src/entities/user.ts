@@ -1,4 +1,4 @@
-interface Usuario {
+type Usuario = {
   usuario_: string;
   nombre: string;
   apellido: string;
@@ -8,7 +8,8 @@ interface Usuario {
   celular: string;
   idEstado: string;
   idPais: string;
-}
+};
+
 function crearUsuario(
   usuario_: string,
   nombre: string,
@@ -32,5 +33,6 @@ function crearUsuario(
     idPais,
   };
 }
+
 export { crearUsuario };
 export type { Usuario };

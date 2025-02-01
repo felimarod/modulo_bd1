@@ -15,13 +15,13 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-interface PropsInputFileUpload {
-  setDirArchivos: React.Dispatch<React.SetStateAction<string>>;
-}
-
 export default function InputFileUpload({
+  nombresArchivos,
   setDirArchivos,
-}: PropsInputFileUpload) {
+}: {
+  nombresArchivos: string;
+  setDirArchivos: React.Dispatch<React.SetStateAction<string>>;
+}) {
   return (
     <Button
       component="label"
@@ -30,19 +30,20 @@ export default function InputFileUpload({
       tabIndex={-1}
       startIcon={<CloudUploadIcon />}
     >
-      Subir archivos
+      Subir archivo(s)
       <VisuallyHiddenInput
         type="file"
         multiple
         onChange={(event) => {
-          let nombresArchivos = "";
           const files = event.target.files;
           if (files) {
             for (let index = 0; index < files.length; index++) {
               const element = files?.item(index);
 
               nombresArchivos +=
-                index === 0 ? `${element!.name}` : `,${element!.name}`;
+                nombresArchivos.length === 0 && index === 0
+                  ? `${element!.name}`
+                  : `,${element!.name}`;
             }
           }
           setDirArchivos(nombresArchivos);
