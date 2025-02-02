@@ -12,6 +12,7 @@ import indexRouter from "./routes/index.js";
 import usuarioRouter from "./routes/usuario.js";
 import tipoCarpetaRouter from "./routes/tipoCarpeta.js";
 import contactoRouter from "./routes/contacto.js";
+import categoriaRouter from "./routes/categoria.js";
 import estadoRouter from "./routes/estado.js"
 
 // Obtener el equivalente de __dirname en ES Modules
@@ -47,6 +48,7 @@ app.use("/", indexRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/tipoCarpeta", tipoCarpetaRouter);
 app.use("/contacto", contactoRouter);
+app.use("/categoria",categoriaRouter);
 app.use("/estado",estadoRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
