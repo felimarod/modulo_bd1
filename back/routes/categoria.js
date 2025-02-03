@@ -55,6 +55,13 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// TODO: Revisar 
+/* 
+ *  parameters:
+ *   - in: path
+ *     name: id
+ *     required: true
+ */
 /**
  * @openapi
  * /categoria/{id}:
@@ -74,7 +81,7 @@ router.get("/:id", async (req, res, next) => {
  *       properties:
  *        desCategoria:
  *         type: string
- *        
+ *
  *   responses:
  *     200:
  *       description: Retorna el Categoria actualizado.
@@ -85,13 +92,11 @@ router.get("/:id", async (req, res, next) => {
  */
 router.put("/:id", async (req, res, next) => {
   try {
-    console.log(JSON.stringify({id: req.params.id}))
-
     const CategoriaFormateado = formatearCategoria(
       Object.values({ id: req.params.id, ...req.body })
     );
-    let resDB = await actualizarCategoria(Object.values(CategoriaFormateado));
-    console.log(resDB)
+    await actualizarCategoria(Object.values(CategoriaFormateado));
+    console.log(resDB);
     res.status(200).send(CategoriaFormateado);
   } catch (error) {
     res.status(404).send({ error: error.message });
