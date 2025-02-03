@@ -49,7 +49,7 @@ async function actualizarCategoria(valoresCategoria) {
   // ignorar primer posicion del arreglo valores_Categorias y guardarlo en una nueva variable llamada id
   const id = valoresCategoria.shift();
   return await peticion(
-    `UPDATE Categoria SET idCategoria= :idCategoria, descCategoria = :desCategoria WHERE idCategoria = :idCategoria`,
+    `UPDATE Categoria SET desCategoria = :desCategoria WHERE idCategoria = :idCategoria`,
     [...valoresCategoria, id]
   );
 }

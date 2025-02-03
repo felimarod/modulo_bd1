@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { json, Router } from "express";
 import {
   obtenerCategoriaPorId,
   obtenerTodasLasCategorias,
@@ -14,7 +14,7 @@ var router = Router();
  * tags:
  *   - name: Categoria
  *     description: Operaciones relacionadas con Categoria
- * /Categoria/:
+ * /categoria/:
  *   get:
  *     tags:
  *       - Categoria
@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /Categoria/{id}:
+ * /categoria/{id}:
  *   get:
  *     tags:
  *       - Categoria
@@ -57,23 +57,21 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Categoria/{id}:
+ * /categoria/{id}:
  *  put:
  *   tags:
  *    - Categoria
  *   description: Actualizar Categoria
  *   parameters:
  *   - in: path
- *   name: id
- *   required: true
+ *     name: id
+ *     required: true
  *   requestBody:
  *    content:
  *     application/json:
  *      schema:
  *       type: object
  *       properties:
- *        idCategoria:
- *         type: string
  *        desCategoria:
  *         type: string
  *        
@@ -87,10 +85,13 @@ router.get("/:id", async (req, res, next) => {
  */
 router.put("/:id", async (req, res, next) => {
   try {
+    console.log(JSON.stringify({id: req.params.id}))
+
     const CategoriaFormateado = formatearCategoria(
       Object.values({ id: req.params.id, ...req.body })
     );
-    await actualizarCategoria(Object.values(CategoriaFormateado));
+    let resDB = await actualizarCategoria(Object.values(CategoriaFormateado));
+    console.log(resDB)
     res.status(200).send(CategoriaFormateado);
   } catch (error) {
     res.status(404).send({ error: error.message });
@@ -99,7 +100,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Categoria/:
+ * /categoria/:
  *  post:
  *   tags:
  *    - Categoria

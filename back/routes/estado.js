@@ -15,7 +15,7 @@ var router = Router();
  * tags:
  *   - name: Estado
  *     description: Operaciones relacionadas con Estado
- * /Estado/:
+ * /estado/:
  *   get:
  *     tags:
  *       - Estado
@@ -32,7 +32,7 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /Estado/{id}:
+ * /estado/{id}:
  *   get:
  *     tags:
  *       - Estado
@@ -58,7 +58,7 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Estado/{id}:
+ * /estado/{id}:
  *  put:
  *   tags:
  *    - Estado
@@ -100,7 +100,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Estado/:
+ * /estado/:
  *  post:
  *   tags:
  *    - Estado

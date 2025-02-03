@@ -12,12 +12,12 @@ var router = Router();
 /**
  * @openapi
  * tags:
- *   - name: tipoArchivo
+ *   - name: TipoArchivo
  *     description: Operaciones relacionadas con TipoArchivo
- * /TipoArchivo/:
+ * /tipoArchivo/:
  *   get:
  *     tags:
- *       - tipoArchivo
+ *       - TipoArchivo
  *     description: Obtener todos los tipoArchivo
  *     responses:
  *       200:
@@ -31,10 +31,10 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoArchivo/{id}:
+ * /tipoArchivo/{id}:
  *   get:
  *     tags:
- *       - tipoArchivo
+ *       - TipoArchivo
  *     description: Obtener TipoArchivo por id
  *     parameters:
  *      - in: path
@@ -60,7 +60,7 @@ router.get("/:id", async (req, res, next) => {
  * /tipoArchivo/{id}:
  *  put:
  *   tags:
- *    - tipoArchivo
+ *    - TipoArchivo
  *   description: Actualizar TipoArchivo
  *   parameters:
  *   - in: path
@@ -102,7 +102,7 @@ router.put("/:id", async (req, res, next) => {
  * /tipoArchivo/:
  *  post:
  *   tags:
- *    - tipoArchivo
+ *    - TipoArchivo
  *   description: Crear TipoArchivo
  *   requestBody:
  *    content:

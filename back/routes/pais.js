@@ -14,7 +14,7 @@ var router = Router();
  * tags:
  *   - name: Pais
  *     description: Operaciones relacionadas con Pais
- * /Pais/:
+ * /pais/:
  *   get:
  *     tags:
  *       - Pais
@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /Pais/{id}:
+ * /pais/{id}:
  *   get:
  *     tags:
  *       - Pais
@@ -57,7 +57,7 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Pais/{id}:
+ * /pais/{id}:
  *  put:
  *   tags:
  *    - Pais
@@ -101,7 +101,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Pais/:
+ * /pais/:
  *  post:
  *   tags:
  *    - Pais

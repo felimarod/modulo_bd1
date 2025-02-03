@@ -14,7 +14,7 @@ var router = Router();
  * tags:
  *   - name: TipoCopia
  *     description: Operaciones relacionadas con TipoCopia
- * /TipoCopia/:
+ * /tipoCopia/:
  *   get:
  *     tags:
  *       - TipoCopia
@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoCopia/{id}:
+ * /tipoCopia/{id}:
  *   get:
  *     tags:
  *       - TipoCopia
@@ -57,7 +57,7 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoCopia/{id}:
+ * /tipoCopia/{id}:
  *  put:
  *   tags:
  *    - TipoCopia
@@ -99,7 +99,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /TipoCopia/:
+ * /tipoCopia/:
  *  post:
  *   tags:
  *    - TipoCopia
