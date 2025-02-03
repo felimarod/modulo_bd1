@@ -13,6 +13,7 @@ import usuarioRouter from "./routes/usuario.js";
 import tipoCarpetaRouter from "./routes/tipoCarpeta.js";
 import contactoRouter from "./routes/contacto.js";
 import categoriaRouter from "./routes/categoria.js";
+import tipoArchivoRouter from "./routes/tipoArchivo.js";
 import paisRouter from "./routes/pais.js"
 import tipoCopiaRouter from "./routes/tipoCopia.js";
 import estadoRouter from "./routes/estado.js"
@@ -53,6 +54,7 @@ app.use("/contacto", contactoRouter);
 app.use("/categoria",categoriaRouter);
 app.use("/pais",paisRouter);
 app.use("/tipoCopia",tipoCopiaRouter);
+app.use("/tipoArchivo",tipoArchivoRouter);
 app.use("/estado",estadoRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
