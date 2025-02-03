@@ -6,7 +6,7 @@ import { peticion } from "../services/database.js";
  * @returns Objeto con los datos del Pais
  */
 const formatearPais = (Pais) =>
-  Pais.length === 2
+  Pais.length === 3
     ? {
         idPais: Pais[0],
         nomPais: Pais[1],
@@ -43,7 +43,7 @@ async function crearPais(Pais) {
   );
 }
 /**
- * Actualizar el Pais
+ * Actualizar el Pais 
  * @param {Array} valoresPais - Arreglo con los valores del Pais a actualizar
  * @returns Resultado de la petición
  */

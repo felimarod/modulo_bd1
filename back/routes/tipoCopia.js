@@ -72,8 +72,6 @@ router.get("/:id", async (req, res, next) => {
  *      schema:
  *       type: object
  *       properties:
- *        idTipoCopia:
- *         type: string
  *        descTipoCopia:
  *         type: string
  *        

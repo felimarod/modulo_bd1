@@ -13,7 +13,7 @@ var router = Router();
  * @openapi
  * tags:
  *   - name: Pais
- *     description: Operaciones relacionadas con Pais
+ *     description: Operaciones relacionadas con Paises
  * /pais/:
  *   get:
  *     tags:
@@ -21,7 +21,7 @@ var router = Router();
  *     description: Obtener todos los Paises
  *     responses:
  *       200:
- *         description: Retorna todos los Paiss.
+ *         description: Retorna todos los Paises.
  */
 router.get("/", async (req, res, next) => {
   const resDB = await obtenerTodosLosPaises();
@@ -72,8 +72,6 @@ router.get("/:id", async (req, res, next) => {
  *      schema:
  *       type: object
  *       properties:
- *        idPais:
- *         type: string
  *        nomPais:
  *         type: string
  *        dominio:

@@ -111,8 +111,6 @@ router.put("/verificar/", async (req, res, next) => {
  *      schema:
  *       type: object
  *       properties:
- *        usuario:
- *         type: string
  *        nombre:
  *         type: string
  *        apellido:
