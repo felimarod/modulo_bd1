@@ -51,7 +51,7 @@ async function actualizarPais(valoresPais) {
   // ignorar primer posicion del arreglo valores_Paiss y guardarlo en una nueva variable llamada id
   const id = valoresPais.shift();
   return await peticion(
-    `UPDATE Pais SET idPais= :idPais, nomPais = :nomPais, dominio = :dominio  WHERE idPais = :idPais`,
+    `UPDATE Pais SET nomPais = :nomPais, dominio = :dominio  WHERE idPais = :idPais`,
     [...valoresPais, id]
   );
 }

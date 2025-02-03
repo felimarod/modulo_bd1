@@ -49,7 +49,7 @@ async function actualizarTipoCopia(valoresTipoCopia) {
   // ignorar primer posicion del arreglo valores_TipoCopias y guardarlo en una nueva variable llamada id
   const id = valoresTipoCopia.shift();
   return await peticion(
-    `UPDATE TipoCopia SET idTipoCopia= :idTipoCopia, descTipoCopia = :descTipoCopia WHERE idTipoCopia = :idTipoCopia`,
+    `UPDATE TipoCopia SET descTipoCopia = :descTipoCopia WHERE idTipoCopia = :idTipoCopia`,
     [...valoresTipoCopia, id]
   );
 }

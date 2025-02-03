@@ -66,8 +66,8 @@ router.get("/:id", async (req, res, next) => {
  *   description: Actualizar Contacto
  *   parameters:
  *   - in: path
- *   name: id
- *   required: true
+ *     name: id
+ *     required: true
  *   requestBody:
  *    content:
  *     application/json:

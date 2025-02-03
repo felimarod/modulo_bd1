@@ -49,7 +49,7 @@ async function actualizartipoCarpeta(valoresTipoCarpeta) {
   // ignorar primer posicion del arreglo valores_tipoCarpetas y guardarlo en una nueva variable llamada id
   const id = valoresTipoCarpeta.shift();
   return await peticion(
-    `UPDATE tipocarpeta SET idtipocarpeta= :idTipoCarpeta, descTipoCarpeta = :descTipoCarpeta WHERE idtipocarpeta = :idtipocarpeta`,
+    `UPDATE tipocarpeta SET descTipoCarpeta = :descTipoCarpeta WHERE idtipocarpeta = :idtipocarpeta`,
     [...valoresTipoCarpeta, id]
   );
 }

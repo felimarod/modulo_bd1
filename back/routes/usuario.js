@@ -103,8 +103,8 @@ router.put("/verificar/", async (req, res, next) => {
  *   description: Actualizar Usuario
  *   parameters:
  *   - in: path
- *   name: id
- *   required: true
+ *     name: id
+ *     required: true
  *   requestBody:
  *    content:
  *     application/json:
