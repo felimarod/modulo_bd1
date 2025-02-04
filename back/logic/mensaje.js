@@ -158,14 +158,14 @@ async function obtenerBorradoresDeUsuario(idUsuario) {
       order by d.idtipocopia`,
     [idUsuario]
   );
-  
+
   let mensajes = [];
 
   respuestaDB.forEach((reg, i) => {
     let nombreCO = reg[3] === "CO" ? reg[2] : "";
     let nombreCOO = reg[3] === "COO" ? reg[2] : "";
     let fecha = reg[4];
-    
+
     if (
       mensajes.some((val) => {
         return val.idMensaje === reg[0];
@@ -199,8 +199,6 @@ async function obtenerBorradoresDeUsuario(idUsuario) {
   });
   return mensajes;
 }
-
-  
 
 async function obtenerEnviadosPorUsuario(idUsuario) {
   const respuestaDB = await peticion(
@@ -271,6 +269,42 @@ async function obtenerEnviadosPorUsuario(idUsuario) {
   });
   return mensajes;
 }
+async function obtenerInfoCompleta(idMensaje) {
+  const resMensaje = await peticion(
+    `select m.idmensaje "idMensaje",
+       m.asunto "asunto",
+       m.CUERPOMENSAJE "cuerpoMensaje",
+       u.nombre
+       || ' '
+       || u.apellido "destinatario"
+  from mensaje m,
+       destinatario d,
+       contacto c,
+       usuario u
+ where m.idmensaje = d.idmensaje
+   and m.usuario = d.usuario
+   and c.conseccontacto = d.conseccontacto
+   and u.usuario = c.usuario_1
+   and m.IDMENSAJE like :idMensaje
+ order by d.idtipocopia`,
+    [idMensaje]
+  );
+  if (resMensaje !== null) {
+    console.log(resMensaje);
+    let destinatarios = [];
+
+    resMensaje.forEach((reg) => {
+      destinatarios.push(reg[3]);
+    });
+    return {
+      idMensaje: resMensaje[0][0],
+      asunto: resMensaje[0][1],
+      cuerpoMensaje: resMensaje[0][2],
+      destinatariosCC: destinatarios,
+      destinatariosCCO: "",
+    };
+  }
+}
 
 export {
   actualizarMensaje,
@@ -282,4 +316,5 @@ export {
   obtenerRecibidosDeUsuario,
   obtenerEnviadosPorUsuario,
   obtenerBorradoresDeUsuario,
+  obtenerInfoCompleta,
 };

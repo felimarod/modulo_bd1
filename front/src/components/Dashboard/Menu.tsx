@@ -7,21 +7,13 @@ import { useNavigate } from "react-router";
 import { TipoCarpeta } from "../../entities/tipoCarpeta";
 import { get } from "../../services/https";
 import NestedList from "./NestedList";
+import { Categoria } from "../../entities/categoria";
 
 export default function Menu() {
   const navigate = useNavigate();
 
   const [carpetas, setCarpetas] = useState<string[]>([]);
-  const categorias = [
-    "Principal",
-    "Promoción",
-    "Social",
-    "Notificación",
-    "Foro",
-    "Importante",
-    "Spam",
-    "Papelera",
-  ];
+  const [categorias, setCategorias] = useState<string[]>([]);
 
   useEffect(() => {
     get("/tipoCarpeta/")
@@ -30,6 +22,15 @@ export default function Menu() {
           (res as TipoCarpeta[]).map(
             (tipoCarpeta) => tipoCarpeta.descTipoCarpeta
           )
+        );
+      })
+      .catch((reason) => {
+        console.error(reason);
+      });
+    get("/categoria/")
+      .then((res) => {
+        setCategorias(
+          (res as Categoria[]).map((categoria) => categoria.desCategoria)
         );
       })
       .catch((reason) => {

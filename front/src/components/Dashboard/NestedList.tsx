@@ -58,7 +58,22 @@ export default function NestedList({ title, items }: NestedListProps) {
           <ListItem disablePadding key={pos}>
             <ListItemButton
               onClick={() => {
-                navigate(`/dashboard/mails/${subItem.toLowerCase()}`);
+                const carpetaOCategoria = subItem.toLowerCase();
+                if (
+                  carpetaOCategoria !== "recibido" &&
+                  carpetaOCategoria !== "borrador" &&
+                  carpetaOCategoria !== "enviado"
+                ) {
+                  if (carpetaOCategoria === "importante") {
+                    navigate(`/dashboard/mails/INP`);
+                  } else {
+                    navigate(
+                      `/dashboard/mails/${carpetaOCategoria.substring(0, 3).toUpperCase()}`
+                    );
+                  }
+                } else {
+                  navigate(`/dashboard/mails/${subItem.toLowerCase()}`);
+                }
               }}
             >
               <ListItemIcon>

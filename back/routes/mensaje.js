@@ -9,6 +9,7 @@ import {
   obtenerEnviadosPorUsuario,
   obtenerBorradoresDeUsuario,
   obtenerTodosLosMensajes,
+  obtenerInfoCompleta,
 } from "../logic/mensaje.js";
 
 var router = Router();
@@ -267,4 +268,51 @@ router.get("/borrador/:idUsuario", async (req, res, next) => {
     res.status(404).send({ error: error.message });
   }
 });
+
+/**
+ * @openapi
+ * tags:
+ *   - name: Mensaje
+ *     description: Operaciones relacionadas con Mensaje
+ * /mensaje/:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtener todas las Mensaje
+ *     responses:
+ *       200:
+ *         description: Retorna todas las Mensajes.
+ */
+router.get("/", async (req, res, next) => {
+  const resDB = await obtenerTodosLosMensajes();
+  let resJSON = resDB.map((Mensaje) => formatearMensaje(Mensaje));
+  res.send(resJSON);
+});
+
+/**
+ * @openapi
+ * /mensaje/info/{id}:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtener Información general de Mensaje por id
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna el Mensaje y su información más relevante.
+ *       404:
+ *         description: No se ha encontrado el Mensaje.
+ */
+router.get("/info/:id", async (req, res, next) => {
+  try {
+    const resDB = await obtenerInfoCompleta(req.params.id);
+    res.status(200).send(resDB);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
 export default router;

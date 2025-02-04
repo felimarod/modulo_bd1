@@ -13,6 +13,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { crearMensaje, Mensaje } from "../../../entities/mail";
 import EnhancedTableHead, { HeadCell, Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
+import { useNavigate } from "react-router";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
@@ -62,47 +63,81 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
   const [rows, setRows] = useState<Mensaje[]>([]);
   const { user } = useAuth();
 
+  const navigate = useNavigate();
+
+  const categoria =
+    carpeta !== "recibido" && carpeta !== "borrador" && carpeta !== "enviado"
+      ? carpeta
+      : "";
+
+  if (categoria !== "") {
+    carpeta = "recibido";
+  }
+
   useEffect(() => {
-    axios
-      .get(`/api/mensaje/${carpeta}/${user?.usuario_}`)
-      .then((res) => {
-        if (res.status === 200) {
-          const datosUsuario = res.data;
-          setRows(
-            datosUsuario.map((val: MensajeDTO) => {
-              switch (carpeta) {
-                case "recibido":
-                  return crearMensaje(
-                    val.idMensaje,
-                    val.remitente,
-                    val.asunto,
-                    val.fecha
-                  );
-                case "borrador":
-                  return crearMensaje(
-                    val.idMensaje,
-                    val.CO!,
-                    val.asunto,
-                    val.fecha,
-                    val.CCO!
-                  );
-                case "enviado":
-                  return crearMensaje(
-                    val.idMensaje,
-                    val.CO!,
-                    val.asunto,
-                    val.fecha,
-                    val.CCO!
-                  );
-              }
-            })
-          );
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [carpeta]);
+    if (categoria === "") {
+      axios
+        .get(`/api/mensaje/${carpeta}/${user?.usuario_}`)
+        .then((res) => {
+          if (res.status === 200) {
+            const datosUsuario = res.data;
+            setRows(
+              datosUsuario.map((val: MensajeDTO) => {
+                switch (carpeta) {
+                  case "recibido":
+                    return crearMensaje(
+                      val.idMensaje,
+                      val.remitente,
+                      val.asunto,
+                      val.fecha
+                    );
+                  case "borrador":
+                    return crearMensaje(
+                      val.idMensaje,
+                      val.CO!,
+                      val.asunto,
+                      val.fecha,
+                      val.CCO!
+                    );
+                  case "enviado":
+                    return crearMensaje(
+                      val.idMensaje,
+                      val.CO!,
+                      val.asunto,
+                      val.fecha,
+                      val.CCO!
+                    );
+                }
+              })
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      axios
+        .get(`/api/mensaje/${user?.usuario_}/categoria/${categoria}`)
+        .then((res) => {
+          if (res.status === 200) {
+            const datosUsuario = res.data;
+            setRows(
+              datosUsuario.map((val: MensajeDTO) => {
+                return crearMensaje(
+                  val.idMensaje,
+                  val.remitente,
+                  val.asunto,
+                  val.fecha
+                );
+              })
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [carpeta, categoria]);
 
   switch (carpeta.toLocaleLowerCase()) {
     case "enviado":
@@ -163,7 +198,7 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
     setSelected([]);
   };
 
-  const handleClick = (_: MouseEvent<unknown>, id: number) => {
+  const handleClickCheckbox = (_: MouseEvent<unknown>, id: number) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -235,15 +270,15 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                 return (
                   <StyledTableRow
                     hover
-                    onClick={(event) =>
-                      handleClick(event, parseInt(row.id.slice(1), 10))
-                    }
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
                     sx={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigate("/dashboard/mail/" + row.id);
+                    }}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
@@ -252,6 +287,12 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                         inputProps={{
                           "aria-labelledby": labelId,
                         }}
+                        onClick={(event) =>
+                          handleClickCheckbox(
+                            event,
+                            parseInt(row.id.slice(1), 10)
+                          )
+                        }
                       />
                     </TableCell>
                     {carpeta.toLocaleLowerCase() === "enviado" && (

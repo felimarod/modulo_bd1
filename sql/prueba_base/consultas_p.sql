@@ -100,7 +100,10 @@ select m.idmensaje idmensaje,
        || ' '
        || e.apellido emisor,
        m.asunto asunto,
-       to_char(m.fechaaccion, 'DD/MM/YY')
+       to_char(
+          m.fechaaccion,
+          'DD/MM/YY'
+       )
        || ' '
        || to_char(
           m.horaaccion,
@@ -117,3 +120,12 @@ select m.idmensaje idmensaje,
    and c.usuario_1 = r.usuario
    and m.usuario = e.usuario
    and c.usuario_1 like 'Alejo';
+
+select *
+  from mensaje
+ where idmensaje = 'E001';
+desc mensaje;
+
+select *
+  from mensaje m
+ where m.idmensaje = 'E001';

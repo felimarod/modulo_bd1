@@ -1,4 +1,5 @@
 import { Box, Button, Chip, Grid2, TextField, Typography } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { MensajeDTO } from "../../entities/DTO/MailDTO";
@@ -6,17 +7,20 @@ import { MensajeDTO } from "../../entities/DTO/MailDTO";
 const Mail = () => {
   const { idMensaje } = useParams();
 
-  const [cuerpoData, setInfoMensaje] = useState<MensajeDTO | undefined>();
+  const [infoMensaje, setInfoMensaje] = useState<MensajeDTO | undefined>();
 
   useEffect(() => {
     if (idMensaje) {
       // Load and set info
-      setInfoMensaje({
-        destinatariosCC: ["Alejo.usuario@bd.edu.co"],
-        destinatariosCCO: ["JLope.usuario@bd.edu.co"],
-        asunto: "afad",
-        cuerpoMensaje: "adfadfadfadadfadfadfad",
-        archivos: [{ nombre: "Cuenta de Cobro Noviembre-2", extension: "pdf" }],
+      axios.get(`/api/mensaje/info/${idMensaje}`).then((res) => {
+        //   {
+        //   destinatariosCC: ["Alejo.usuario@bd.edu.co"],
+        //   destinatariosCCO: ["JLope.usuario@bd.edu.co"],
+        //   asunto: "afad",
+        //   cuerpoMensaje: "adfadfadfadadfadfadfad",
+        //   archivos: [{ nombre: "Cuenta de Cobro Noviembre-2", extension: "pdf" }],
+        // }
+        setInfoMensaje(res.data as MensajeDTO);
       });
     }
   }, []);
@@ -42,9 +46,9 @@ const Mail = () => {
               <Chip label="CC" variant="outlined" />
             </Grid2>
             <Grid2 size={"grow"}>
-              {cuerpoData !== undefined &&
-                cuerpoData?.destinatariosCC.length > 0 &&
-                cuerpoData?.destinatariosCC.map((val) => (
+              {infoMensaje !== undefined &&
+                infoMensaje?.destinatariosCC.length > 0 &&
+                infoMensaje?.destinatariosCC.map((val) => (
                   <Chip
                     key={`chip-${val}`}
                     sx={{ marginBottom: "10px", marginRight: "4px" }}
@@ -59,9 +63,9 @@ const Mail = () => {
               <Chip label="CCO" variant="outlined" />
             </Grid2>
             <Grid2 size={"grow"}>
-              {cuerpoData !== undefined &&
-                cuerpoData?.destinatariosCCO.length > 0 &&
-                cuerpoData?.destinatariosCCO.map((val) => (
+              {infoMensaje !== undefined &&
+                infoMensaje?.destinatariosCCO.length > 0 &&
+                infoMensaje?.destinatariosCCO.map((val) => (
                   <Chip
                     key={`chip-${val}`}
                     sx={{ marginBottom: "10px", marginRight: "4px" }}
@@ -79,7 +83,7 @@ const Mail = () => {
         variant="outlined"
         fullWidth
         disabled
-        value={cuerpoData !== undefined ? cuerpoData.asunto : ""}
+        value={infoMensaje !== undefined ? infoMensaje.asunto : ""}
       />
       <TextField
         id="mensaje"
@@ -89,16 +93,16 @@ const Mail = () => {
         disabled
         rows={3}
         multiline
-        value={cuerpoData !== undefined ? cuerpoData.cuerpoMensaje : ""}
+        value={infoMensaje !== undefined ? infoMensaje.cuerpoMensaje : ""}
       />
 
-      {cuerpoData !== undefined && cuerpoData.archivos.length > 0 && (
+      {infoMensaje !== undefined && infoMensaje.archivos !== undefined && infoMensaje.archivos.length > 0 && (
         <Typography variant="body1" color="initial">
-          {cuerpoData.archivos.length > 1
+          {infoMensaje.archivos.length > 1
             ? "Se han cargado los archivos: "
             : "Se ha cargado el archivo: "}
           <strong>
-            {cuerpoData.archivos
+            {infoMensaje.archivos
               .map((val) => `${val.nombre}.${val.extension}`)
               .join(",")}
           </strong>
