@@ -1,10 +1,14 @@
-import { json, Router } from "express";
+import { Router } from "express";
 import {
-  obtenerMensajePorId,
-  obtenerTodosLosMensajes,
-  formatearMensaje,
   actualizarMensaje,
   crearMensaje,
+  formatearMensaje,
+  obtenerMensajePorId,
+  obtenerMensajesPorUsuarioYCategoria,
+  obtenerRecibidosDeUsuario,
+  obtenerEnviadosPorUsuario,
+  obtenerBorradoresDeUsuario,
+  obtenerTodosLosMensajes,
 } from "../logic/mensaje.js";
 
 var router = Router();
@@ -156,7 +160,7 @@ router.post("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /mensaje/{idUsuario}/categoria{idCategoria}:
+ * /mensaje/{idUsuario}/categoria/{idCategoria}:
  *   get:
  *     tags:
  *       - Mensaje
@@ -174,15 +178,93 @@ router.post("/", async (req, res, next) => {
  *       404:
  *         description: No se ha encontrado el Mensaje.
  */
-router.get("/:idUsuario/:idCategoria", async (req, res, next) => {
+router.get("/:idUsuario/categoria/:idCategoria", async (req, res, next) => {
   try {
-    console.log(req.params.idUsuario, req.params.idCategoria);
-
-    const resDB = await obtenerMensajePorId("E001");
-    res.status(200).send(formatearMensaje(resDB));
+    const resDB = await obtenerMensajesPorUsuarioYCategoria(
+      req.params.idUsuario,
+      req.params.idCategoria
+    );
+    res.status(200).send(resDB);
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
 });
 
+/**
+ * @openapi
+ * /mensaje/recibido/{idUsuario}:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtiene los mensajes recibidos por id
+ *     parameters:
+ *      - in: path
+ *        name: idUsuario
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna los Mensajes filtrados por Usuario y categoria.
+ *       404:
+ *         description: No se ha encontrado el Mensaje.
+ */
+router.get("/recibido/:idUsuario", async (req, res, next) => {
+  try {
+    const resDB = await obtenerRecibidosDeUsuario(req.params.idUsuario);
+    res.status(200).send(resDB);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
+/**
+ * @openapi
+ * /mensaje/enviado/{idUsuario}:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtiene los mensajes enviados por un usuario
+ *     parameters:
+ *      - in: path
+ *        name: idUsuario
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna los Mensajes filtrados por Usuario y que se hayan enviado por el mismo.
+ *       404:
+ *         description: No se ha encontrado el Mensaje.
+ */
+router.get("/enviado/:idUsuario", async (req, res, next) => {
+  try {
+    const resDB = await obtenerEnviadosPorUsuario(req.params.idUsuario);
+    res.status(200).send(resDB);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
+/**
+ * @openapi
+ * /mensaje/borrador/{idUsuario}:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtiene los mensajes de tipo carpeta borradores del usuario definido
+ *     parameters:
+ *      - in: path
+ *        name: idUsuario
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna los Mensajes filtrados por Usuario y tipo Carpeta Borrador.
+ *       404:
+ *         description: No se ha encontrado el Mensaje.
+ */
+router.get("/borrador/:idUsuario", async (req, res, next) => {
+  try {
+    const resDB = await obtenerBorradoresDeUsuario(req.params.idUsuario);
+    res.status(200).send(resDB);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
 export default router;

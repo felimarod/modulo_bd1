@@ -33,10 +33,7 @@ async function obtenerTodosLosMensajes() {
 
 async function obtenerMensajePorId(id) {
   return (
-    await peticion(
-      "select * FROM MENSAJE WHERE idMensaje = :idMensaje",
-      [id]
-    )
+    await peticion("select * FROM MENSAJE WHERE idMensaje = :idMensaje", [id])
   )[0];
 }
 
@@ -68,10 +65,155 @@ async function actualizarMensaje(valoresMensaje) {
   );
 }
 
+async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
+  const respuestaDB = await peticion(
+    `select m.idmensaje mensaje,
+            e.nombre
+            || ' '
+            || e.apellido emisor,
+            m.asunto asunto,
+            to_char(m.fechaaccion, 'DD/MM/YY')
+            || ' '
+            || to_char(
+               m.horaaccion,
+               'HH24:mm'
+            ) fecha
+       from mensaje m,
+            contacto c,
+            destinatario d,
+            usuario u,
+            usuario e
+      where m.idmensaje = d.idmensaje
+        and d.conseccontacto = c.conseccontacto
+        and m.idcategoria like :idCategoria
+        and c.usuario_1 = u.usuario
+        and m.usuario = e.usuario
+        and c.usuario_1 like :idUsuario`,
+    [idCategoria, idUsuario]
+  );
+  return respuestaDB.map((val) => {
+    return {
+      idMensaje: val[0],
+      remitente: val[1],
+      asunto: val[2],
+      fecha: val[3],
+    };
+  });
+}
+
+async function obtenerRecibidosDeUsuario(idUsuario) {
+  const respuestaDB = await peticion(
+    `select m.idmensaje mensaje,
+            e.nombre
+            || ' '
+            || e.apellido emisor,
+            m.asunto asunto,
+            to_char(m.fechaaccion, 'DD/MM/YY')
+            || ' '
+            || to_char(
+               m.horaaccion,
+               'HH24:mm'
+            ) fecha
+       from mensaje m,
+            contacto c,
+            destinatario d,
+            usuario u,
+            usuario e
+      where m.idmensaje = d.idmensaje
+        and d.conseccontacto = c.conseccontacto
+        and m.idtipocarpeta like 'Rec'
+        and c.usuario_1 = u.usuario
+        and m.usuario = e.usuario
+        and c.usuario_1 like :idUsuario`,
+    [idUsuario]
+  );
+  return respuestaDB.map((val) => {
+    return {
+      idMensaje: val[0],
+      remitente: val[1],
+      asunto: val[2],
+      fecha: val[3],
+    };
+  });
+}
+
+async function obtenerBorradoresDeUsuario(idUsuario) {
+  const respuestaDB = await peticion(
+    `select m.idmensaje "idMensaje",
+            m.asunto "asunto",
+            u.NOMBRE || ' ' || u.APELLIDO "destinatario",
+            tc.idtipocopia
+       from mensaje m,
+            destinatario d,
+            contacto c,
+            tipocopia tc,
+            usuario u
+      where m.idmensaje = d.idmensaje
+        and m.usuario = d.usuario
+        and c.conseccontacto = d.conseccontacto
+        and d.idtipocopia = tc.idtipocopia
+        and d.idtipocopia like 'CO'
+        and m.idtipocarpeta like 'Bor'
+        and m.usuario = :idUsuario
+        and u.USUARIO = c.USUARIO_1
+      order by d.idtipocopia`,
+    [idUsuario]
+  );
+  const respuestaRefactor = respuestaDB.map((val) => {
+    idMensaje: val[0];
+    CO: val[1];
+    asunto: val[2];
+  });
+  return respuestaRefactor;
+}
+
+async function obtenerEnviadosPorUsuario(idUsuario) {
+  const respuestaDB = await peticion(
+    `select m.idmensaje "idMensaje",
+            m.asunto "asunto",
+            u.NOMBRE || ' ' || u.APELLIDO "destinatario",
+            tc.idtipocopia
+       from mensaje m,
+            destinatario d,
+            contacto c,
+            tipocopia tc,
+            usuario u
+      where m.idmensaje = d.idmensaje
+        and m.usuario = d.usuario
+        and c.conseccontacto = d.conseccontacto
+        and d.idtipocopia = tc.idtipocopia
+        and ( d.idtipocopia like 'CO'
+         or d.idtipocopia like 'COO' )
+        and m.idtipocarpeta like 'Env'
+        and m.usuario = :idUsuario
+        and u.USUARIO = c.USUARIO_1
+      order by d.idtipocopia`,
+    [idUsuario]
+  );
+  console.log("respuestaDB:", JSON.stringify(respuestaDB));
+  // [
+  //  ["E006","Solicitud de comentarios","Felipe","CO"]
+  // ,["E008","Documentación necesaria","Juan","COO"]
+  // ]
+  let mensajes = [];
+
+  const respuestaRefactor = respuestaDB.map((val) => {
+    idMensaje: val[0];
+    CO: val[1];
+    CCO: val[2];
+    asunto: val[3];
+  });
+  return respuestaRefactor;
+}
+
 export {
   actualizarMensaje,
   crearMensaje,
   formatearMensaje,
   obtenerMensajePorId,
   obtenerTodosLosMensajes,
+  obtenerMensajesPorUsuarioYCategoria,
+  obtenerRecibidosDeUsuario,
+  obtenerEnviadosPorUsuario,
+  obtenerBorradoresDeUsuario,
 };
