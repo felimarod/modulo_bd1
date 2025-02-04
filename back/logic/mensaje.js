@@ -152,20 +152,57 @@ async function obtenerBorradoresDeUsuario(idUsuario) {
         and m.usuario = d.usuario
         and c.conseccontacto = d.conseccontacto
         and d.idtipocopia = tc.idtipocopia
-        and d.idtipocopia like 'CO'
+        and (d.idtipocopia like 'CO' or  d.idtipocopia like 'COO')
         and m.idtipocarpeta like 'Bor'
         and m.usuario = :idUsuario
         and u.USUARIO = c.USUARIO_1
       order by d.idtipocopia`,
     [idUsuario]
   );
-  const respuestaRefactor = respuestaDB.map((val) => {
-    idMensaje: val[0];
-    CO: val[1];
-    asunto: val[2];
+  console.log(respuestaDB);
+  
+  let mensajes = [];
+
+  respuestaDB.forEach((reg, i) => {
+    let nombreCO = reg[3] === "CO" ? reg[2] : "";
+    let nombreCOO = reg[3] === "COO" ? reg[2] : "";
+    let fecha = reg[4];
+    
+    if (
+      mensajes.some((val) => {
+        return val.idMensaje === reg[0];
+      })
+    ) {
+      let otrosMensajes = mensajes.filter((val) => {
+        return val.idMensaje !== reg[0];
+      });
+      let mensajeActual = mensajes.filter((val) => {
+        return val.idMensaje === reg[0];
+      })[0];
+
+      mensajeActual.CO =
+        nombreCO !== "" ? `${mensajeActual.CO},${nombreCO}` : mensajeActual;
+      mensajeActual.CCO =
+        nombreCOO !== "" ? `${mensajeActual.CCO},${nombreCOO}` : mensajeActual;
+
+      mensajes = [...otrosMensajes, mensajeActual];
+    } else {
+      mensajes = [
+        ...mensajes,
+        {
+          idMensaje: reg[0],
+          asunto: reg[1],
+          CO: nombreCO,
+          CCO: nombreCOO,
+          fecha,
+        },
+      ];
+    }
   });
-  return respuestaRefactor;
+  return mensajes;
 }
+
+  
 
 async function obtenerEnviadosPorUsuario(idUsuario) {
   const respuestaDB = await peticion(

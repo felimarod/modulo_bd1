@@ -79,8 +79,13 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                     val.fecha
                   );
                 case "borrador":
-                  console.log("Borradoooo");
-                  break;
+                  return crearMensaje(
+                    val.idMensaje,
+                    val.CO!,
+                    val.asunto,
+                    val.fecha,
+                    val.CCO!
+                  );
                 case "enviado":
                   return crearMensaje(
                     val.idMensaje,

@@ -251,5 +251,3 @@ INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,id
 
 COMMIT;
 --ROLLBACK;
-
-SELECT M.idMensaje mensaje, C.nombreContacto receptor from Mensaje M, Contacto C , destinatario D where M.idMensaje=D.idMensaje and D.consecContacto = C.consecContacto and M.idtipocarpeta like 'Rec'; 
