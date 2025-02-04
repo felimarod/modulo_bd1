@@ -172,7 +172,13 @@ async function obtenerEnviadosPorUsuario(idUsuario) {
     `select m.idmensaje "idMensaje",
             m.asunto "asunto",
             u.NOMBRE || ' ' || u.APELLIDO "destinatario",
-            tc.idtipocopia
+            tc.idtipocopia,
+            to_char(m.fechaaccion, 'DD/MM/YYYY')
+            || ' '
+            || to_char(
+               m.horaaccion,
+               'HH24:mm'
+            ) fecha
        from mensaje m,
             destinatario d,
             contacto c,
@@ -190,20 +196,45 @@ async function obtenerEnviadosPorUsuario(idUsuario) {
       order by d.idtipocopia`,
     [idUsuario]
   );
-  console.log("respuestaDB:", JSON.stringify(respuestaDB));
-  // [
-  //  ["E006","Solicitud de comentarios","Felipe","CO"]
-  // ,["E008","Documentación necesaria","Juan","COO"]
-  // ]
   let mensajes = [];
 
-  const respuestaRefactor = respuestaDB.map((val) => {
-    idMensaje: val[0];
-    CO: val[1];
-    CCO: val[2];
-    asunto: val[3];
+  respuestaDB.forEach((reg, i) => {
+    let nombreCO = reg[3] === "CO" ? reg[2] : "";
+    let nombreCOO = reg[3] === "COO" ? reg[2] : "";
+    let fecha = reg[4];
+
+    if (
+      mensajes.some((val) => {
+        return val.idMensaje === reg[0];
+      })
+    ) {
+      let otrosMensajes = mensajes.filter((val) => {
+        return val.idMensaje !== reg[0];
+      });
+      let mensajeActual = mensajes.filter((val) => {
+        return val.idMensaje === reg[0];
+      })[0];
+
+      mensajeActual.CO =
+        nombreCO !== "" ? `${mensajeActual.CO},${nombreCO}` : mensajeActual;
+      mensajeActual.CCO =
+        nombreCOO !== "" ? `${mensajeActual.CCO},${nombreCOO}` : mensajeActual;
+
+      mensajes = [...otrosMensajes, mensajeActual];
+    } else {
+      mensajes = [
+        ...mensajes,
+        {
+          idMensaje: reg[0],
+          asunto: reg[1],
+          CO: nombreCO,
+          CCO: nombreCOO,
+          fecha,
+        },
+      ];
+    }
   });
-  return respuestaRefactor;
+  return mensajes;
 }
 
 export {

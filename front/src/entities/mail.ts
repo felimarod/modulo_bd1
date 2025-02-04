@@ -12,7 +12,7 @@ type Mensaje = {
 
 function crearMensaje(
   id: string,
-  remitentes: string,
+  remitentesCO: string,
   asunto: string,
   fecha: string,
   remitentesCCO?: string,
@@ -21,11 +21,11 @@ function crearMensaje(
   dayjs.extend(customParseFormat);
   return {
     id,
-    remitentesCO: remitentes,
+    remitentesCO,
     asunto,
     fecha: dayjs(fecha, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm"),
-    cuerpoMensaje,
     remitentesCCO,
+    cuerpoMensaje,
   };
 }
 

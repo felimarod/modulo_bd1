@@ -47,6 +47,8 @@ type MensajeDTO = {
   remitente: string;
   asunto: string;
   fecha: string;
+  CO?: string;
+  CCO?: string;
 };
 
 export default function EnhancedTable({ carpeta }: { carpeta: string }) {
@@ -61,38 +63,43 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    switch (carpeta) {
-      case "recibido":
-        axios
-          .get(`/api/mensaje/recibido/${user?.usuario_}`)
-          .then((res) => {
-            if (res.status === 200) {
-              const datosUsuario = res.data;
-              setRows(
-                datosUsuario.map((val: MensajeDTO) => {
+    axios
+      .get(`/api/mensaje/${carpeta}/${user?.usuario_}`)
+      .then((res) => {
+        if (res.status === 200) {
+          const datosUsuario = res.data;
+          setRows(
+            datosUsuario.map((val: MensajeDTO) => {
+              switch (carpeta) {
+                case "recibido":
                   return crearMensaje(
                     val.idMensaje,
                     val.remitente,
                     val.asunto,
                     val.fecha
                   );
-                })
-              );
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-        break;
-      case "borrador":
-        console.log("Borradoooo");
-        setRows([]);
-        break;
-      case "enviado":
-        console.log("Enviadoooo");
-        setRows([]);
-        break;
-    }
+                case "borrador":
+                  console.log("Borradoooo");
+                  break;
+                case "enviado":
+                  return crearMensaje(
+                    val.idMensaje,
+                    val.CO!,
+                    val.asunto,
+                    val.fecha,
+                    val.CCO!
+                  );
+              }
+            })
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        console.log("rows", rows);
+      });
   }, [carpeta]);
 
   switch (carpeta.toLocaleLowerCase()) {
@@ -255,7 +262,7 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                         component="th"
                         id={labelId}
                         scope="row"
-                        align="right"
+                        align="left"
                       >
                         {row.remitentesCO}
                       </TableCell>
@@ -265,9 +272,9 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                         component="th"
                         id={labelId}
                         scope="row"
-                        align="left"
+                        align="right"
                       >
-                        {row.remitentesCO}
+                        {row.remitentesCCO}
                       </TableCell>
                     )}
                     {carpeta.toLocaleLowerCase() === "borrador" && (
