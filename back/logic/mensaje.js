@@ -85,11 +85,11 @@ async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
             usuario e
       where m.idmensaje = d.idmensaje
         and d.conseccontacto = c.conseccontacto
-        and m.idcategoria like :idCategoria
         and c.usuario_1 = u.usuario
         and m.usuario = e.usuario
-        and c.usuario_1 like :idUsuario`,
-    [idCategoria, idUsuario]
+        and c.usuario_1 like :idUsuario
+        and m.idcategoria like :idCategoria`,
+    [idUsuario, idCategoria]
   );
   return respuestaDB.map((val) => {
     return {
@@ -108,7 +108,7 @@ async function obtenerRecibidosDeUsuario(idUsuario) {
             || ' '
             || e.apellido emisor,
             m.asunto asunto,
-            to_char(m.fechaaccion, 'DD/MM/YY')
+            to_char(m.fechaaccion, 'DD/MM/YYYY')
             || ' '
             || to_char(
                m.horaaccion,
@@ -185,8 +185,8 @@ async function obtenerEnviadosPorUsuario(idUsuario) {
         and ( d.idtipocopia like 'CO'
          or d.idtipocopia like 'COO' )
         and m.idtipocarpeta like 'Env'
-        and m.usuario = :idUsuario
         and u.USUARIO = c.USUARIO_1
+        and m.usuario = :idUsuario
       order by d.idtipocopia`,
     [idUsuario]
   );

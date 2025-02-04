@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 type Mensaje = {
-  id: number;
+  id: string;
   asunto: string;
   cuerpoMensaje?: string;
   fecha: string;
@@ -10,18 +11,19 @@ type Mensaje = {
 };
 
 function crearMensaje(
-  id: number,
+  id: string,
   remitentes: string,
   asunto: string,
-  fecha: Date,
+  fecha: string,
   remitentesCCO?: string,
   cuerpoMensaje?: string
 ): Mensaje {
+  dayjs.extend(customParseFormat);
   return {
     id,
     remitentesCO: remitentes,
     asunto,
-    fecha: dayjs(fecha.toISOString()).format("MM/DD/YYYY h:mm A"),
+    fecha: dayjs(fecha, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm"),
     cuerpoMensaje,
     remitentesCCO,
   };
