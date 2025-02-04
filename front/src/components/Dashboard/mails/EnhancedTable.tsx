@@ -101,9 +101,6 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
       })
       .catch((error) => {
         console.error(error);
-      })
-      .finally(() => {
-        console.log("rows", rows);
       });
   }, [carpeta]);
 

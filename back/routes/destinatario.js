@@ -96,7 +96,6 @@ router.put("/:id", async (req, res, next) => {
       Object.values({ id: req.params.id, ...req.body })
     );
     await actualizarDestinatario(Object.values(DestinatarioFormateado));
-    console.log(resDB);
     res.status(200).send(DestinatarioFormateado);
   } catch (error) {
     res.status(404).send({ error: error.message });

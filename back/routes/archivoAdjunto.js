@@ -24,7 +24,6 @@ var router = Router();
  */
 router.get("/", async (req, res, next) => {
   const resDB = await obtenerTodosLosArchivosAdjuntos();
-  console.log(resDB);
   let resJSON = resDB.map((Categoria) => formatearArchivoAdjunto(Categoria));
   res.send(resJSON);
 });
@@ -97,7 +96,6 @@ router.put("/:id", async (req, res, next) => {
         Object.values({ id: req.params.id, ...req.body })
       );
       await actualizarArchivoAdjunto(Object.values(ArchivoAdjuntoFormateado));
-      console.log(resDB);
       res.status(200).send(ArchivoAdjuntoFormateado);
     } catch (error) {
       res.status(404).send({ error: error.message });

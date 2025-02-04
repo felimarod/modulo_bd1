@@ -43,7 +43,6 @@ async function obtenerMensajePorId(id) {
  * @returns Mensaje creado
  */
 async function crearMensaje(Mensaje) {
-  console.log(Mensaje);
   return await peticion(
     `INSERT INTO Mensaje (idMensaje, asunto, cuerpoMensaje, idTipoCarpeta, fechaAccion, horaAccion, usuario, idCategoria) 
     VALUES (:idMensaje, :asunto, :cuerpoMensaje, :idTipoCarpeta,TO_DATE(:fechaAccion,'DD/MM/YYYY'), TO_TIMESTAMP(:horaAccion,'HH24:MI:SS'), :usuario, :idCategoria)`,
@@ -159,7 +158,6 @@ async function obtenerBorradoresDeUsuario(idUsuario) {
       order by d.idtipocopia`,
     [idUsuario]
   );
-  console.log(respuestaDB);
   
   let mensajes = [];
 
