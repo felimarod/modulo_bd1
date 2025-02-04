@@ -9,10 +9,11 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import InputFileUpload from "../../components/Dashboard/new-mail/InputFileUpload";
-import { get } from "../../services/https";
-import { Contacto } from "../../entities/contacto";
-import { Usuario } from "../../entities/user";
 import { useAuth } from "../../context/AuthContext";
+import { Contacto } from "../../entities/contacto";
+import { MensajeDTO } from "../../entities/DTO/MailDTO";
+import { Usuario } from "../../entities/user";
+import { get } from "../../services/https";
 
 const regexCorreo = "([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})";
 
@@ -75,12 +76,12 @@ const NewMail = () => {
   };
 
   const handleClickButton = () => {
-    const objeto = {
-      destinatariosCCConfirmados,
-      destinatariosCCOConfirmados,
+    const objeto: MensajeDTO = {
+      destinatariosCC: destinatariosCCConfirmados,
+      destinatariosCCO: destinatariosCCOConfirmados,
       asunto,
-      mensaje,
-      nomArchivos: nomArchivos.split(",").map((nomArchivo) => {
+      cuerpoMensaje: mensaje,
+      archivos: nomArchivos.split(",").map((nomArchivo) => {
         const separar = nomArchivo.split(".");
         const nombre = separar.slice(0, -1).join(".");
         const extension = separar[separar.length - 1];

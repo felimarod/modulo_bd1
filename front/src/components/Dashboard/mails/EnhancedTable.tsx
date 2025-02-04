@@ -12,7 +12,7 @@ import { crearMensaje, Mensaje } from "../../../entities/mail";
 import EnhancedTableHead, { HeadCell, Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 
-const rows: Mensaje[] | [] = [
+const rows: Mensaje[] = [
   crearMensaje(1, "Jhon Pope", "Cupcake", new Date("01/01/2025")),
   crearMensaje(2, "Jhon Pope", "Donut", new Date("02/01/2025")),
   crearMensaje(3, "Jhon Pope", "Eclair", new Date("03/01/2025")),
