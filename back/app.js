@@ -17,7 +17,7 @@ import tipoArchivoRouter from "./routes/tipoArchivo.js";
 import paisRouter from "./routes/pais.js"
 import tipoCopiaRouter from "./routes/tipoCopia.js";
 import estadoRouter from "./routes/estado.js"
-import mensajeRouter from "./routes/mensaje.js"
+import archivoAdjuntoRouter from "./routes/archivoAdjunto.js";
 
 // Obtener el equivalente de __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -57,7 +57,7 @@ app.use("/pais",paisRouter);
 app.use("/tipoCopia",tipoCopiaRouter);
 app.use("/tipoArchivo",tipoArchivoRouter);
 app.use("/estado",estadoRouter);
-app.use("/mensaje",mensajeRouter)
+app.use("/archivoAdjunto", archivoAdjuntoRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
