@@ -1,10 +1,9 @@
-import { json, Router } from "express";
+import { Router } from "express";
 import {
-  obtenerDestinatarioPorId,
-  obtenerTodasLasDestinatarios,
-  formatearDestinatario,
   actualizarDestinatario,
   crearDestinatario,
+  formatearDestinatario,
+  obtenerDestinatarioPorId
 } from "../logic/destinatario.js";
 
 var router = Router();
@@ -24,7 +23,7 @@ var router = Router();
  *         description: Retorna todas las Destinatarios.
  */
 router.get("/", async (req, res, next) => {
-  const resDB = await obtenerTodasLasDestinatarios();
+  const resDB = await obtenerTodosLosDestinatarios();
   let resJSON = resDB.map((Destinatario) => formatearDestinatario(Destinatario));
   res.send(resJSON);
 });

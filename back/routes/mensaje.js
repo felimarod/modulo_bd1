@@ -14,7 +14,7 @@ var router = Router();
  * tags:
  *   - name: Mensaje
  *     description: Operaciones relacionadas con Mensaje
- * /Mensaje/:
+ * /mensaje/:
  *   get:
  *     tags:
  *       - Mensaje
@@ -31,7 +31,7 @@ router.get("/", async (req, res, next) => {
 
 /**
  * @openapi
- * /Mensaje/{id}:
+ * /mensaje/{id}:
  *   get:
  *     tags:
  *       - Mensaje
@@ -57,7 +57,7 @@ router.get("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Mensaje/{id}:
+ * /mensaje/{id}:
  *  put:
  *   tags:
  *    - Mensaje
@@ -109,7 +109,7 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /Mensaje/:
+ * /mensaje/:
  *  post:
  *   tags:
  *    - Mensaje
@@ -149,6 +149,37 @@ router.post("/", async (req, res, next) => {
     const MensajeFormateado = formatearMensaje(Object.values(req.body));
     await crearMensaje(Object.values(MensajeFormateado));
     res.status(202).send(MensajeFormateado);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
+/**
+ * @openapi
+ * /mensaje/{idUsuario}/categoria{idCategoria}:
+ *   get:
+ *     tags:
+ *       - Mensaje
+ *     description: Obtiene los mensajes recibidos por id
+ *     parameters:
+ *      - in: path
+ *        name: idUsuario
+ *        required: true
+ *      - in: path
+ *        name: idCategoria
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Retorna los Mensajes filtrados por Usuario y categoria.
+ *       404:
+ *         description: No se ha encontrado el Mensaje.
+ */
+router.get("/:idUsuario/:idCategoria", async (req, res, next) => {
+  try {
+    console.log(req.params.idUsuario, req.params.idCategoria);
+
+    const resDB = await obtenerMensajePorId("E001");
+    res.status(200).send(formatearMensaje(resDB));
   } catch (error) {
     res.status(404).send({ error: error.message });
   }

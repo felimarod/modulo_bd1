@@ -1,23 +1,25 @@
-import createError from "http-errors";
-import express from "express";
-import cors from "cors";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
+import createError from "http-errors";
 import logger from "morgan";
-import swaggerUi from "swagger-ui-express";
+import { dirname, join } from "path";
 import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import { fileURLToPath } from "url";
 
-import indexRouter from "./routes/index.js";
-import usuarioRouter from "./routes/usuario.js";
-import tipoCarpetaRouter from "./routes/tipoCarpeta.js";
-import contactoRouter from "./routes/contacto.js";
-import categoriaRouter from "./routes/categoria.js";
-import tipoArchivoRouter from "./routes/tipoArchivo.js";
-import paisRouter from "./routes/pais.js"
-import tipoCopiaRouter from "./routes/tipoCopia.js";
-import estadoRouter from "./routes/estado.js"
 import archivoAdjuntoRouter from "./routes/archivoAdjunto.js";
+import categoriaRouter from "./routes/categoria.js";
+import contactoRouter from "./routes/contacto.js";
+import estadoRouter from "./routes/estado.js";
+import indexRouter from "./routes/index.js";
+import mensajeRouter from "./routes/mensaje.js";
+import paisRouter from "./routes/pais.js";
+import tipoArchivoRouter from "./routes/tipoArchivo.js";
+import tipoCarpetaRouter from "./routes/tipoCarpeta.js";
+import tipoCopiaRouter from "./routes/tipoCopia.js";
+import usuarioRouter from "./routes/usuario.js";
+import destinatarioRouter from "./routes/destinatario.js";
 
 // Obtener el equivalente de __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -52,12 +54,15 @@ app.use("/", indexRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/tipoCarpeta", tipoCarpetaRouter);
 app.use("/contacto", contactoRouter);
-app.use("/categoria",categoriaRouter);
-app.use("/pais",paisRouter);
-app.use("/tipoCopia",tipoCopiaRouter);
-app.use("/tipoArchivo",tipoArchivoRouter);
-app.use("/estado",estadoRouter);
+app.use("/categoria", categoriaRouter);
+app.use("/pais", paisRouter);
+app.use("/tipoCopia", tipoCopiaRouter);
+app.use("/tipoArchivo", tipoArchivoRouter);
+app.use("/estado", estadoRouter);
 app.use("/archivoAdjunto", archivoAdjuntoRouter);
+app.use("/mensaje", mensajeRouter);
+app.use("/destinatario", destinatarioRouter);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
