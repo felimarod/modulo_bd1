@@ -45,7 +45,7 @@ async function obtenerUsuarioPorId(USUARIO) {
 async function crearUsuario(usuario) {
   return await peticion(
     `INSERT INTO Usuario (usuario,nombre,apellido,fechanacimiento,fechacreacion,correoalterno,celular,idestado,idpais) VALUES 
-    (:usuario,:nombre,:apellido,:fechanacimiento,:fechacreacion,:correoalterno,:celular,:idestado,:idpais)`,
+    (:usuario,:nombre,:apellido,TO_DATE(:fechanacimiento,'DD/MM/YYYY'),TO_DATE(:fechacreacion,'DD/MM/YYYY'),:correoalterno,:celular,:idestado,:idpais)`,
     usuario
   );
 }
