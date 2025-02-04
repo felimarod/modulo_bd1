@@ -3,9 +3,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { MensajeDTO } from "../../entities/DTO/MailDTO";
+import { useAuth } from "../../context/AuthContext";
 
 const Mail = () => {
   const { idMensaje } = useParams();
+  const { user } = useAuth();
 
   const [infoMensaje, setInfoMensaje] = useState<MensajeDTO | undefined>();
 
@@ -13,17 +15,10 @@ const Mail = () => {
     if (idMensaje) {
       // Load and set info
       axios.get(`/api/mensaje/info/${idMensaje}`).then((res) => {
-        //   {
-        //   destinatariosCC: ["Alejo.usuario@bd.edu.co"],
-        //   destinatariosCCO: ["JLope.usuario@bd.edu.co"],
-        //   asunto: "afad",
-        //   cuerpoMensaje: "adfadfadfadadfadfadfad",
-        //   archivos: [{ nombre: "Cuenta de Cobro Noviembre-2", extension: "pdf" }],
-        // }
         setInfoMensaje(res.data as MensajeDTO);
       });
     }
-  }, []);
+  }, [idMensaje]);
 
   return (
     <Box
@@ -39,42 +34,65 @@ const Mail = () => {
       }}
     >
       <Grid2 container spacing={2}>
+        <Chip label="De" variant="filled" />
+        <Grid2 size={"grow"}>
+          <Grid2 container spacing={2}>
+            <Grid2 size={"grow"}>
+              <Chip
+                key={`chip-${infoMensaje?.remitente}`}
+                sx={{ marginBottom: "10px", marginRight: "4px" }}
+                label={infoMensaje?.remitente}
+                variant="outlined"
+              />
+            </Grid2>
+          </Grid2>
+        </Grid2>
+      </Grid2>
+      <Grid2 container spacing={2}>
         <Chip label="Para" variant="filled" />
         <Grid2 size={"grow"}>
           <Grid2 container spacing={2}>
             <Grid2 size={1}>
-              <Chip label="CC" variant="outlined" />
+              <Chip
+                label="CC"
+                variant="outlined"
+                sx={{ marginBottom: "10px", marginRight: "4px" }}
+              />
             </Grid2>
             <Grid2 size={"grow"}>
               {infoMensaje !== undefined &&
                 infoMensaje?.destinatariosCC.length > 0 &&
                 infoMensaje?.destinatariosCC.map((val) => (
-                  <Chip
-                    key={`chip-${val}`}
-                    sx={{ marginBottom: "10px", marginRight: "4px" }}
-                    label={val}
-                    variant="filled"
-                  />
+                  <Chip key={`chip-${val}`} label={val} variant="outlined" />
                 ))}
             </Grid2>
           </Grid2>
-          <Grid2 container spacing={2}>
-            <Grid2 size={1}>
-              <Chip label="CCO" variant="outlined" />
-            </Grid2>
-            <Grid2 size={"grow"}>
-              {infoMensaje !== undefined &&
+          {(infoMensaje?.remitente === `${user?.nombre} ${user?.apellido}` ||
+            infoMensaje?.destinatariosCCO.some((val) => {
+              return val === `${user?.nombre} ${user?.apellido}`;
+            })) && (
+            <Grid2 container spacing={2}>
+              <Grid2 size={1}>
+                <Chip label="CCO" variant="outlined" />
+              </Grid2>
+              <Grid2 size={"grow"}>
+                {infoMensaje !== undefined &&
                 infoMensaje?.destinatariosCCO.length > 0 &&
-                infoMensaje?.destinatariosCCO.map((val) => (
+                infoMensaje?.remitente ===
+                  `${user?.nombre} ${user?.apellido}` ? (
+                  infoMensaje?.destinatariosCCO.map((val) => (
+                    <Chip key={`chip-${val}`} label={val} variant="outlined" />
+                  ))
+                ) : (
                   <Chip
-                    key={`chip-${val}`}
-                    sx={{ marginBottom: "10px", marginRight: "4px" }}
-                    label={val}
-                    variant="filled"
+                    key={`chip-${user?.nombre} ${user?.apellido}`}
+                    label={`${user?.nombre} ${user?.apellido}`}
+                    variant="outlined"
                   />
-                ))}
+                )}
+              </Grid2>
             </Grid2>
-          </Grid2>
+          )}
         </Grid2>
       </Grid2>
       <TextField
@@ -96,18 +114,20 @@ const Mail = () => {
         value={infoMensaje !== undefined ? infoMensaje.cuerpoMensaje : ""}
       />
 
-      {infoMensaje !== undefined && infoMensaje.archivos !== undefined && infoMensaje.archivos.length > 0 && (
-        <Typography variant="body1" color="initial">
-          {infoMensaje.archivos.length > 1
-            ? "Se han cargado los archivos: "
-            : "Se ha cargado el archivo: "}
-          <strong>
-            {infoMensaje.archivos
-              .map((val) => `${val.nombre}.${val.extension}`)
-              .join(",")}
-          </strong>
-        </Typography>
-      )}
+      {infoMensaje !== undefined &&
+        infoMensaje.archivos !== undefined &&
+        infoMensaje.archivos.length > 0 && (
+          <Typography variant="body1" color="initial">
+            {infoMensaje.archivos.length > 1
+              ? "Se han cargado los archivos: "
+              : "Se ha cargado el archivo: "}
+            <strong>
+              {infoMensaje.archivos
+                .map((val) => `${val.nombre}.${val.extension}`)
+                .join(",")}
+            </strong>
+          </Typography>
+        )}
       <Button
         variant="contained"
         color="primary"

@@ -23,7 +23,7 @@ function crearMensaje(
     id,
     remitentesCO,
     asunto,
-    fecha: dayjs(fecha, "DD/MM/YYYY HH:mm").format("YYYY-MM-DD HH:mm"),
+    fecha: dayjs(fecha, "DD/MM/YYYY HH:mm").format("HH:mm DD-MM-YYYY"),
     remitentesCCO,
     cuerpoMensaje,
   };

@@ -14,6 +14,7 @@ import { crearMensaje, Mensaje } from "../../../entities/mail";
 import EnhancedTableHead, { HeadCell, Order } from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
 import { useNavigate } from "react-router";
+import { Categoria } from "../../../entities/categoria";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
@@ -61,6 +62,7 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
   const headCells: HeadCell[] = [];
 
   const [rows, setRows] = useState<Mensaje[]>([]);
+  const [nombreCategoria, setNombreCategoria] = useState("");
   const { user } = useAuth();
 
   const navigate = useNavigate();
@@ -131,6 +133,17 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
                 );
               })
             );
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      axios
+        .get(`/api/categoria/${categoria}`)
+        .then((res) => {
+          if (res.status === 200) {
+            const datosCategoria: Categoria = res.data;
+            setNombreCategoria(datosCategoria.desCategoria);
           }
         })
         .catch((error) => {
@@ -243,7 +256,11 @@ export default function EnhancedTable({ carpeta }: { carpeta: string }) {
       <Paper sx={{ width: "100%", mb: 2 }}>
         <EnhancedTableToolbar
           numSelected={selected.length}
-          title={carpeta.toLocaleUpperCase()}
+          title={
+            categoria !== ""
+              ? nombreCategoria.toUpperCase()
+              : carpeta.toUpperCase()
+          }
         />
         <TableContainer>
           <Table

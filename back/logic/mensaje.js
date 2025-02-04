@@ -71,7 +71,7 @@ async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
             || ' '
             || e.apellido emisor,
             m.asunto asunto,
-            to_char(m.fechaaccion, 'DD/MM/YY')
+            to_char(m.fechaaccion, 'DD/MM/YYYY')
             || ' '
             || to_char(
                m.horaaccion,
@@ -271,17 +271,25 @@ async function obtenerEnviadosPorUsuario(idUsuario) {
 }
 async function obtenerInfoCompleta(idMensaje) {
   const resMensaje = await peticion(
-    `select m.idmensaje "idMensaje",
+    `select 
+       m.idmensaje "idMensaje",
+       r.nombre
+       || ' '
+       || r.apellido remitente,
        m.asunto "asunto",
        m.CUERPOMENSAJE "cuerpoMensaje",
        u.nombre
        || ' '
-       || u.apellido "destinatario"
+       || u.apellido "destinatario",
+       d.idTipoCopia tipoCopia
   from mensaje m,
        destinatario d,
        contacto c,
-       usuario u
- where m.idmensaje = d.idmensaje
+       usuario u,
+       usuario r
+ where 
+       r.usuario = m.usuario
+   and m.idmensaje = d.idmensaje
    and m.usuario = d.usuario
    and c.conseccontacto = d.conseccontacto
    and u.usuario = c.usuario_1
@@ -290,18 +298,19 @@ async function obtenerInfoCompleta(idMensaje) {
     [idMensaje]
   );
   if (resMensaje !== null) {
-    console.log(resMensaje);
-    let destinatarios = [];
-
+    let destinatariosCC = [];
+    let destinatariosCCO = [];
     resMensaje.forEach((reg) => {
-      destinatarios.push(reg[3]);
+      if (reg[5] === "CO") destinatariosCC.push(reg[4]);
+      else if (reg[5] === "COO") destinatariosCCO.push(reg[4]);
     });
     return {
       idMensaje: resMensaje[0][0],
-      asunto: resMensaje[0][1],
-      cuerpoMensaje: resMensaje[0][2],
-      destinatariosCC: destinatarios,
-      destinatariosCCO: "",
+      remitente: resMensaje[0][1],
+      asunto: resMensaje[0][2],
+      cuerpoMensaje: resMensaje[0][3],
+      destinatariosCC: destinatariosCC,
+      destinatariosCCO: destinatariosCCO,
     };
   }
 }
