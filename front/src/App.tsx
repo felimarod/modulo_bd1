@@ -6,6 +6,7 @@ import Register from "./pages/Auth/Register";
 import Mails from "./pages/Dashboard/Mails";
 import AuthProvider from "./pages/Auth/AuthProvider";
 import NewMail from "./pages/Dashboard/NewMail";
+import Mail from "./pages/Dashboard/Mail";
 export const App = () => {
   return (
     <AuthProvider>
@@ -17,6 +18,7 @@ export const App = () => {
           </Route>
           <Route path="dashboard" element={<DashBoardLayout />}>
             <Route path="mails/:carpeta" element={<Mails />} />
+            <Route path="mail/:idMensaje" element={<Mail />} />
             <Route path="new-mail" element={<NewMail />} />
           </Route>
         </Routes>
