@@ -1,4 +1,10 @@
 import { peticion } from "../services/database.js";
+import { v4 as uuidv4 } from 'uuid';
+
+
+function generateShortUuid() {
+  return uuidv4().replace(/-/g, "").substring(0, 4);
+}
 
 /**
  * Formatear los datos del Mensaje
@@ -43,10 +49,11 @@ async function obtenerMensajePorId(id) {
  * @returns Mensaje creado
  */
 async function crearMensaje(Mensaje) {
+  const idmensaje = generateShortUuid();
   return await peticion(
     `INSERT INTO Mensaje (idMensaje, asunto, cuerpoMensaje, idTipoCarpeta, fechaAccion, horaAccion, usuario, idCategoria) 
-    VALUES ('E041', :asunto, :cuerpoMensaje, :idTipoCarpeta,TO_DATE(:fechaAccion,'DD/MM/YYYY'), TO_TIMESTAMP(:horaAccion,'HH24:MI:SS'), :usuario, :idCategoria)`,
-    Mensaje
+    VALUES (:idmensaje, :asunto, :cuerpoMensaje, :idTipoCarpeta,TO_DATE(:fechaAccion,'DD/MM/YYYY'), TO_TIMESTAMP(:horaAccion,'HH24:MI:SS'), :usuario, :idCategoria)`,
+    [idmensaje,...Mensaje]
   );
 }
 /**
@@ -108,7 +115,6 @@ async function agregarMensaje(Mensaje,correo){
    'SELECT distinct * FROM contacto C where C.correocontacto like :correo',[correo]
   );
   if (respuestaU.length!==0){
-    //console.log(respuestaU[0][1],respuestaU[0][5],Mensaje[5],respuestaU[0][0]);
    if (respuestaC.length===0){
       peticion(
        'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 )', [respuestaU[0][1],respuestaU[0][5],Mensaje[5],respuestaU[0][0]]
@@ -117,13 +123,11 @@ async function agregarMensaje(Mensaje,correo){
   }
   else{
    if (respuestaC.length===0){
-      console.log(correo,"algo");
       peticion(
        'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)',[correo,Mensaje[5]]
       );
    }
   } 
-  console.log(Mensaje);
   crearMensaje(Mensaje);
   }
 
