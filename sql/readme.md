@@ -11,7 +11,7 @@ docker run -d --name oracle -p 1521:1521 -e ORACLE_PASSWORD=oracle -v data:/opt/
 Ingresar al contenedor
 
 ```bash
-docker exec -it oracle bash
+$ docker exec -it oracle bash
 ```
 
 Conectar a OracleDB
