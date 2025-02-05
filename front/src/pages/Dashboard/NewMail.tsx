@@ -14,6 +14,7 @@ import { Contacto } from "../../entities/contacto";
 import { MensajeDTO } from "../../entities/DTO/MailDTO";
 import { Usuario } from "../../entities/user";
 import { get } from "../../services/https";
+import { InfoMensajeLS } from "../../entities/InfoMensajeLS";
 
 const regexCorreo = "([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})";
 
@@ -34,6 +35,10 @@ const NewMail = () => {
   const [contactos, setContactos] = useState<Contacto[]>([]);
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
+  const [infoMensajeLS, setInfoMensaje] = useState<InfoMensajeLS | undefined>(
+    undefined
+  );
+
   const { user } = useAuth();
 
   // Obtener contactos y/o usuarios
@@ -49,7 +54,36 @@ const NewMail = () => {
     get("/usuario/").then((res) => {
       setUsuarios(res as Usuario[]);
     });
+    const infoMensajeLSStr = window.localStorage.getItem("infomensaje");
+
+    if (infoMensajeLSStr !== null) {
+      setInfoMensaje(JSON.parse(infoMensajeLSStr));
+      window.localStorage.removeItem("infomensaje");
+    }
   }, []);
+
+  useEffect(() => {
+    if (infoMensajeLS !== undefined) {
+      setMensaje("\n\n---\n" + infoMensajeLS.infoMensaje.cuerpoMensaje);
+      switch (infoMensajeLS.accion) {
+        case "Responder":
+          setAsunto(infoMensajeLS.infoMensaje.asunto);
+          setDestinatariosCCConfirmados([
+            infoMensajeLS.infoMensaje.correoRemitente!,
+          ]);
+          break;
+        case "Reenviar":
+          setAsunto("Re: " + infoMensajeLS.infoMensaje.asunto);
+          break;
+      }
+      if (infoMensajeLS.infoMensaje.archivos !== undefined)
+        setNomArchivos(
+          infoMensajeLS.infoMensaje.archivos
+            .map((file) => `${file.nombre}.${file.extension}`)
+            .join(",")
+        );
+    }
+  }, [infoMensajeLS]);
 
   const verificarCampo = (valorCampo: string, campo: "CC" | "CCO") => {
     if (
@@ -128,81 +162,93 @@ const NewMail = () => {
                     }}
                   />
                 ))}
-              <Autocomplete
-                options={[
-                  ...contactos.map((contacto) => contacto.correoContacto),
-                  ...usuarios.map((usuario) => usuario.correoAlterno),
-                ].filter(
-                  (correo) =>
-                    !destinatariosCCConfirmados.some((val) => val === correo) &&
-                    !destinatariosCCOConfirmados.some((val) => val === correo)
-                )}
-                onChange={(_, val) => {
-                  if (val) verificarCampo(val, "CC");
-                }}
-                onInputChange={(_, nuevoDestinatario) => {
-                  verificarCampo(nuevoDestinatario, "CC");
-                }}
-                value={destinatariosCC}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    // key={params.InputLabelProps}
-                    sx={{ marginBottom: "20px" }}
-                    label="Lista de destinatarios"
-                  />
-                )}
-              />
+              {(infoMensajeLS === undefined ||
+                (infoMensajeLS !== undefined &&
+                  infoMensajeLS.accion === "Reenviar")) && (
+                <Autocomplete
+                  options={[
+                    ...contactos.map((contacto) => contacto.correoContacto),
+                    ...usuarios.map((usuario) => usuario.correoAlterno),
+                  ].filter(
+                    (correo) =>
+                      !destinatariosCCConfirmados.some(
+                        (val) => val === correo
+                      ) &&
+                      !destinatariosCCOConfirmados.some((val) => val === correo)
+                  )}
+                  onChange={(_, val) => {
+                    if (val) verificarCampo(val, "CC");
+                  }}
+                  onInputChange={(_, nuevoDestinatario) => {
+                    verificarCampo(nuevoDestinatario, "CC");
+                  }}
+                  value={destinatariosCC}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      // key={params.InputLabelProps}
+                      sx={{ marginBottom: "20px" }}
+                      label="Lista de destinatarios"
+                    />
+                  )}
+                />
+              )}
             </Grid2>
           </Grid2>
-          <Grid2 container spacing={2}>
-            <Grid2 size={1}>
-              <Chip label="CCO" variant="outlined" />
+          {(infoMensajeLS === undefined ||
+            (infoMensajeLS !== undefined &&
+              infoMensajeLS.accion === "Reenviar")) && (
+            <Grid2 container spacing={2}>
+              <Grid2 size={1}>
+                <Chip label="CCO" variant="outlined" />
+              </Grid2>
+              <Grid2 size={"grow"}>
+                {destinatariosCCOConfirmados.length > 0 &&
+                  destinatariosCCOConfirmados.map((val) => (
+                    <Chip
+                      key={`chip-${val}`}
+                      sx={{ marginBottom: "10px", marginRight: "4px" }}
+                      label={val}
+                      variant="filled"
+                      onClick={() => {
+                        setDestinatariosCCOConfirmados(
+                          destinatariosCCOConfirmados.filter(
+                            (val2) => val2 !== val
+                          )
+                        );
+                      }}
+                    />
+                  ))}
+                <Autocomplete
+                  options={[
+                    ...contactos.map((contacto) => contacto.correoContacto),
+                    ...usuarios.map((usuario) => usuario.correoAlterno),
+                  ].filter(
+                    (correo) =>
+                      !destinatariosCCConfirmados.some(
+                        (val) => val === correo
+                      ) &&
+                      !destinatariosCCOConfirmados.some((val) => val === correo)
+                  )}
+                  onChange={(_, val) => {
+                    if (val) verificarCampo(val, "CCO");
+                  }}
+                  onInputChange={(_, nuevoDestinatario) => {
+                    verificarCampo(nuevoDestinatario, "CCO");
+                  }}
+                  value={destinatariosCCO}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      // key={params.InputLabelProps}
+                      sx={{ marginBottom: "20px" }}
+                      label="Lista de destinatarios"
+                    />
+                  )}
+                />
+              </Grid2>
             </Grid2>
-            <Grid2 size={"grow"}>
-              {destinatariosCCOConfirmados.length > 0 &&
-                destinatariosCCOConfirmados.map((val) => (
-                  <Chip
-                    key={`chip-${val}`}
-                    sx={{ marginBottom: "10px", marginRight: "4px" }}
-                    label={val}
-                    variant="filled"
-                    onClick={() => {
-                      setDestinatariosCCOConfirmados(
-                        destinatariosCCOConfirmados.filter(
-                          (val2) => val2 !== val
-                        )
-                      );
-                    }}
-                  />
-                ))}
-              <Autocomplete
-                options={[
-                  ...contactos.map((contacto) => contacto.correoContacto),
-                  ...usuarios.map((usuario) => usuario.correoAlterno),
-                ].filter(
-                  (correo) =>
-                    !destinatariosCCConfirmados.some((val) => val === correo) &&
-                    !destinatariosCCOConfirmados.some((val) => val === correo)
-                )}
-                onChange={(_, val) => {
-                  if (val) verificarCampo(val, "CCO");
-                }}
-                onInputChange={(_, nuevoDestinatario) => {
-                  verificarCampo(nuevoDestinatario, "CCO");
-                }}
-                value={destinatariosCCO}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    // key={params.InputLabelProps}
-                    sx={{ marginBottom: "20px" }}
-                    label="Lista de destinatarios"
-                  />
-                )}
-              />
-            </Grid2>
-          </Grid2>
+          )}
         </Grid2>
       </Grid2>
       <TextField
@@ -224,7 +270,7 @@ const NewMail = () => {
         label="Mensaje"
         variant="outlined"
         fullWidth
-        rows={3}
+        rows={7}
         multiline
         value={mensaje}
         error={mensaje.length === 255}

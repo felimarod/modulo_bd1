@@ -5,14 +5,14 @@ import { useEffect } from "react";
 
 const Mails = () => {
   const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
   const { carpeta } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/auth/login");
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return <EnhancedTable carpeta={carpeta!} />;
 };
