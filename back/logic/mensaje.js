@@ -44,38 +44,40 @@ async function obtenerMensajePorId(id) {
 
 /**
  * Crear un Mensaje
- * @param {Array} Mensaje - Array con los datos de la Mensaje
+ * @param {Array} mensaje - Array con los datos de la Mensaje
  * @returns Mensaje creado
  */
-async function crearMensaje(Mensaje, consecContacto, usuario) {
-  const idmensaje = generateShortUuid();
+async function crearMensaje(mensaje, consecContacto, usuario) {
+  const idMensaje = generateShortUuid();
   await peticion(
     `INSERT INTO Mensaje (idMensaje, asunto, cuerpoMensaje, idTipoCarpeta, fechaAccion, horaAccion, usuario, idCategoria) 
     VALUES (:idmensaje, :asunto, :cuerpoMensaje, :idTipoCarpeta,SYSDATE,SYSTIMESTAMP, :usuario,'PRI')`,
-    [idmensaje, Mensaje[0], Mensaje[1], Mensaje[2], Mensaje[5]]
+    [
+      idMensaje,
+      mensaje.asunto,
+      mensaje.cuerpoMensaje,
+      mensaje.idTipoCarpeta,
+      mensaje.usuario,
+    ]
   );
-  await crearDestinatario(idmensaje, Mensaje, consecContacto, usuario);
+  return { idMensaje, ...mensaje };
 }
 
 /**
  * Crear un Destinatario
- * @param {Array} Mensaje - Array con los datos del Mensaje
+ * @param {Array} mensaje - Array con los datos del Mensaje
  * @returns Mensaje creado
  */
-async function crearDestinatario(idMensaje, Mensaje, consecContacto, usuario) {
-  console.log(Mensaje);
+async function crearDestinatario(idMensaje, mensaje, consecContacto, usuario) {
   let pais = "";
   if (usuario === undefined) {
     pais = "000";
   } else {
     pais = usuario[8];
   }
-  console.log(idMensaje, consecContacto);
-  console.log(usuario);
-  console.log(pais);
   return await peticion(
     `INSERT INTO Destinatario (idMensaje,usuario,consecContacto,idTipoCopia,idPais) VALUES (:idmensaje,:usuario,:conseccontacto,'CO',:pais)`,
-    [idMensaje, Mensaje[5], consecContacto, pais]
+    [idMensaje, mensaje.usuario, consecContacto, pais]
   );
 }
 
@@ -130,36 +132,73 @@ async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
   });
 }
 
-async function agregarMensaje(Mensaje, correo) {
+/**
+ *
+ * @param {*} mensaje
+ * @param {*} correo
+ * @returns consecContacto
+ */
+const crearContacto = async (mensaje, correo) => {
   const respuestaU = await peticion(
     "SELECT * FROM usuario U where U.correoalterno like :correo",
     [correo]
   );
   const respuestaC = await peticion(
-    "SELECT distinct * FROM contacto C where C.correocontacto like :correo",
-    [correo]
+    "SELECT distinct * FROM contacto C where C.correocontacto like :correo and c.usuario like :usuario",
+    [correo, mensaje.usuario]
   );
   if (respuestaU.length !== 0) {
     if (respuestaC.length === 0) {
       await peticion(
         "INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 )",
-        [respuestaU[0][1], respuestaU[0][5], Mensaje[5], respuestaU[0][0]]
+        [respuestaU[0][1], respuestaU[0][5], mensaje.usuario, respuestaU[0][0]]
       );
     }
   } else {
     if (respuestaC.length === 0) {
       await peticion(
         "INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)",
-        [correo, Mensaje[5]]
+        [correo, mensaje.usuario]
       );
     }
   }
-  const idContacto = await peticion(
-    "SELECT consecContacto from contacto WHERE lower(correoContacto) like :correo",
-    [correo]
+  const consecContacto = await peticion(
+    "SELECT consecContacto from contacto WHERE lower(correoContacto) like :correo and usuario = :usuario",
+    [correo.toLowerCase(), mensaje.usuario]
   );
-  console.log(idContacto[0][0]);
-  crearMensaje(Mensaje, idContacto[0][0], respuestaU[0]);
+  return { consecContacto: consecContacto[0][0], respuestaU: respuestaU[0] };
+};
+
+/**
+ *
+ * @param {*} mensaje
+ * @param {Array} correos
+ */
+async function agregarMensaje(mensaje) {
+  const mensajeCreado = await crearMensaje(mensaje);
+  const correos = mensaje.destinatariosCC;
+  for (let pos = 0; pos < correos.length; pos++) {
+    const correo = correos[pos];
+    let { consecContacto, usuario } = await crearContacto(mensaje, correo);
+    await crearDestinatario(
+      mensajeCreado["idMensaje"],
+      mensaje,
+      consecContacto,
+      usuario
+    );
+  }
+  // console.log(JSON.parse(mensaje.archivos));
+  // for (
+  //   let posArchivo = 0;
+  //   posArchivo < JSON.parse(mensaje.archivos).length;
+  //   posArchivo++
+  // ) {
+  //   const element = JSON.parse(mensaje.archivos)[posArchivo];
+  // }
+
+  // INSERT INTO archivoadjunto (nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES ( 'informe1', 'GioUs', 'E001', 'PDF');
+
+  return { sucess: true };
 }
 
 async function obtenerRecibidosDeUsuario(idUsuario) {

@@ -37,4 +37,21 @@ const get = async (ruta: string) => {
   }
 };
 
-export { get };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const post = async (ruta: string, body: any) => {
+  try {
+    const res = await axios.post(`/api${ruta}`, body);
+
+    if (res.status === 202) {
+      return res.data;
+    } else {
+      console.error(res);
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+export { get, post };

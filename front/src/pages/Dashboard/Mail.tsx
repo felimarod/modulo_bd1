@@ -133,11 +133,7 @@ const Mail = () => {
             {infoMensaje.archivos.length > 1
               ? "Se han cargado los archivos: "
               : "Se ha cargado el archivo: "}
-            <strong>
-              {infoMensaje.archivos
-                .map((val) => `${val.nombre}.${val.extension}`)
-                .join(",")}
-            </strong>
+            <strong>{infoMensaje.archivos}</strong>
           </Typography>
         )}
       <Button

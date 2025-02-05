@@ -5,7 +5,9 @@ type MensajeDTO = {
   destinatariosCCO: string[];
   asunto: string;
   cuerpoMensaje: string;
-  archivos: { nombre: string; extension: string }[];
+  archivos: string;
+  idTipoCarpeta?: string;
+  usuario?: string;
 };
 
 export type { MensajeDTO };

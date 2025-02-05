@@ -115,53 +115,6 @@ router.put("/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /mensaje/:
- *  post:
- *   tags:
- *    - Mensaje
- *   description: Crear Mensaje
- *   requestBody:
- *    content:
- *     application/json:
- *      schema:
- *       type: object
- *       properties:
- *        idMensaje:
- *         type: string
- *        asunto:
- *         type: string
- *        cuerpoMensaje:
- *         type: string
- *        idTipoCarpeta:
- *         type: string
- *        fechaAccion:
- *         type: string
- *        horaAccion:
- *         type: string
- *        usuario:
- *         type: string
- *        idCategoria:
- *         type: string
- *   responses:
- *     200:
- *       description: Retorna el Mensaje actualizado.
- *     404:
- *       description: No se ha encontrado el Mensaje.
- *     500:
- *       description: Error en la base de datos.
- */
-router.post("/", async (req, res, next) => {
-  try {
-    const MensajeFormateado = formatearMensaje(Object.values(req.body));
-    await crearMensaje(Object.values(MensajeFormateado));
-    res.status(202).send(MensajeFormateado);
-  } catch (error) {
-    res.status(404).send({ error: error.message });
-  }
-});
-
-/**
- * @openapi
  * /mensaje/{idUsuario}/categoria/{idCategoria}:
  *   get:
  *     tags:
@@ -318,15 +271,11 @@ router.get("/info/:id", async (req, res, next) => {
 
 /**
  * @openapi
- * /mensaje/{correo}:
+ * /mensaje/:
  *  post:
  *   tags:
  *    - Mensaje
- *   description: Insertar mensaje en Contacto 
- *   parameters:
- *      - in: path
- *        name: correo
- *        required: true
+ *   description: Insertar mensaje en Contacto
  *   requestBody:
  *    content:
  *     application/json:
@@ -335,19 +284,19 @@ router.get("/info/:id", async (req, res, next) => {
  *       properties:
  *        asunto:
  *         type: string
+ *        CC:
+ *         type: string[]
+ *        CCO:
+ *         type: string[]
  *        cuerpoMensaje:
  *         type: string
  *        idTipoCarpeta:
  *         type: string
- *        fechaAccion:
- *         type: string
- *        horaAccion:
- *         type: string
  *        usuario:
  *         type: string
- *        idCategoria:
+ *        archivos:
  *         type: string
- *        
+ *
  *   responses:
  *     200:
  *       description: Retorna el Mensaje actualizado.
@@ -356,11 +305,10 @@ router.get("/info/:id", async (req, res, next) => {
  *     500:
  *       description: Error en la base de datos.
  */
-router.post("/:correo", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    const MensajeFormateado = formatearMensaje(Object.values(req.body));
-    await agregarMensaje(Object.values(MensajeFormateado),req.params.correo);
-    res.status(202).send(MensajeFormateado);
+    let respuestaBD = await agregarMensaje(req.body);
+    res.status(202).send(respuestaBD);
   } catch (error) {
     res.status(404).send({ error: error.message });
   }

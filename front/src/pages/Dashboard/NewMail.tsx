@@ -13,7 +13,7 @@ import { useAuth } from "../../context/AuthContext";
 import { Contacto } from "../../entities/contacto";
 import { MensajeDTO } from "../../entities/DTO/MailDTO";
 import { Usuario } from "../../entities/user";
-import { get } from "../../services/https";
+import { get, post } from "../../services/https";
 import { InfoMensajeLS } from "../../entities/InfoMensajeLS";
 
 const regexCorreo = "([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})";
@@ -77,11 +77,7 @@ const NewMail = () => {
           break;
       }
       if (infoMensajeLS.infoMensaje.archivos !== undefined)
-        setNomArchivos(
-          infoMensajeLS.infoMensaje.archivos
-            .map((file) => `${file.nombre}.${file.extension}`)
-            .join(",")
-        );
+        setNomArchivos(infoMensajeLS.infoMensaje.archivos);
     }
   }, [infoMensajeLS]);
 
@@ -110,19 +106,34 @@ const NewMail = () => {
   };
 
   const handleClickButton = () => {
-    const objeto: MensajeDTO = {
+    const cuerpoPeticion: MensajeDTO = {
       destinatariosCC: destinatariosCCConfirmados,
       destinatariosCCO: destinatariosCCOConfirmados,
       asunto,
       cuerpoMensaje: mensaje,
-      archivos: nomArchivos.split(",").map((nomArchivo) => {
-        const separar = nomArchivo.split(".");
-        const nombre = separar.slice(0, -1).join(".");
-        const extension = separar[separar.length - 1];
-        return { nombre, extension };
-      }),
+      archivos: nomArchivos,
+      idTipoCarpeta: "Rec",
+      usuario: user!.usuario_,
+      // archivos: nomArchivos.split(",").map((nomArchivo) => {
+      //   const separar = nomArchivo.split(".");
+      //   const nombre = separar.slice(0, -1).join(".");
+      //   const extension = separar[separar.length - 1];
+      //   return { nombre, extension };
+      // }),
     };
-    alert(JSON.stringify(objeto));
+    post("/mensaje/", cuerpoPeticion)
+      .then((res) => {
+        if (res !== null) {
+          alert("Exito" + JSON.stringify(res));
+        } else {
+          alert("Fallo");
+        }
+      })
+      .catch((err) => {
+        alert("Errorrrr" + err);
+      });
+
+    alert(JSON.stringify(cuerpoPeticion));
   };
 
   return (
