@@ -54,7 +54,7 @@ type MensajeDTO = {
 };
 
 export default function EnhancedTable({ carpeta }: { carpeta: string }) {
-  const [order, setOrder] = useState<Order>("asc");
+  const [order, setOrder] = useState<Order>("desc");
   const [orderBy, setOrderBy] = useState<keyof Mensaje>("fecha");
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);

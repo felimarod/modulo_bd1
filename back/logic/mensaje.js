@@ -230,7 +230,7 @@ async function obtenerRecibidosDeUsuario(idUsuario) {
             usuario e
       where m.idmensaje = d.idmensaje
         and d.conseccontacto = c.conseccontacto
-        and m.idtipocarpeta like 'Rec'
+        -- and m.idtipocarpeta like 'Rec'
         and c.usuario_1 = u.usuario
         and m.usuario = e.usuario
         and c.usuario_1 like :idUsuario`,
