@@ -22,9 +22,10 @@ node -v
 ```
 Debe aparecernos la version
 
-´´´
+```
 v20.18.1
-´´´
+```
+De igual forma se requiere tener instalado npmm y para el desarrollo del entorno en react
 En caso de tenerla 
 ## Install
 
