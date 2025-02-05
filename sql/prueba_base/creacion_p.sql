@@ -64,9 +64,27 @@ CREATE TABLE Usuario (
     FOREIGN KEY (idPais) REFERENCES Pais(idPais)
 );
 
+-- Eliminar la secuencia si ya existe
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_consecContacto';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN -- Código de error cuando la secuencia no existe
+            RAISE;
+        END IF;
+END;
+/
+
+-- Crear la secuencia nuevamente
+CREATE SEQUENCE seq_consecContacto
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+
+
 CREATE TABLE Contacto (
     consecContacto INT NOT NULL,
-    nombreContacto VARCHAR(30) NOT NULL,
+    nombreContacto VARCHAR(30),
     correoContacto VARCHAR(30) NOT NULL,
     usuario VARCHAR(5) NOT NULL,
     usuario_1 VARCHAR (5),
@@ -74,6 +92,14 @@ CREATE TABLE Contacto (
     FOREIGN KEY (usuario) REFERENCES Usuario(usuario),
     FOREIGN KEY (usuario_1) REFERENCES Usuario(usuario)
 );
+
+CREATE OR REPLACE TRIGGER trg_consecContacto
+BEFORE INSERT ON Contacto
+FOR EACH ROW
+BEGIN
+    SELECT seq_consecContacto.NEXTVAL INTO :NEW.consecContacto FROM dual;
+END;
+/
 
 
 CREATE TABLE Mensaje (
@@ -102,6 +128,26 @@ CREATE TABLE ArchivoAdjunto (
     FOREIGN KEY (idTipoArchivo) REFERENCES TipoArchivo(idTipoArchivo)
 );
 
+
+-- Eliminar la secuencia si ya existe
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_consecDestinatario';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN -- Código de error cuando la secuencia no existe
+            RAISE;
+        END IF;
+END;
+/
+
+-- Crear la secuencia nuevamente
+CREATE SEQUENCE seq_consecDestinatario
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+/
+
+
 CREATE TABLE Destinatario (
     consecDestinatario INT NOT NULL,
     idMensaje VARCHAR(5) NOT NULL,
@@ -115,3 +161,14 @@ CREATE TABLE Destinatario (
     FOREIGN KEY (idTipoCopia) REFERENCES TipoCopia(idTipoCopia),
     FOREIGN KEY (idPais) REFERENCES Pais(idPais)
 );
+
+-- Crear el trigger para asignar automáticamente el valor de consecDestinatario
+CREATE OR REPLACE TRIGGER trg_consecDestinatario
+BEFORE INSERT ON Destinatario
+FOR EACH ROW
+BEGIN
+    SELECT seq_consecDestinatario.NEXTVAL INTO :NEW.consecDestinatario FROM dual;
+END;
+/
+
+

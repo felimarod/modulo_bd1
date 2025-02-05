@@ -47,84 +47,84 @@ INSERT INTO Usuario (usuario,nombre,apellido,fechanacimiento,fechacreacion,corre
 INSERT INTO Usuario (usuario,nombre,apellido,fechanacimiento,fechacreacion,correoalterno,celular,idestado,idpais) VALUES ('ALemu','Andrea','Lemus',TO_DATE('29/08/1997','DD/MM/YYYY'),TO_DATE('12/02/2024','DD/MM/YYYY'),'ALemu@bd.edu.co','3196789012','Act','169');
 INSERT INTO Usuario (usuario,nombre,apellido,fechanacimiento,fechacreacion,correoalterno,celular,idestado,idpais) VALUES ('RSali','Ricardo','Salinas',TO_DATE('22/04/2003','DD/MM/YYYY'),TO_DATE('13/02/2024','DD/MM/YYYY'),'RSali@bd.edu.co','3207890123','Act','169');
 
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (1, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'GioUs', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (2, 'Felipe', 'FeliM.usuario@bd.edu.co', 'GioUs', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (3, 'Miguel', 'MCarv.usuario@bd.edu.co', 'GioUs', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (4, 'Juan', 'JLope.usuario@bd.edu.co', 'GioUs', 'JLope');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (5, 'Carlos Perez', 'carlosperez@gmail.com', 'GioUs', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (6, 'Maria Lopez', 'marialopez@gmail.com', 'GioUs', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'GioUs', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'GioUs', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'GioUs', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Juan', 'JLope.usuario@bd.edu.co', 'GioUs', 'JLope');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Carlos Perez', 'carlosperez@gmail.com', 'GioUs', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Maria Lopez', 'marialopez@gmail.com', 'GioUs', NULL);
 
 -- Contactos para Alejo
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (7, 'Miguel', 'MCarv.usuario@bd.edu.co', 'Alejo', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (8, 'Felipe', 'FeliM.usuario@bd.edu.co', 'Alejo', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (9, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'Alejo', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (10, 'Juan', 'JLope.usuario@bd.edu.co', 'Alejo', 'JLope');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (11, 'Ana Perez', 'anaperez@gmail.com', 'Alejo', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (12, 'Jose Rios', 'joserios@gmail.com', 'Alejo', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'Alejo', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'Alejo', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'Alejo', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Juan', 'JLope.usuario@bd.edu.co', 'Alejo', 'JLope');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Ana Perez', 'anaperez@gmail.com', 'Alejo', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Jose Rios', 'joserios@gmail.com', 'Alejo', NULL);
 
 -- Contactos para FeliM
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (13, 'Miguel', 'MCarv.usuario@bd.edu.co', 'FeliM', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (14, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'FeliM', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (15, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'FeliM', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (16, 'Juan', 'JLope.usuario@bd.edu.co', 'FeliM', 'JLope');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (17, 'Laura Gomez', 'lauragomez@gmail.com', 'FeliM', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (18, 'Luis Torres', 'luistorres@gmail.com', 'FeliM', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'FeliM', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'FeliM', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'FeliM', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Juan', 'JLope.usuario@bd.edu.co', 'FeliM', 'JLope');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Laura Gomez', 'lauragomez@gmail.com', 'FeliM', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Luis Torres', 'luistorres@gmail.com', 'FeliM', NULL);
 
 -- Contactos para MCarv
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (19, 'Felipe', 'FeliM.usuario@bd.edu.co', 'MCarv', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (20, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'MCarv', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (21, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'MCarv', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (22, 'Juan', 'JLope.usuario@bd.edu.co', 'MCarv', 'JLope');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (23, 'Carmen Diaz', 'carmendiaz@gmail.com', 'MCarv', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (24, 'Raul Martinez', 'raulmartinez@gmail.com', 'MCarv', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'MCarv', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'MCarv', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'MCarv', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Juan', 'JLope.usuario@bd.edu.co', 'MCarv', 'JLope');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Carmen Diaz', 'carmendiaz@gmail.com', 'MCarv', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Raul Martinez', 'raulmartinez@gmail.com', 'MCarv', NULL);
 
 -- Contactos para JLope
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (25, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'JLope', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (26, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'JLope', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (27, 'Felipe', 'FeliM.usuario@bd.edu.co', 'JLope', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (28, 'Miguel', 'MCarv.usuario@bd.edu.co', 'JLope', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (29, 'Sofia Vega', 'sofiavega@gmail.com', 'JLope', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (30, 'Marco Cruz', 'marcocruz@gmail.com', 'JLope', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'JLope', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'JLope', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'JLope', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'JLope', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Sofia Vega', 'sofiavega@gmail.com', 'JLope', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Marco Cruz', 'marcocruz@gmail.com', 'JLope', NULL);
 
 -- Contactos para DMarc
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (31, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'DMarc', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (32, 'Miguel', 'MCarv.usuario@bd.edu.co', 'DMarc', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (33, 'Felipe', 'FeliM.usuario@bd.edu.co', 'DMarc', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (34, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'DMarc', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (35, 'Patricia Blanco', 'patriciablanco@gmail.com', 'DMarc', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (36, 'Victor Luna', 'victorluna@gmail.com', 'DMarc', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'DMarc', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'DMarc', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'DMarc', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'DMarc', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Patricia Blanco', 'patriciablanco@gmail.com', 'DMarc', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Victor Luna', 'victorluna@gmail.com', 'DMarc', NULL);
 
 -- Contactos para CAndr
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (37, 'Felipe', 'FeliM.usuario@bd.edu.co', 'CAndr', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (38, 'Miguel', 'MCarv.usuario@bd.edu.co', 'CAndr', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (39, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'CAndr', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (40, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'CAndr', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (41, 'Elena Ruiz', 'elenaruiz@gmail.com', 'CAndr', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (42, 'Mario Lopez', 'mariolopez@gmail.com', 'CAndr', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'CAndr', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'CAndr', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'CAndr', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'CAndr', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Elena Ruiz', 'elenaruiz@gmail.com', 'CAndr', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Mario Lopez', 'mariolopez@gmail.com', 'CAndr', NULL);
 
 -- Contactos para VQuin
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (43, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'VQuin', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (44, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'VQuin', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (45, 'Felipe', 'FeliM.usuario@bd.edu.co', 'VQuin', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (46, 'Miguel', 'MCarv.usuario@bd.edu.co', 'VQuin', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (47, 'Ana Beltran', 'anabeltran@gmail.com', 'VQuin', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (48, 'Oscar Meza', 'oscarmeza@gmail.com', 'VQuin', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'VQuin', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'VQuin', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'VQuin', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'VQuin', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Ana Beltran', 'anabeltran@gmail.com', 'VQuin', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Oscar Meza', 'oscarmeza@gmail.com', 'VQuin', NULL);
 
 -- Contactos para ALemu
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (49, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'ALemu', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (50, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'ALemu', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (51, 'Felipe', 'FeliM.usuario@bd.edu.co', 'ALemu', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (52, 'Miguel', 'MCarv.usuario@bd.edu.co', 'ALemu', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (53, 'Rosa Delgado', 'rosadelgado@gmail.com', 'ALemu', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (54, 'Hugo Sanchez', 'hugosanchez@gmail.com', 'ALemu', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'ALemu', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'ALemu', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.co', 'ALemu', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'ALemu', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Rosa Delgado', 'rosadelgado@gmail.com', 'ALemu', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Hugo Sanchez', 'hugosanchez@gmail.com', 'ALemu', NULL);
 
 -- Contactos para RSali
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (55, 'Miguel', 'MCarv.usuario@bd.edu.co', 'RSali', 'MCarv');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (56, 'Alejandro', 'Alejo.usuario@bd.edu.co', 'RSali', 'Alejo');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (57, 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'RSali', 'GioUs');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (58, 'Felipe', 'FeliM.usuario@bd.edu.c  o', 'RSali', 'FeliM');
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (59, 'Paola Ramirez', 'paolaramirez@gmail.com', 'RSali', NULL);
-INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES (60, 'Eduardo Mora', 'eduardomora@gmail.com', 'RSali', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Miguel', 'MCarv.usuario@bd.edu.co', 'RSali', 'MCarv');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Alejandro', 'Alejo.usuario@bd.edu.co', 'RSali', 'Alejo');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Giovanny', 'gemorenor.usuario@bd.edu.co', 'RSali', 'GioUs');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Felipe', 'FeliM.usuario@bd.edu.c  o', 'RSali', 'FeliM');
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Paola Ramirez', 'paolaramirez@gmail.com', 'RSali', NULL);
+INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES ( 'Eduardo Mora', 'eduardomora@gmail.com', 'RSali', NULL);
 
 INSERT INTO mensaje (idmensaje,asunto,cuerpomensaje,idtipocarpeta,fechaaccion,horaaccion,usuario,idcategoria) VALUES ('E001','Revisión pendiente','Solicito la revisión del documento compartido.','Rec',TO_DATE('28/02/2025','DD/MM/YYYY'),TO_TIMESTAMP('21:02:44','HH24:MI:SS'),'GioUs','PRI');
 INSERT INTO mensaje (idmensaje,asunto,cuerpomensaje,idtipocarpeta,fechaaccion,horaaccion,usuario,idcategoria) VALUES ('E002','Consulta de acceso','¿Podrías concederme acceso al archivo para continuar el trabajo?','Env',TO_DATE('01/03/2025','DD/MM/YYYY'),TO_TIMESTAMP('09:15:30','HH24:MI:SS'),'GioUs','PRO');
@@ -189,65 +189,65 @@ INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtip
 INSERT INTO archivoadjunto (consecarchivo, nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES (20, 'anexo_legal', 'FeliM', 'E010', 'DOC');
 
 --Destinatario para mensajes de GioUs (E001-E004)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (1,'E001','GioUs',1,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (2,'E002','GioUs',2,'CO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (3,'E003','GioUs',3,'COO','249');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (4,'E004','GioUs',4,'COO','245');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E001','GioUs',1,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E002','GioUs',2,'CO','063');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E003','GioUs',3,'COO','249');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E004','GioUs',4,'COO','245');
 
 -- Destinatarios para mensajes de Alejo (E005-E008)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (5,'E005','Alejo',7,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (6,'E006','Alejo',8,'CO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (7,'E007','Alejo',9,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (8,'E008','Alejo',10,'COO','275'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E005','Alejo',7,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E006','Alejo',8,'CO','097');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E007','Alejo',9,'COO','105');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E008','Alejo',10,'COO','275'); 
 
 -- Destinatarios para mensajes de FeliM (E009-E012)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (9,'E009','FeliM',13,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (10,'E010','FeliM',14,'CO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (11,'E011','FeliM',15,'COO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (12,'E012','FeliM',16,'COO','063');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E009','FeliM',13,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E010','FeliM',14,'CO','149');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E011','FeliM',15,'COO','245');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E012','FeliM',16,'COO','063');
 
 
 -- Destinatarios para mensajes de MCarv (E013-E016)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES(13,'E013','MCarv',19,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (14,'E014','MCarv',20,'CO','275');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (15,'E015','MCarv',21,'COO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (16,'E016','MCarv',22,'COO','249'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES('E013','MCarv',19,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E014','MCarv',20,'CO','275');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E015','MCarv',21,'COO','097');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E016','MCarv',22,'COO','249'); 
 
 -- Destinatarios para mensajes de JLope (E017-E020)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (17,'E017','JLope',25,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (18,'E018','JLope',26,'CO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (19,'E019','JLope',27,'COO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (20,'E020','JLope',28,'COO','245');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E017','JLope',25,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E018','JLope',26,'CO','105');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E019','JLope',27,'COO','149');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E020','JLope',28,'COO','245');
 
 -- Destinatarios para mensajes de DMarc (E021-E024)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (21,'E021','DMarc',31,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (22,'E022','DMarc',32,'CO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (23,'E023','DMarc',33,'COO','275');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (24,'E024','DMarc',34,'COO','097'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E021','DMarc',31,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E022','DMarc',32,'CO','063');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E023','DMarc',33,'COO','275');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E024','DMarc',34,'COO','097'); 
 
 -- Destinatarios para mensajes de CAndr (E025-E028)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (25,'E025','CAndr',37,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (26,'E026','CAndr',38,'CO','249');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (27,'E027','CAndr',39,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (28,'E028','CAndr',40,'COO','149'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E025','CAndr',37,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E026','CAndr',38,'CO','249');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E027','CAndr',39,'COO','105');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E028','CAndr',40,'COO','149'); 
 
 -- Destinatarios para mensajes de VQuin (E029-E032)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (29,'E029','VQuin',43,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (30,'E030','VQuin',44,'CO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (31,'E031','VQuin',45,'COO','063');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (32,'E032','VQuin',46,'COO','275'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E029','VQuin',43,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E030','VQuin',44,'CO','245');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E031','VQuin',45,'COO','063');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E032','VQuin',46,'COO','275'); 
 
 -- Destinatarios para mensajes de ALemu (E033-E036)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (33,'E033','ALemu',49,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (34,'E034','ALemu',50,'CO','097');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (35,'E035','ALemu',51,'COO','105');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (36,'E036','ALemu',52,'COO','249'); 
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E033','ALemu',49,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E034','ALemu',50,'CO','097');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E035','ALemu',51,'COO','105');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E036','ALemu',52,'COO','249'); 
 
 -- Destinatarios para mensajes de RSali (E037-E040)
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (37,'E037','RSali',55,'CO','169');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (38,'E038','RSali',56,'CO','149');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (39,'E039','RSali',57,'COO','245');
-INSERT INTO destinatario (consecdestinatario,idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES (40,'E040','RSali',58,'COO','275');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E037','RSali',55,'CO','169');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E038','RSali',56,'CO','149');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E039','RSali',57,'COO','245');
+INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) VALUES ('E040','RSali',58,'COO','275');
 
 COMMIT;
 --ROLLBACK;
