@@ -1,6 +1,5 @@
 import { peticion } from "../services/database.js";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 function generateShortUuid() {
   return uuidv4().replace(/-/g, "").substring(0, 4);
@@ -48,39 +47,37 @@ async function obtenerMensajePorId(id) {
  * @param {Array} Mensaje - Array con los datos de la Mensaje
  * @returns Mensaje creado
  */
-async function crearMensaje(Mensaje,consecContacto,usuario) {
+async function crearMensaje(Mensaje, consecContacto, usuario) {
   const idmensaje = generateShortUuid();
   await peticion(
     `INSERT INTO Mensaje (idMensaje, asunto, cuerpoMensaje, idTipoCarpeta, fechaAccion, horaAccion, usuario, idCategoria) 
     VALUES (:idmensaje, :asunto, :cuerpoMensaje, :idTipoCarpeta,SYSDATE,SYSTIMESTAMP, :usuario,'PRI')`,
-    [idmensaje,Mensaje[0],Mensaje[1],Mensaje[2],Mensaje[5]]
+    [idmensaje, Mensaje[0], Mensaje[1], Mensaje[2], Mensaje[5]]
   );
-  crearDestinatario(idmensaje,Mensaje,consecContacto,usuario)
-  return 
-} 
+  await crearDestinatario(idmensaje, Mensaje, consecContacto, usuario);
+}
 
 /**
  * Crear un Destinatario
  * @param {Array} Mensaje - Array con los datos del Mensaje
  * @returns Mensaje creado
  */
-async function crearDestinatario(idMensaje,Mensaje,consecContacto,usuario) {
+async function crearDestinatario(idMensaje, Mensaje, consecContacto, usuario) {
   console.log(Mensaje);
-  let pais = '';
-  if (usuario===undefined){
-    pais = '000';
+  let pais = "";
+  if (usuario === undefined) {
+    pais = "000";
+  } else {
+    pais = usuario[8];
   }
-  else{
-    pais=usuario[8];
-  }
-  console.log(idMensaje,consecContacto);
+  console.log(idMensaje, consecContacto);
   console.log(usuario);
   console.log(pais);
   return await peticion(
-  `INSERT INTO Destinatario (idMensaje,usuario,consecContacto,idTipoCopia,idPais) VALUES (:idmensaje,:usuario,:conseccontacto,'CO',:pais)`,[idMensaje,Mensaje[5],consecContacto,pais]
-  )
-} 
-
+    `INSERT INTO Destinatario (idMensaje,usuario,consecContacto,idTipoCopia,idPais) VALUES (:idmensaje,:usuario,:conseccontacto,'CO',:pais)`,
+    [idMensaje, Mensaje[5], consecContacto, pais]
+  );
+}
 
 /**
  * Actualizar el Mensaje
@@ -133,31 +130,37 @@ async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
   });
 }
 
-async function agregarMensaje(Mensaje,correo){
+async function agregarMensaje(Mensaje, correo) {
   const respuestaU = await peticion(
-   'SELECT * FROM usuario U where U.correoalterno like :correo',[correo]
+    "SELECT * FROM usuario U where U.correoalterno like :correo",
+    [correo]
   );
   const respuestaC = await peticion(
-   'SELECT distinct * FROM contacto C where C.correocontacto like :correo',[correo]
+    "SELECT distinct * FROM contacto C where C.correocontacto like :correo",
+    [correo]
   );
-  if (respuestaU.length!==0){
-   if (respuestaC.length===0){
-      peticion(
-       'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 )', [respuestaU[0][1],respuestaU[0][5],Mensaje[5],respuestaU[0][0]]
-     );
-   }
-  }
-  else{
-   if (respuestaC.length===0){
-      peticion(
-       'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)',[correo,Mensaje[5]]
+  if (respuestaU.length !== 0) {
+    if (respuestaC.length === 0) {
+      await peticion(
+        "INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 )",
+        [respuestaU[0][1], respuestaU[0][5], Mensaje[5], respuestaU[0][0]]
       );
-   }
-  } 
-  const idContacto = await peticion('SELECT consecContacto from contacto WHERE lower(correoContacto) like :correo',[correo]);
-  console.log(idContacto[0][0]);
-  crearMensaje(Mensaje,idContacto[0][0],respuestaU[0]);
+    }
+  } else {
+    if (respuestaC.length === 0) {
+      await peticion(
+        "INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)",
+        [correo, Mensaje[5]]
+      );
+    }
   }
+  const idContacto = await peticion(
+    "SELECT consecContacto from contacto WHERE lower(correoContacto) like :correo",
+    [correo]
+  );
+  console.log(idContacto[0][0]);
+  crearMensaje(Mensaje, idContacto[0][0], respuestaU[0]);
+}
 
 async function obtenerRecibidosDeUsuario(idUsuario) {
   const respuestaDB = await peticion(
