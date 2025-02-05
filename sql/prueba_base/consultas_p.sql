@@ -7,7 +7,7 @@
 select * FROM ArchivoAdjunto;
 
 -- Trae toda la tabla de archvoAdjunto segun el consecutivo que se envia desde la aplicacion
- select * FROM ArchivoAdjunto WHERE concecArchivo = 1;
+ select * FROM ArchivoAdjunto WHERE concecArchivo = 1
 
 
 ------------------
