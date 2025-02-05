@@ -126,6 +126,30 @@ select *
  where idmensaje = 'E001';
 desc mensaje;
 
-select *
+
+select m.asunto,
+       m.cuerpomensaje
   from mensaje m
  where m.idmensaje = 'E001';
+
+
+ select m.idmensaje "idMensaje",
+       m.asunto "asunto",
+       m.CUERPOMENSAJE "cuerpoMensaje",
+       u.nombre
+       || ' '
+       || u.apellido "destinatario"
+  from mensaje m,
+       destinatario d,
+       contacto c,
+       usuario u
+ where m.idmensaje = d.idmensaje
+   and m.usuario = d.usuario
+   and c.conseccontacto = d.conseccontacto
+   and ( d.idtipocopia like 'CO')
+   and m.idtipocarpeta like 'Rec'
+   and u.usuario = c.usuario_1
+   and m.IDMENSAJE like 'E001'
+ order by d.idtipocopia;
+
+ select * from tipocopia;
