@@ -34,6 +34,15 @@ async function obtenerArchivoAdjuntoPorId(id) {
       )
     )[0];
 }
+
+async function obtenerArchivosAdjuntosPorMensajeId(mensajeId) {
+  return (
+    await peticion(
+      "select * FROM ArchivoAdjunto WHERE idmensaje = :mensajeid",
+      [mensajeId]
+    )
+  );
+}
   
 /**
  * Crear un ArchivoAdjunto
@@ -42,8 +51,8 @@ async function obtenerArchivoAdjuntoPorId(id) {
  */
 async function crearArchivoAdjunto(ArchivoAdjunto) {
     return await peticion(
-      `INSERT INTO ArchivoAdjunto (concecArchivo, nomArchivo, usuario, idMensaje, idTipoArchivo) 
-      VALUES (:concecArchivo, :nomArchivo, :usuario, :idMensaje, :idTipoArchivo)`,
+      `INSERT INTO ArchivoAdjunto (nomArchivo, usuario, idMensaje, idTipoArchivo) 
+      VALUES (:nomArchivo, :usuario, :idMensaje, :idTipoArchivo)`,
       ArchivoAdjunto
     );
 }
@@ -68,4 +77,5 @@ async function actualizarArchivoAdjunto(valoresArchivoAdjunto) {
     formatearArchivoAdjunto,
     obtenerArchivoAdjuntoPorId,
     obtenerTodosLosArchivosAdjuntos,
+    obtenerArchivosAdjuntosPorMensajeId,
 };

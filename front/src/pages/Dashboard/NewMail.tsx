@@ -15,6 +15,7 @@ import { MensajeDTO } from "../../entities/DTO/MailDTO";
 import { Usuario } from "../../entities/user";
 import { get, post } from "../../services/https";
 import { InfoMensajeLS } from "../../entities/InfoMensajeLS";
+import { useNavigate } from "react-router";
 
 const regexCorreo = "([\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,7})";
 
@@ -40,6 +41,7 @@ const NewMail = () => {
   );
 
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   // Obtener contactos y/o usuarios
   useEffect(() => {
@@ -112,19 +114,13 @@ const NewMail = () => {
       asunto,
       cuerpoMensaje: mensaje,
       archivos: nomArchivos,
-      idTipoCarpeta: "Rec",
+      idTipoCarpeta: "Env",
       usuario: user!.usuario_,
-      // archivos: nomArchivos.split(",").map((nomArchivo) => {
-      //   const separar = nomArchivo.split(".");
-      //   const nombre = separar.slice(0, -1).join(".");
-      //   const extension = separar[separar.length - 1];
-      //   return { nombre, extension };
-      // }),
     };
     post("/mensaje/", cuerpoPeticion)
       .then((res) => {
         if (res !== null) {
-          alert("Exito" + JSON.stringify(res));
+          navigate("/dashboard/mails/enviado")
         } else {
           alert("Fallo");
         }

@@ -1,5 +1,9 @@
 import { peticion } from "../services/database.js";
 import { v4 as uuidv4 } from "uuid";
+import {
+  crearArchivoAdjunto,
+  obtenerArchivosAdjuntosPorMensajeId,
+} from "./archivoAdjunto.js";
 
 function generateShortUuid() {
   return uuidv4().replace(/-/g, "").substring(0, 4);
@@ -187,18 +191,23 @@ async function agregarMensaje(mensaje) {
       usuario
     );
   }
-  // console.log(JSON.parse(mensaje.archivos));
-  // for (
-  //   let posArchivo = 0;
-  //   posArchivo < JSON.parse(mensaje.archivos).length;
-  //   posArchivo++
-  // ) {
-  //   const element = JSON.parse(mensaje.archivos)[posArchivo];
-  // }
+  if (mensaje.archivos !== "") {
+    const archivos = mensaje.archivos.split(",");
+    for (let posArchivo = 0; posArchivo < archivos.length; posArchivo++) {
+      const nomArchivo = archivos[posArchivo];
+      const separar = nomArchivo.split(".");
+      const nombre = separar.slice(0, -1).join(".");
+      const extension = separar[separar.length - 1];
+      await crearArchivoAdjunto([
+        nombre,
+        mensaje.usuario,
+        mensajeCreado.idMensaje,
+        extension.toUpperCase(),
+      ]);
+    }
+  }
 
-  // INSERT INTO archivoadjunto (nomarchivo, usuario, idmensaje, idtipoarchivo) VALUES ( 'informe1', 'GioUs', 'E001', 'PDF');
-
-  return { sucess: true };
+  return mensajeCreado;
 }
 
 async function obtenerRecibidosDeUsuario(idUsuario) {
@@ -405,6 +414,15 @@ async function obtenerInfoCompleta(idMensaje) {
       if (reg[5] === "CO") destinatariosCC.push(reg[4]);
       else if (reg[5] === "COO") destinatariosCCO.push(reg[4]);
     });
+
+    const archivosAdjuntos = (
+      await obtenerArchivosAdjuntosPorMensajeId(idMensaje)
+    )
+      .map((val) => {
+        return `${val[1]}.${val[4]}`;
+      })
+      .join(",");
+
     return {
       idMensaje: resMensaje[0][0],
       remitente: resMensaje[0][1],
@@ -413,6 +431,7 @@ async function obtenerInfoCompleta(idMensaje) {
       destinatariosCC: destinatariosCC,
       destinatariosCCO: destinatariosCCO,
       correoRemitente: resMensaje[0][6],
+      archivos: archivosAdjuntos,
     };
   }
 }
