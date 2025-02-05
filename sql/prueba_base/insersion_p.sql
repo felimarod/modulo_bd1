@@ -252,3 +252,4 @@ INSERT INTO destinatario (idmensaje,usuario,conseccontacto,idtipocopia,idPais) V
 
 COMMIT;
 --ROLLBACK;
+desc contacto;

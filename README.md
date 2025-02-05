@@ -82,3 +82,13 @@ para visualizar la aplicaicon des plegada vamos a l asiguiente direccion web
 ```sh 
 localhosto:5173/auth/login
 ```
+
+scrits
+
+[creacion](sql/prueba_base/creacion_p.sql)
+
+[Insercion](sql/prueba_base/insersion_p.sql)
+
+consultas utilizadas en el proyecto
+
+[consultas](sql/prueba_base/consultas_p.sql)
