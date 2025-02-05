@@ -1,13 +1,16 @@
 import { Box, Button, Chip, Grid2, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { MensajeDTO } from "../../entities/DTO/MailDTO";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { MensajeDTO } from "../../entities/DTO/MailDTO";
+import { AccionMensaje } from "../../entities/AccionMensaje";
+import { InfoMensajeLS } from "../../entities/InfoMensajeLS";
 
 const Mail = () => {
   const { idMensaje } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const [infoMensaje, setInfoMensaje] = useState<MensajeDTO | undefined>();
 
@@ -19,6 +22,15 @@ const Mail = () => {
       });
     }
   }, [idMensaje]);
+
+  const guardarInfoMensajeEnMemoria = (accion: AccionMensaje) => {
+    const infoAGuardar: InfoMensajeLS = {
+      infoMensaje: infoMensaje!,
+      accion,
+    };
+    localStorage.setItem("infomensaje", JSON.stringify(infoAGuardar));
+    navigate("/dashboard/new-mail");
+  };
 
   return (
     <Box
@@ -132,7 +144,7 @@ const Mail = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          console.log("hola mundo desde boton");
+          guardarInfoMensajeEnMemoria("Reenviar");
         }}
       >
         Reenviar
@@ -141,10 +153,10 @@ const Mail = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          console.log("hola mundo desde boton");
+          guardarInfoMensajeEnMemoria("Responder");
         }}
       >
-        responder
+        Responder
       </Button>
     </Box>
   );

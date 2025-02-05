@@ -1,5 +1,6 @@
 type MensajeDTO = {
   remitente?: string;
+  correoRemitente?: string;
   destinatariosCC: string[];
   destinatariosCCO: string[];
   asunto: string;
