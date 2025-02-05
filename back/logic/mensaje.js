@@ -313,14 +313,14 @@ async function obtenerInfoCompleta(idMensaje) {
        u.nombre
        || ' '
        || u.apellido "destinatario",
-       d.idTipoCopia tipoCopia
+       d.idTipoCopia tipoCopia,
+       r.usuario || '@bd.edu.co' correoRemitente
   from mensaje m,
        destinatario d,
        contacto c,
        usuario u,
        usuario r
- where 
-       r.usuario = m.usuario
+ where r.usuario = m.usuario
    and m.idmensaje = d.idmensaje
    and m.usuario = d.usuario
    and c.conseccontacto = d.conseccontacto
@@ -343,6 +343,7 @@ async function obtenerInfoCompleta(idMensaje) {
       cuerpoMensaje: resMensaje[0][3],
       destinatariosCC: destinatariosCC,
       destinatariosCCO: destinatariosCCO,
+      correoRemitente: resMensaje[0][6],
     };
   }
 }

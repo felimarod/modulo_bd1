@@ -20,6 +20,7 @@
   "type": "module",
   "devDependencies": {
     "cors": "^2.8.5",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.5"
   }
 }
