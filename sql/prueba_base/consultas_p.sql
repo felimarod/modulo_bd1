@@ -25,15 +25,14 @@ select * FROM ArchivoAdjunto;
     VALUES (:idCategoria, :desCategoria);
 
 --Actualizacion de la categoria
-UPDATE Categoria SET desCategoria = :desCategoria WHERE idCategoria = :idCategoria`,  
-    [idCategoria, desCategoria]);
+UPDATE Categoria SET desCategoria = :desCategoria WHERE idCategoria = :idCategoria;
 
 
 ------------------
 -- 3. tabla contacto
 
 --end point consultar los datos de contacto
-select * FROM contacto
+select * FROM contacto;
 
 -- obtencion de los contactos por id
 select * FROM contacto WHERE conseccontacto = :contactoId;
@@ -49,7 +48,7 @@ UPDATE USUARIO SET nombrecontacto = :nombrecontacto, correocontacto = :correocon
 -- 4. tabla Contacto 
 
 -- endPoint consultar los datos de contacto
-select * FROM contacto
+select * FROM contacto;
 
 -- endPoint obtener los datos de contacto por id
 select * FROM contacto WHERE conseccontacto = :contactoId;
@@ -62,17 +61,17 @@ INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES
 UPDATE USUARIO SET nombrecontacto = :nombrecontacto, correocontacto = :correocontacto, usuario = :usuario, usuario_1 = :usuario_1 WHERE conseccontacto = :conseccontacto;
 
 -- endPonit Obtencio de contactos por usuario
-select * FROM contacto WHERE usuario = :usuario
+select * FROM contacto WHERE usuario = :usuario;
 
 
 ------------------
 -- 5. tabla destinatario
 
 -- endPoint consultar los datos de destinatario
-select * FROM destinatario
+select * FROM destinatario;
 
 -- endPoint obtener los datos de destinatario por id
-select * FROM Destinatario WHERE consecDestinatario = :consecDestinatario
+select * FROM Destinatario WHERE consecDestinatario = :consecDestinatario;
 
 -- endPoint Creacion de un nuevo destinatario
 INSERT INTO Destinatario (idMensaje,usuario,consecContacto,idTipoCopia,idPais) 
@@ -86,7 +85,7 @@ UPDATE Destinatario SET idMensaje = :idMensaje, usuario = :usuario, consecContac
 -- 6. tabla estado
 
 -- endPoint consultar los datos de estado
-select * FROM ESTADO
+select * FROM ESTADO;
 
 -- endPoint obtener los datos de estado por id
 select * FROM Estado WHERE idEstado = :EstadoId ;
@@ -106,7 +105,7 @@ select * FROM Estado WHERE nombreEstado = :nombreEstado;
 -- 7. tabla mensaje
 
 --endPoint consultar todos los  mensaje
-select * FROM mensaje
+select * FROM mensaje;
 
 --endPoint obtener los datos de mensaje por id
 select * FROM mensaje WHERE idMensaje = :idMensaje;
@@ -151,10 +150,10 @@ SELECT * FROM usuario U where U.correoalterno like :correo;
 SELECT distinct * FROM contacto C where C.correocontacto like :correo;
 
 -- insercion de un nuevo contacto al usuario
-INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 ;
+INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1) ;
 
 -- insercion de un nuevo contacto al directorio de contactos
-INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)
+INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null);
 
 -- obtener recibido de usuario
 select m.idmensaje mensaje,
@@ -275,7 +274,7 @@ UPDATE Pais SET nomPais = :nomPais, dominio = :dominio  WHERE idPais = :idPais;
 -- 9. tabla tipoArchivo
 
 -- endPoint consultar toda la informaicon de todos los datos de tipoArchivo
-select * FROM tipoArchivo
+select * FROM tipoArchivo;
 
 -- endPoint obtener los datos de tipoArchivo por id
 select * FROM tipoArchivo WHERE IDtipoArchivo = :idtipoArchivo;
@@ -285,7 +284,7 @@ INSERT INTO tipoArchivo (idTipoArchivo, descTipoArchivo)
     VALUES (:idTipoArchivo, :descTipoArchivo);
 
 -- endPoint Actualizacion de un tipoArchivo
-UPDATE tipoArchivo SET descTipoArchivo = :descTipoArchivo WHERE idTipoArchivo = :idTipoArchivo
+UPDATE tipoArchivo SET descTipoArchivo = :descTipoArchivo WHERE idTipoArchivo = :idTipoArchivo;
 
 
 ------------------
@@ -302,7 +301,7 @@ INSERT INTO tipoCarpeta (idTipoCarpeta, descpTipoCarpeta)
     VALUES (:idTipoCarpeta, :descpTipoCarpeta);
 
 -- endPoint Actualizacion de un tipoCarpeta
-UPDATE tipocarpeta SET descTipoCarpeta = :descTipoCarpeta WHERE idtipocarpeta = :idtipocarpeta
+UPDATE tipocarpeta SET descTipoCarpeta = :descTipoCarpeta WHERE idtipocarpeta = :idtipocarpeta;
 
 
 ------------------
