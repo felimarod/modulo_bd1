@@ -117,16 +117,42 @@ CREATE TABLE Mensaje (
     FOREIGN KEY (idTipoCarpeta) REFERENCES TipoCarpeta(idTipoCarpeta)
 );
 
-CREATE TABLE ArchivoAdjunto (
-    consecArchivo INT NOT NULL,
-    nomArchivo VARCHAR(30) NOT NULL,
-    usuario VARCHAR(5) NOT NULL,
-    idMensaje VARCHAR(5) NOT NULL,
-    idTipoArchivo VARCHAR(5) NOT NULL,
-    PRIMARY KEY (consecArchivo),
-    FOREIGN KEY (idMensaje,usuario) REFERENCES Mensaje(idMensaje,usuario),
-    FOREIGN KEY (idTipoArchivo) REFERENCES TipoArchivo(idTipoArchivo)
-);
+-- Eliminar la secuencia si ya existe
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE seq_consecArchivo';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN -- Código de error cuando la secuencia no existe
+            RAISE;
+        END IF;
+END;
+/
+
+-- Crear la secuencia nuevamente
+CREATE SEQUENCE seq_consecArchivo
+START WITH 1
+INCREMENT BY 1
+NOCACHE NOCYCLE;
+/
+
+    CREATE TABLE ArchivoAdjunto (
+        consecArchivo INT NOT NULL,
+        nomArchivo VARCHAR(30) NOT NULL,
+        usuario VARCHAR(5) NOT NULL,
+        idMensaje VARCHAR(5) NOT NULL,
+        idTipoArchivo VARCHAR(5) NOT NULL,
+        PRIMARY KEY (consecArchivo),
+        FOREIGN KEY (idMensaje,usuario) REFERENCES Mensaje(idMensaje,usuario),
+        FOREIGN KEY (idTipoArchivo) REFERENCES TipoArchivo(idTipoArchivo)
+    );
+
+CREATE OR REPLACE TRIGGER trg_consecArchivo
+BEFORE INSERT ON ArchivoAdjunto
+FOR EACH ROW
+BEGIN
+    SELECT seq_consecArchivo.NEXTVAL INTO :NEW.consecArchivo FROM dual;
+END;
+/
 
 
 -- Eliminar la secuencia si ya existe

@@ -26,6 +26,7 @@ INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('169','Colombia','.co');
 INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('245','España','.es');
 INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('249','Estados Unidos','.us');
 INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('275','Francia', '.fr');
+INSERT INTO Pais (idPais,nomPais,dominio) VALUES ('000','Sinpais', 'SP');
 
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRI','Principal');
 INSERT INTO Categoria (idCategoria,desCategoria) VALUES ('PRO','Promocion');
