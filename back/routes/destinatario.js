@@ -115,8 +115,6 @@ router.put("/:id", async (req, res, next) => {
  *      schema:
  *       type: object
  *       properties:
- *        consecDestinatario:
- *         type: string
  *        idMensaje:
  *         type: string
  *        usuario:

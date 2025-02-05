@@ -123,25 +123,14 @@ router.put("/:id", async (req, res, next) => {
  *      schema:
  *       type: object
  *       properties:
- *        contacto:
+ *        nombreContacto:
  *         type: string
- *        nombre:
+ *        correoContacto:
  *         type: string
- *        apellido:
+ *        usuario: 
  *         type: string
- *        fechaNacimiento:
- *         type: date
- *        fechaCreacion:
+ *        usuario_1:
  *         type: string
- *        correoAlterno:
- *         type: string
- *        celular:
- *         type: string
- *        idEstado:
- *         type: string
- *        idPais:
- *         type: string
- * 
  *   responses:
  *     200:
  *       description: Retorna el Contacto actualizado.
@@ -167,7 +156,7 @@ router.post("/", async (req, res, next) => {
  *   get:
  *     tags:
  *       - Contactos
- *     description: Obtener Contacto por id
+ *     description: Obtener Contacto por Usuario
  *     parameters:
  *      - in: path
  *        name: id

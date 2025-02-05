@@ -43,8 +43,8 @@ async function obtenerDestinatarioPorId(id) {
  */
 async function crearDestinatario(Destinatario) {
   return await peticion(
-    `INSERT INTO Destinatario (consecDestinatario,idMensaje,usuario,consecContacto,idTipoCopia,idPais) 
-    VALUES (:consecDestinatario,:idMensaje,:usuario,:consecContacto,:idTipoCopia,:idPais)`,
+    `INSERT INTO Destinatario (idMensaje,usuario,consecContacto,idTipoCopia,idPais) 
+    VALUES (idMensaje,:usuario,:consecContacto,:idTipoCopia,:idPais)`,
     Destinatario
   );
 }

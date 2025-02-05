@@ -45,7 +45,7 @@ async function obtenerMensajePorId(id) {
 async function crearMensaje(Mensaje) {
   return await peticion(
     `INSERT INTO Mensaje (idMensaje, asunto, cuerpoMensaje, idTipoCarpeta, fechaAccion, horaAccion, usuario, idCategoria) 
-    VALUES (:idMensaje, :asunto, :cuerpoMensaje, :idTipoCarpeta,TO_DATE(:fechaAccion,'DD/MM/YYYY'), TO_TIMESTAMP(:horaAccion,'HH24:MI:SS'), :usuario, :idCategoria)`,
+    VALUES ('E041', :asunto, :cuerpoMensaje, :idTipoCarpeta,TO_DATE(:fechaAccion,'DD/MM/YYYY'), TO_TIMESTAMP(:horaAccion,'HH24:MI:SS'), :usuario, :idCategoria)`,
     Mensaje
   );
 }
@@ -99,6 +99,33 @@ async function obtenerMensajesPorUsuarioYCategoria(idUsuario, idCategoria) {
     };
   });
 }
+
+async function agregarMensaje(Mensaje,correo){
+  const respuestaU = await peticion(
+   'SELECT * FROM usuario U where U.correoalterno like :correo',[correo]
+  );
+  const respuestaC = await peticion(
+   'SELECT distinct * FROM contacto C where C.correocontacto like :correo',[correo]
+  );
+  if (respuestaU.length!==0){
+    //console.log(respuestaU[0][1],respuestaU[0][5],Mensaje[5],respuestaU[0][0]);
+   if (respuestaC.length===0){
+      peticion(
+       'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (:nombreContacto,:correoContacto,:idUsuario,:idUsuario_1 )', [respuestaU[0][1],respuestaU[0][5],Mensaje[5],respuestaU[0][0]]
+     );
+   }
+  }
+  else{
+   if (respuestaC.length===0){
+      console.log(correo,"algo");
+      peticion(
+       'INSERT INTO contacto (nombreContacto,correoContacto,usuario,usuario_1) VALUES (null,:correo,:idUsuario,null)',[correo,Mensaje[5]]
+      );
+   }
+  } 
+  console.log(Mensaje);
+  crearMensaje(Mensaje);
+  }
 
 async function obtenerRecibidosDeUsuario(idUsuario) {
   const respuestaDB = await peticion(
@@ -317,4 +344,5 @@ export {
   obtenerEnviadosPorUsuario,
   obtenerBorradoresDeUsuario,
   obtenerInfoCompleta,
+  agregarMensaje,
 };

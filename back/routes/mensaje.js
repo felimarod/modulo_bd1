@@ -10,6 +10,7 @@ import {
   obtenerBorradoresDeUsuario,
   obtenerTodosLosMensajes,
   obtenerInfoCompleta,
+  agregarMensaje,
 } from "../logic/mensaje.js";
 
 var router = Router();
@@ -310,6 +311,56 @@ router.get("/info/:id", async (req, res, next) => {
   try {
     const resDB = await obtenerInfoCompleta(req.params.id);
     res.status(200).send(resDB);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
+
+/**
+ * @openapi
+ * /mensaje/{correo}:
+ *  post:
+ *   tags:
+ *    - Mensaje
+ *   description: Insertar mensaje en Contacto 
+ *   parameters:
+ *      - in: path
+ *        name: correo
+ *        required: true
+ *   requestBody:
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        asunto:
+ *         type: string
+ *        cuerpoMensaje:
+ *         type: string
+ *        idTipoCarpeta:
+ *         type: string
+ *        fechaAccion:
+ *         type: string
+ *        horaAccion:
+ *         type: string
+ *        usuario:
+ *         type: string
+ *        idCategoria:
+ *         type: string
+ *        
+ *   responses:
+ *     200:
+ *       description: Retorna el Mensaje actualizado.
+ *     404:
+ *       description: No se ha encontrado el Mensaje.
+ *     500:
+ *       description: Error en la base de datos.
+ */
+router.post("/:correo", async (req, res, next) => {
+  try {
+    const MensajeFormateado = formatearMensaje(Object.values(req.body));
+    await agregarMensaje(Object.values(MensajeFormateado),req.params.correo);
+    res.status(202).send(MensajeFormateado);
   } catch (error) {
     res.status(404).send({ error: error.message });
   }

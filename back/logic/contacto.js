@@ -41,8 +41,8 @@ async function obtenerContactoPorId(contactoId) {
  */
 async function crearContacto(contacto) {
   return await peticion(
-    `INSERT INTO Contacto (conseccontacto, nombrecontacto, correocontacto, usuario, usuario_1) VALUES 
-    (:conseccontacto, :nombrecontacto, :correocontacto, :usuario, :usuario_1)`,
+    `INSERT INTO Contacto (nombrecontacto, correocontacto, usuario, usuario_1) VALUES 
+    (:nombrecontacto, :correocontacto, :usuario, :usuario_1)`,
     contacto
   );
 }
